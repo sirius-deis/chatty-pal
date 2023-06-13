@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
-import { StyledSignUp, StyledForm } from './signUp.styles';
+import { StyledSignUp } from './signUp.styles';
+import Form from '../form/form';
 import Input from '../input/input';
 import Button from '../button/button';
 import H1 from '../h1/h1';
@@ -8,9 +9,9 @@ import H1 from '../h1/h1';
 const SignUp = () => {
   return (
     <StyledSignUp>
-      <StyledForm>
+      <Form>
         <Link to='/'>
-          <img src={Logo} alt='' />
+          <img src={Logo} alt='logo' />
         </Link>
         <H1>Sign up</H1>
         <Input type='text' name='firstName' placeholder='First name *' />
@@ -24,7 +25,7 @@ const SignUp = () => {
             Sign in
           </Link>
         </div>
-      </StyledForm>
+      </Form>
     </StyledSignUp>
   );
 };

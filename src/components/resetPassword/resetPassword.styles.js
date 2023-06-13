@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSignIn = styled.div`
+export const StyledResetPassword = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;

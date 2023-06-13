@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import { FaFacebookF, FaGoogle, FaTwitter } from 'react-icons/fa';
-import { StyledSignIn, StyledForm } from './signIn.styles';
+import { StyledSignIn } from './signIn.styles';
+import Form from '../form/form';
 import Input from '../input/input';
 import Button from '../button/button';
 import H1 from '../h1/h1';
@@ -11,9 +12,9 @@ import LabelWithCheckbox from '../checkbox/checkbox';
 const SignIn = () => {
   return (
     <StyledSignIn>
-      <StyledForm>
+      <Form>
         <Link to='/'>
-          <img src={Logo} alt='' />
+          <img src={Logo} alt='logo' />
         </Link>
 
         <H1>Sign in</H1>
@@ -21,7 +22,7 @@ const SignIn = () => {
         <Input type='password' name='password' placeholder='Password *' />
         <Row>
           <LabelWithCheckbox label='Remember me' />
-          <Link to='/reset' style={{ color: 'var(--main-color)' }}>
+          <Link to='/reset-password' style={{ color: 'var(--main-color)' }}>
             Reset password
           </Link>
         </Row>
@@ -44,7 +45,7 @@ const SignIn = () => {
             Sign up
           </Link>
         </div>
-      </StyledForm>
+      </Form>
     </StyledSignIn>
   );
 };

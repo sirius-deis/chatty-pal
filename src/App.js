@@ -7,6 +7,7 @@ import StartPage from './pages/startPage/startPage';
 
 const SignUp = lazy(() => import('./pages/signUpPage/signUpPage'));
 const SignIn = lazy(() => import('./pages/signInPage/signInPage'));
+const ResetPassword = lazy(() => import('./pages/resetPasswordPage/resetPasswordPage'));
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
             element={
               <Suspense fallback={<Loader />}>
                 <SignUp />
+              </Suspense>
+            }
+          />
+          <Route
+            path='reset-password'
+            element={
+              <Suspense fallback={<Loader />}>
+                <ResetPassword />
               </Suspense>
             }
           />
