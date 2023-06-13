@@ -1,6 +1,6 @@
 import Logo from '../../assets/images/logo.png';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div>
       <img src={Logo} alt='' />
@@ -8,4 +8,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

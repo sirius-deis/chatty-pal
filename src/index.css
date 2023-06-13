@@ -6,11 +6,12 @@
 
 :root {
   font-size: 62.5%;
+  --bg-color-lighter: #fafaf9;
   --bg-color: #d6d3d1;
   --text-color: #0c0a09;
+  --text-color-lighter: #fafaf9;
   --main-color: #ef4444;
   --main-color-lighter: #fca5a5;
-  --additional-color: #fafaf9;
 }
 
 body {
@@ -18,8 +19,14 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
