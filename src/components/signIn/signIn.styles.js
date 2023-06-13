@@ -15,7 +15,7 @@ export const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  padding: 5rem 3rem;
+  padding: 4rem 3rem;
   box-shadow: var(--shadow);
   border-radius: 5px;
   img {
