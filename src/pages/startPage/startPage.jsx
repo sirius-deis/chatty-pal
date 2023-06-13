@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import { StyledStartPage, StyledStartBanner, StyledStartContent } from './startPage.styles';
 import Button from '../../components/button/button';
+import H1 from '../../components/h1/h1';
 
 const StartPage = () => {
   return (
@@ -10,7 +11,7 @@ const StartPage = () => {
         <img src={Logo} alt='logo' />
       </StyledStartBanner>
       <StyledStartContent>
-        <h1>Welcome to ChattyPal</h1>
+        <H1>Welcome to ChattyPal</H1>
         <Button>
           <Link to='/login'>Start Messaging</Link>
         </Button>
