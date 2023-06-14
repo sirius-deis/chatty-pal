@@ -41,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path='reset-password'
+            path='chat'
             element={
               <Suspense fallback={<Loader />}>
                 <ChatPage />

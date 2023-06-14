@@ -2,24 +2,37 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
+  flex-grow: 6;
   position: relative;
+  padding: 0.4rem;
+  border-radius: 5px;
+  background-color: var(--bg-color);
 `;
 
 const StyledSearch = styled.input`
+  width: 85%;
   padding: 0.5rem 1rem;
-  border-radius: 10px;
+
   caret: var(--main-color);
+  border: 0;
+  background-color: transparent;
   &:focus {
     outline: none;
-    box-shadow: var(--shadow);
+  }
+  &:placeholder {
+    color: var(--text-color);
   }
 `;
 
 const StyledCross = styled.button`
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 1rem;
+  border: 0;
+  background-color: transparent;
+  color: var(--text-color);
   transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 const Search = () => {
