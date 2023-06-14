@@ -1,6 +1,6 @@
 {
-    "short_name": "Chato",
-    "name": "Chato, app for connection",
+    "short_name": "ChattyPal",
+    "name": "ChattyPal, app for connection",
     "icons": [],
     "start_url": ".",
     "display": "standalone",

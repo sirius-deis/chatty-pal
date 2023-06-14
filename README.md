@@ -1,1 +1,1 @@
-# Chato frontend
+# ChattyPal frontend with react
