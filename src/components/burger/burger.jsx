@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const StyledMenu = styled.button`
   flex-grow: 1;
   width: 2.5rem;
+  max-width: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
