@@ -12,8 +12,7 @@ const StyledWrapper = styled.div`
 const StyledSearch = styled.input`
   width: 95%;
   padding: 0.5rem 1rem;
-
-  caret: var(--main-color);
+  caret-color: var(--main-color);
   border: 0;
   background-color: transparent;
   &:focus {
@@ -36,20 +35,17 @@ const StyledCross = styled.button`
 `;
 
 const Search = () => {
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
   const onChangeHandler = (event) => {
-    if (event.target.value) {
-      setIsEmpty(false);
-    } else {
-      if (!isEmpty) {
-        setIsEmpty(true);
-      }
-    }
+    setSearchTerm(event.target.value);
+  };
+  const clickHandler = () => {
+    setSearchTerm('');
   };
   return (
     <StyledWrapper>
-      <StyledSearch type='search' placeholder='Search' name='search' onChange={onChangeHandler} />
-      {!isEmpty && <StyledCross>&#x2715;</StyledCross>}
+      <StyledSearch type='search' placeholder='Search' name='search' value={searchTerm} onChange={onChangeHandler} />
+      {searchTerm.length > 0 && <StyledCross onClick={clickHandler}>&#x2715;</StyledCross>}
     </StyledWrapper>
   );
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Row from '../row/row';
 import Burger from '../burger/burger';
-import Search from '../../search/search';
+import Search from '../search/search';
 import List from '../list/list';
 
 const StyledSidebar = styled.div`
