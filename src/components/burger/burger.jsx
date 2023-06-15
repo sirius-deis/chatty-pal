@@ -20,9 +20,9 @@ const StyledMenuItem = styled.div`
   background-color: var(--text-color);
 `;
 
-const Burger = () => {
+const Burger = ({ onClick }) => {
   return (
-    <StyledMenu>
+    <StyledMenu onClick={onClick}>
       <StyledMenuItem />
       <StyledMenuItem />
       <StyledMenuItem />

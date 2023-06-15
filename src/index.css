@@ -16,6 +16,7 @@
   --main-color-lighter: #fca5a5;
   --online-color: #a3e635;
   --shadow: 2px 2px 6px 3px rgba(12, 10, 9, 0.2);
+  --bg-color-transparent: rgba(214, 211, 209, 0.3);
 }
 
 body {

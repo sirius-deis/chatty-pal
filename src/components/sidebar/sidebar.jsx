@@ -6,7 +6,6 @@ import Search from '../search/search';
 import List from '../list/list';
 
 const StyledSidebar = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -33,11 +32,11 @@ const dummy = {
 
 const list = Array(20).fill(dummy);
 
-const Sidebar = () => {
+const Sidebar = ({ toggleClickHandler }) => {
   return (
     <StyledSidebar>
       <Row style={{ gap: '2rem', padding: '0 1rem' }}>
-        <Burger />
+        <Burger onClick={toggleClickHandler} />
         <Search />
       </Row>
       <StyledScroll>

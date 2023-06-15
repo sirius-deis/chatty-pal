@@ -14,6 +14,7 @@ const useDelayUnmount = (isMounted, delayTime) => {
       clearTimeout(timeoutId);
     };
   }, [isMounted, delayTime, shouldRender]);
+  return shouldRender;
 };
 
 export default useDelayUnmount;

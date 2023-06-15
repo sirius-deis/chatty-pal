@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledChat = styled.div`
-  flex-grow: 40;
+  width: 85%;
   height: 100vh;
   display: flex;
   flex-direction: column;

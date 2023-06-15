@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ListItem from '../listItem/listItem';
+import Conversation from '../conversation/conversation';
 
 const StyledList = styled.ul`
   display: flex;
@@ -10,7 +11,11 @@ const StyledList = styled.ul`
 `;
 
 const List = ({ list = [] }) => {
-  const renderList = list.map((item, i) => <ListItem key={i} {...item} />);
+  const renderList = list.map((item, i) => (
+    <ListItem key={i}>
+      <Conversation {...item} />
+    </ListItem>
+  ));
   return <StyledList>{renderList}</StyledList>;
 };
 
