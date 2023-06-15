@@ -10,7 +10,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledSearch = styled.input`
-  width: 85%;
+  width: 95%;
   padding: 0.5rem 1rem;
 
   caret: var(--main-color);
@@ -49,7 +49,7 @@ const Search = () => {
   return (
     <StyledWrapper>
       <StyledSearch type='search' placeholder='Search' name='search' onChange={onChangeHandler} />
-      {isEmpty && <StyledCross>&#x2715;</StyledCross>}
+      {!isEmpty && <StyledCross>&#x2715;</StyledCross>}
     </StyledWrapper>
   );
 };

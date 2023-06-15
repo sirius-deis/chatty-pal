@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const StyledRow = styled.div`
   width: 100%;
-  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 const Row = ({ children, style }) => {

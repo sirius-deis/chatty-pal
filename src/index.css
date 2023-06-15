@@ -8,11 +8,13 @@
   font-size: 62.5%;
   --bg-color-lighter: #fafaf9;
   --bg-color: #d6d3d1;
+  --bg-color-darker: #78716c;
   --text-color-dark: #0c0a09;
   --text-color: #78716c;
   --text-color-lighter: #fafaf9;
   --main-color: #ef4444;
   --main-color-lighter: #fca5a5;
+  --online-color: #a3e635;
   --shadow: 2px 2px 6px 3px rgba(12, 10, 9, 0.2);
 }
 
