@@ -1,8 +1,8 @@
 import React from 'react';
 import useDelayUnmount from '../../hooks/useDelayUnmount';
 
-const AnimateWrapper = ({ children, isMounted, mountedStyle, unmountedStyle }) => {
-  const shouldRender = useDelayUnmount(isMounted, 200);
+const AnimateWrapper = ({ children, isMounted, mountedStyle, unmountedStyle, delay }) => {
+  const shouldRender = useDelayUnmount(isMounted, delay);
   return (
     <>
       {shouldRender &&

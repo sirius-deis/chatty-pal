@@ -24,16 +24,18 @@ const ChatPage = () => {
       {isMenuOpened && (
         <AnimateWrapper
           isMounted={isMenuOpened}
-          mountedStyle={{ animation: 'appear 0.2s linear' }}
-          unmountedStyle={{ animation: 'disappear 0.2s linear' }}
+          mountedStyle={{ animation: 'fadeOut 0.2s linear' }}
+          unmountedStyle={{ animation: 'fadeIn 0.2s linear' }}
+          delay={200}
         >
           <Backdrop onClickHandler={toggleClickHandler} />
         </AnimateWrapper>
       )}
       <AnimateWrapper
         isMounted={isMenuOpened}
-        mountedStyle={{ animation: 'appear 0.2s linear' }}
-        unmountedStyle={{ animation: 'disappear 0.2s linear' }}
+        mountedStyle={{ animation: 'fadeOut 0.2s linear, slideOut 0.2s linear 1 forwards' }}
+        unmountedStyle={{ animation: 'fadeIn 0.2s linear, slideIn 0.2s linear 1 forwards' }}
+        delay={200}
       >
         <Menu />
       </AnimateWrapper>
