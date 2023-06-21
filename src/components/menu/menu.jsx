@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Row from '../row/row';
+import List from '../list/list';
 
 const StyledMenu = styled.div`
   position: absolute;
@@ -10,7 +11,6 @@ const StyledMenu = styled.div`
   right: calc(100% - 15%);
   background-color: var(--bg-color-lighter);
   z-index: 100;
-  transition: opacity 0.3s ease-in;
 `;
 
 const StyledInfo = styled.div`
@@ -25,14 +25,21 @@ const StyledInfo = styled.div`
   }
 `;
 
+const StyledStatus = styled.div``;
+
 const Menu = ({ style }) => {
   return (
     <StyledMenu style={style}>
       <Row>
         <StyledInfo>
           <img src='https://source.unsplash.com/random/300×300/?face' alt='avatar' />
+          <h5>Name</h5>
         </StyledInfo>
       </Row>
+      <Row>
+        <StyledStatus>Some status</StyledStatus>
+      </Row>
+      <hr />
     </StyledMenu>
   );
 };

@@ -22,11 +22,19 @@ const ChatPage = () => {
   return (
     <StyledChatPage>
       {isMenuOpened && (
-        <AnimateWrapper isMounted={isMenuOpened} mountedStyle={{ opacity: '1' }} unmountedStyle={{ opacity: '0' }}>
+        <AnimateWrapper
+          isMounted={isMenuOpened}
+          mountedStyle={{ animation: 'appear 0.2s linear' }}
+          unmountedStyle={{ animation: 'disappear 0.2s linear' }}
+        >
           <Backdrop onClickHandler={toggleClickHandler} />
         </AnimateWrapper>
       )}
-      <AnimateWrapper isMounted={isMenuOpened} mountedStyle={{ opacity: '1' }} unmountedStyle={{ opacity: '0' }}>
+      <AnimateWrapper
+        isMounted={isMenuOpened}
+        mountedStyle={{ animation: 'appear 0.2s linear' }}
+        unmountedStyle={{ animation: 'disappear 0.2s linear' }}
+      >
         <Menu />
       </AnimateWrapper>
       <Sidebar toggleClickHandler={toggleClickHandler} />
