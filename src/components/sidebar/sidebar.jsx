@@ -4,6 +4,7 @@ import Row from '../row/row';
 import Burger from '../burger/burger';
 import Search from '../search/search';
 import List from '../list/list';
+import Conversation from '../conversation/conversation';
 
 const StyledSidebar = styled.div`
   display: flex;
@@ -40,7 +41,11 @@ const Sidebar = ({ toggleClickHandler }) => {
         <Search />
       </Row>
       <StyledScroll>
-        <List list={list} />
+        <List list={list}>
+          {list.map((item, i) => (
+            <Conversation key={i} {...item} />
+          ))}
+        </List>
       </StyledScroll>
     </StyledSidebar>
   );

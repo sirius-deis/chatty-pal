@@ -15,6 +15,7 @@ const StyledMenu = styled.div`
 
 const StyledInfo = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   img {
@@ -25,7 +26,11 @@ const StyledInfo = styled.div`
   }
 `;
 
-const StyledStatus = styled.div``;
+const StyledStatus = styled.div`
+  color: var(--text-color);
+`;
+
+const settingOptions = ['New Group', 'New Channel', 'Contacts', 'Calls', 'Saved Messages', 'Settings', 'Night Mode'];
 
 const Menu = ({ style }) => {
   return (
@@ -39,7 +44,7 @@ const Menu = ({ style }) => {
       <Row>
         <StyledStatus>Some status</StyledStatus>
       </Row>
-      <hr />
+      <List />
     </StyledMenu>
   );
 };
