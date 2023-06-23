@@ -37,12 +37,12 @@ a {
   0% {
     opacity: 0;
   }
-  1% {
+  100% {
     opacity: 1;
   }
 }
 @keyframes fadeIn {
-  99% {
+  0% {
     opacity: 1;
   }
   100% {
@@ -52,7 +52,12 @@ a {
 
 @keyframes slideOut {
   0% {
+    opacity: 0;
     transform: translateX(-100%);
+  }
+  1% {
+    opacity: 1;
+    transform: translateX(-99%);
   }
   100% {
     transform: translateX(0);
@@ -62,7 +67,12 @@ a {
   0% {
     transform: translateX(0);
   }
+  99% {
+    opacity: 1;
+    transform: translateX(-99%);
+  }
   100% {
+    opacity: 0;
     transform: translateX(-100%);
   }
 }

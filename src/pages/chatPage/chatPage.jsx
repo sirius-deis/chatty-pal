@@ -16,6 +16,7 @@ const StyledChatPage = styled.div`
 
 const ChatPage = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isChatChosen, setIsChatChosen] = useState(false);
   const toggleClickHandler = () => {
     setIsMenuOpened((prevState) => !prevState);
   };
@@ -24,8 +25,8 @@ const ChatPage = () => {
       {isMenuOpened && (
         <AnimateWrapper
           isMounted={isMenuOpened}
-          mountedStyle={{ animation: 'fadeOut 0.2s linear' }}
-          unmountedStyle={{ animation: 'fadeIn 0.2s linear' }}
+          mountedStyle={{ animation: 'fadeOut 0.2s linear 1' }}
+          unmountedStyle={{ animation: 'fadeIn 0.2s linear 1' }}
           delay={200}
         >
           <Backdrop onClickHandler={toggleClickHandler} />
@@ -33,14 +34,14 @@ const ChatPage = () => {
       )}
       <AnimateWrapper
         isMounted={isMenuOpened}
-        mountedStyle={{ animation: 'fadeOut 0.2s linear, slideOut 0.2s linear 1 forwards' }}
-        unmountedStyle={{ animation: 'fadeIn 0.2s linear, slideIn 0.2s linear 1 forwards' }}
+        mountedStyle={{ animation: 'slideOut 0.2s linear 1 forwards' }}
+        unmountedStyle={{ animation: 'slideIn 0.2s linear 1 forwards' }}
         delay={200}
       >
         <Menu />
       </AnimateWrapper>
       <Sidebar toggleClickHandler={toggleClickHandler} />
-      <Chat />
+      <Chat isChatChosen={isChatChosen} />
     </StyledChatPage>
   );
 };

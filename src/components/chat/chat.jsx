@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Message from '../message/message';
 
 const StyledChat = styled.div`
   width: 85%;
@@ -20,9 +21,19 @@ const GreetMessage = styled.div`
   box-shadow: var(--shadow);
 `;
 
-const Chat = ({ chatId }) => {
+const Chat = ({ chatId, isChatChosen }) => {
   const [messages, setMessages] = useState([]);
-  return <StyledChat>{!messages.length && <GreetMessage>Select a chat to start messaging</GreetMessage>}</StyledChat>;
+  return (
+    <StyledChat>
+      {!isChatChosen && <GreetMessage>Select a chat to start messaging</GreetMessage>}
+      {isChatChosen &&
+        messages.map((message) => (
+          <Message own={false} time={null}>
+            {message}
+          </Message>
+        ))}
+    </StyledChat>
+  );
 };
 
 export default Chat;
