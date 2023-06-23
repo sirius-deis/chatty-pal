@@ -10,7 +10,7 @@ const StyledList = styled.ul`
   list-style: none;
 `;
 
-const List = ({ children, list = [] }) => {
+const List = ({ children }) => {
   const renderList = React.Children.map(children, (child) => <ListItem>{React.cloneElement(child)}</ListItem>);
   return <StyledList>{renderList}</StyledList>;
 };
