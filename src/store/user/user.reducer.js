@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   user: null,
   isLoading: false,
   error: null,
+  token: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -13,15 +14,21 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_OUT_START:
       return { ...state, isLoading: true, error: null };
     case UserActionTypes.SIGN_UP_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, error: null, token: null };
     case UserActionTypes.SIGN_IN_SUCCESS:
-      return { ...state, isLoading: false, user: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        user: action.payload.data.user,
+        token: action.payload.token,
+      };
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return { ...state, user: null };
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload, user: null, token: null };
     default:
       return state;
   }

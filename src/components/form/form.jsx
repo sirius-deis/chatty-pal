@@ -15,8 +15,8 @@ export const StyledForm = styled.form`
   }
 `;
 
-const Form = ({ children }) => {
-  return <StyledForm>{children}</StyledForm>;
+const Form = ({ children, onSubmit }) => {
+  return <StyledForm onSubmit={onSubmit}>{children}</StyledForm>;
 };
 
 export default Form;

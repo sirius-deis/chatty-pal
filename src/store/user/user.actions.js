@@ -4,7 +4,7 @@ import fetchData from '../../utils/fetchData';
 export const signUp = (dataForServer) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_UP_START });
   try {
-    const data = await fetchData('users/login', {
+    const data = await fetchData('users/signup', {
       body: JSON.stringify(dataForServer),
     });
     dispatch({ type: UserActionTypes.SIGN_UP_SUCCESS, payload: data });
@@ -16,7 +16,7 @@ export const signUp = (dataForServer) => async (dispatch) => {
 export const signIn = (dataForServer) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_IN_START });
   try {
-    const data = await fetchData('users/signup', {
+    const data = await fetchData('users/login', {
       body: JSON.stringify(dataForServer),
     });
     dispatch({ type: UserActionTypes.SIGN_IN_SUCCESS, payload: data });

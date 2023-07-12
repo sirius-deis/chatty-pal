@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import Sidebar from '../../components/sidebar/sidebar';
@@ -15,8 +17,13 @@ const StyledChatPage = styled.div`
 `;
 
 const ChatPage = () => {
+  const user = useSelector((state) => state.user.user);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isChatChosen, setIsChatChosen] = useState(false);
+
+  if (!user) {
+    return <Navigate to='/login' />;
+  }
   const toggleClickHandler = () => {
     setIsMenuOpened((prevState) => !prevState);
   };

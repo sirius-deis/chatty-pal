@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Loader from './components/loader/loader';
 import './App.css';
@@ -40,6 +40,7 @@ function App() {
               </Suspense>
             }
           />
+
           <Route
             path='chat'
             element={
@@ -49,6 +50,7 @@ function App() {
             }
           />
         </Route>
+        <Route path='*' element={<Navigate to='/login' />} />
       </Routes>
     </div>
   );

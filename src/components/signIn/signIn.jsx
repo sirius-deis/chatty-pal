@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Logo from '../../assets/images/logo.png';
 import { FaFacebookF, FaGoogle, FaTwitter } from 'react-icons/fa';
 import { StyledSignIn } from './signIn.styles';
@@ -8,11 +9,18 @@ import Button from '../button/button';
 import H1 from '../h1/h1';
 import Row from '../row/row';
 import LabelWithCheckbox from '../checkbox/checkbox';
+import { signIn } from '../../store/user/user.actions';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    dispatch(signIn({ email: email.value, password: password.value }));
+  };
   return (
     <StyledSignIn>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Link to='/'>
           <img src={Logo} alt='logo' />
         </Link>
