@@ -11,23 +11,36 @@ import {
 
 import Row from '../row/row';
 
-const Conversation = ({ image, name, message, time, unreadAmount, isOnline }) => {
+const Conversation = ({
+  pictures,
+  title,
+  messages,
+  time,
+  unreadMessagesCount,
+  isOnline = false,
+}) => {
   return (
     <StyleConversation>
       <StyledImageContainer>
-        <img src={image} alt='chanel logo' />
+        {pictures ? (
+          <img src={pictures[0]} alt='chanel logo' />
+        ) : (
+          <div>{title.slice(0, 1).toUpperCase()}</div>
+        )}
         {isOnline && <StyledStatus />}
       </StyledImageContainer>
       <StyledWrapper>
         <Row>
-          <StyledName>{name}</StyledName>
+          <StyledName>{title}</StyledName>
           <StyledTime>{time}</StyledTime>
         </Row>
         <Row>
-          <StyledMessage unread={unreadAmount}>{message}</StyledMessage>
-          <StyledAmount>{unreadAmount}</StyledAmount>
+          <StyledMessage unread={unreadMessagesCount}>
+            {messages && messages[0]?.message}
+          </StyledMessage>
         </Row>
       </StyledWrapper>
+      {unreadMessagesCount > 0 && <StyledAmount>{unreadMessagesCount}</StyledAmount>}
     </StyleConversation>
   );
 };
