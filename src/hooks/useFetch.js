@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-const baseURL = '';
+const baseURL = 'http://localhost:3000/api/v1/';
 
 const useFetch = (url, options) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,6 +19,7 @@ const useFetch = (url, options) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           signal: abortController.signal,
           ...options,

@@ -8,6 +8,7 @@ import Button from '../button/button';
 import H1 from '../h1/h1';
 import { signUp } from '../../store/user/user.actions';
 
+//TODO: add error checking
 const SignUp = () => {
   const dispatch = useDispatch();
   const onSubmit = (event) => {

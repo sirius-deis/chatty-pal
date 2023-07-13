@@ -11,6 +11,7 @@ import Row from '../row/row';
 import LabelWithCheckbox from '../checkbox/checkbox';
 import { signIn } from '../../store/user/user.actions';
 
+//TODO: add error checking
 const SignIn = () => {
   const dispatch = useDispatch();
   const onSubmit = (event) => {

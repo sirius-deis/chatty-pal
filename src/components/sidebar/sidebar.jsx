@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import useFetch from '../../hooks/useFetch';
 
 import Row from '../row/row';
 import Burger from '../burger/burger';
@@ -34,6 +35,8 @@ const dummy = {
 const list = Array(20).fill(dummy);
 
 const Sidebar = ({ toggleClickHandler }) => {
+  const [conversations, isLoading, error] = useFetch('conversations');
+
   return (
     <StyledSidebar>
       <Row style={{ gap: '2rem', padding: '0 1rem' }}>
@@ -41,7 +44,7 @@ const Sidebar = ({ toggleClickHandler }) => {
         <Search />
       </Row>
       <StyledScroll>
-        <List list={list}>
+        <List>
           {list.map((item, i) => (
             <Conversation key={i} {...item} />
           ))}
