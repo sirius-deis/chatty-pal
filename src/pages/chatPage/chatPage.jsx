@@ -16,16 +16,36 @@ const StyledChatPage = styled.div`
   position: relative;
 `;
 
+const Greeting = styled.div`
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    padding: 1.3rem 5rem;
+    background-color: var(--bg-color-darker);
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-color-lighter);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
+`;
+
 const ChatPage = () => {
   const user = useSelector((state) => state.user.user);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isChatChosen, setIsChatChosen] = useState(false);
+  const [chatId, setChatId] = useState(null);
 
   if (!user) {
     return <Navigate to='/login' />;
   }
   const toggleClickHandler = () => {
     setIsMenuOpened((prevState) => !prevState);
+  };
+
+  const chatClickHandler = (id) => {
+    setChatId(id);
   };
   return (
     <StyledChatPage>
@@ -47,8 +67,14 @@ const ChatPage = () => {
       >
         <Menu />
       </AnimateWrapper>
-      <Sidebar toggleClickHandler={toggleClickHandler} />
-      <Chat isChatChosen={isChatChosen} />
+      <Sidebar chatClickHandler={chatClickHandler} />
+      {chatId ? (
+        <Chat chatId={chatId} />
+      ) : (
+        <Greeting>
+          <div>Select a chat to start messaging</div>
+        </Greeting>
+      )}
     </StyledChatPage>
   );
 };

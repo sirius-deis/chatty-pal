@@ -12,15 +12,17 @@ import {
 import Row from '../row/row';
 
 const Conversation = ({
+  id,
   pictures,
   title,
   messages,
   time,
   unreadMessagesCount,
   isOnline = false,
+  onClickHandler,
 }) => {
   return (
-    <StyleConversation>
+    <StyleConversation onClick={() => onClickHandler(id)}>
       <StyledImageContainer>
         {pictures ? (
           <img src={pictures[0]} alt='chanel logo' />

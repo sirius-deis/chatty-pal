@@ -22,18 +22,20 @@ const StyledScroll = styled.div`
   overflow-y: scroll;
 `;
 
-const Sidebar = ({ toggleClickHandler }) => {
-  const [conversations, isLoading, error] = useFetch('conversations');
+const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
+  const [conversations, isLoading, error] = useFetch('chats');
   return (
     <StyledSidebar>
       <Row style={{ gap: '2rem', padding: '0 1rem' }}>
-        <Burger onClick={toggleClickHandler} />
+        <Burger onClick={toggleMenuClickHandler} />
         <Search />
       </Row>
       <StyledScroll>
         <List>
           {conversations &&
-            conversations.conversations.map((item, i) => <Conversation key={i} {...item} />)}
+            conversations.chats.map((item) => (
+              <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
+            ))}
         </List>
       </StyledScroll>
     </StyledSidebar>

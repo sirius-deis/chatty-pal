@@ -12,6 +12,9 @@ export const StyledMenu = styled.div`
 
 export const StyledUserInfo = styled.div`
   padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export const StyledInfo = styled.div`
