@@ -4,21 +4,39 @@ import MessageGroup from '../messageGroup/messageGroup';
 import useFetch from '../../hooks/useFetch';
 
 const StyledChat = styled.div`
-  padding: 0.9rem 1.5rem;
   width: 85%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: baseline;
-  gap: 0.5rem;
 `;
 
-const areDateTheSame = (d1 = '', d2 = '') => {
+const StyledMessageContainer = styled.div`
+  padding: 0.9rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 1.2rem;
+  overflow-y: scroll;
+`;
+
+const StyledDate = styled.div`
+  margin: 0 auto;
+  padding: 0.3rem 10rem;
+  border-radius: 15px;
+  background-color: var(--bg-color-darker);
+  color: var(--bg-color-lighter);
+`;
+
+const formatDateFromString = (date) => {
   const regexp = /^(\d{4}-\d{1,2}-\d{1,2})/;
-  const match1 = d1.match(regexp)[1];
-  const match2 = d2.match(regexp)[1];
-  console.log(match1, match2);
+  return date.match(regexp)[1];
+};
+
+const areDateTheSame = (d1 = '', d2 = '') => {
+  const match1 = formatDateFromString(d1);
+  const match2 = formatDateFromString(d2);
   return Date.parse(match1) === Date.parse(match2);
 };
 
@@ -27,14 +45,16 @@ const divideMessagesInGroups = (messages = []) => {
   let currDate = null;
   for (let i = 0; i < messages.length; i++) {
     if (!currDate || !areDateTheSame(currDate, messages[i].createdAt)) {
-      currDate = messages[i].createdAt;
+      currDate = formatDateFromString(messages[i].createdAt);
       messagesObj[currDate] = [];
     }
-    const currArrLink = messagesObj[currDate][messagesObj[currDate].length - 1];
+    let curArrLength = messagesObj[currDate].length - 1;
+    const currArrLink = messagesObj[currDate][curArrLength];
     if (i === 0 || !currArrLink || currArrLink[0].senderId !== messages[i].senderId) {
       messagesObj[currDate].push([]);
+      curArrLength++;
     }
-    messagesObj[currDate][messagesObj[currDate].length - 1].push(messages[i]);
+    messagesObj[currDate][curArrLength].push(messages[i]);
   }
   return messagesObj;
 };
@@ -43,11 +63,24 @@ const Chat = ({ chatId }) => {
   const user = useSelector((state) => state.user.user);
   const [messages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
   const sortedMessages = divideMessagesInGroups(messages?.messages);
+
+  const messagesToRender = [];
+
+  for (let key in sortedMessages) {
+    const messageGroupArr = sortedMessages[key].map((messageGroup, i) => {
+      return (
+        <MessageGroup key={i} userId={user.id}>
+          {messageGroup}
+        </MessageGroup>
+      );
+    });
+    messagesToRender.push(...messageGroupArr);
+    messagesToRender.push(<StyledDate>{key}</StyledDate>);
+  }
+
   return (
     <StyledChat>
-      {[].map((messageGroup) => (
-        <MessageGroup messages={messageGroup} userId={user.id} />
-      ))}
+      <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
     </StyledChat>
   );
 };
