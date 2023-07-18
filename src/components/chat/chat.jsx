@@ -14,23 +14,38 @@ const StyledChat = styled.div`
   gap: 0.5rem;
 `;
 
+const areDateTheSame = (d1 = '', d2 = '') => {
+  const regexp = /^(\d{4}-\d{1,2}-\d{1,2})/;
+  const match1 = d1.match(regexp)[1];
+  const match2 = d2.match(regexp)[1];
+  console.log(match1, match2);
+  return Date.parse(match1) === Date.parse(match2);
+};
+
 const divideMessagesInGroups = (messages = []) => {
-  const arr = [];
+  const messagesObj = {};
+  let currDate = null;
   for (let i = 0; i < messages.length; i++) {
-    if (i === 0 || arr[arr.length - 1][0].senderId !== messages[i].senderId) {
-      arr[arr.length] = [];
+    if (!currDate || !areDateTheSame(currDate, messages[i].createdAt)) {
+      currDate = messages[i].createdAt;
+      messagesObj[currDate] = [];
     }
-    arr[arr.length - 1].push(messages[i]);
+    const currArrLink = messagesObj[currDate][messagesObj[currDate].length - 1];
+    if (i === 0 || !currArrLink || currArrLink[0].senderId !== messages[i].senderId) {
+      messagesObj[currDate].push([]);
+    }
+    messagesObj[currDate][messagesObj[currDate].length - 1].push(messages[i]);
   }
-  return arr;
+  return messagesObj;
 };
 
 const Chat = ({ chatId }) => {
   const user = useSelector((state) => state.user.user);
   const [messages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
+  const sortedMessages = divideMessagesInGroups(messages?.messages);
   return (
     <StyledChat>
-      {divideMessagesInGroups(messages?.messages).map((messageGroup) => (
+      {[].map((messageGroup) => (
         <MessageGroup messages={messageGroup} userId={user.id} />
       ))}
     </StyledChat>
