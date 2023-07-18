@@ -6,6 +6,7 @@ import Burger from '../burger/burger';
 import Search from '../search/search';
 import List from '../list/list';
 import Conversation from '../conversation/conversation';
+import Loader from '../loader/loader';
 
 const StyledSidebar = styled.div`
   display: flex;
@@ -31,12 +32,16 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
         <Search />
       </Row>
       <StyledScroll>
-        <List>
-          {conversations &&
-            conversations.chats.map((item) => (
-              <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
-            ))}
-        </List>
+        {!isLoading ? (
+          <List>
+            {conversations &&
+              conversations.chats.map((item) => (
+                <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
+              ))}
+          </List>
+        ) : (
+          <Loader />
+        )}
       </StyledScroll>
     </StyledSidebar>
   );

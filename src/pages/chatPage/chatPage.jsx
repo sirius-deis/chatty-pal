@@ -67,7 +67,7 @@ const ChatPage = () => {
       >
         <Menu />
       </AnimateWrapper>
-      <Sidebar chatClickHandler={chatClickHandler} />
+      <Sidebar chatClickHandler={chatClickHandler} toggleMenuClickHandler={toggleClickHandler} />
       {chatId ? (
         <Chat chatId={chatId} />
       ) : (

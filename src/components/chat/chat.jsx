@@ -2,7 +2,10 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageGroup from '../messageGroup/messageGroup';
 import ChatInput from '../chatInput/chatInput';
+import Loader from '../loader/loader';
 import useFetch from '../../hooks/useFetch';
+import { socket } from '../../utils/socket';
+import { useEffect } from 'react';
 
 const StyledChat = styled.div`
   width: 85%;
@@ -65,6 +68,14 @@ const Chat = ({ chatId }) => {
   const [messages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
   const sortedMessages = divideMessagesInGroups(messages?.messages);
 
+  useEffect(() => {
+    socket.on('send_message');
+
+    return () => {
+      socket.off('send_message');
+    };
+  }, []);
+
   const messagesToRender = [];
 
   for (let key in sortedMessages) {
@@ -81,7 +92,11 @@ const Chat = ({ chatId }) => {
 
   return (
     <StyledChat>
-      <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
+      {!isLoading ? (
+        <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
+      ) : (
+        <Loader />
+      )}
       <ChatInput />
     </StyledChat>
   );

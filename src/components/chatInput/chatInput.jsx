@@ -4,6 +4,7 @@ import { HiOutlinePaperClip, HiOutlineMicrophone } from 'react-icons/hi';
 import { BsEmojiSmile, BsSend } from 'react-icons/bs';
 import Input from '../input/input';
 import EmojiPickerWrapper from '../emojiPickerWrapper/emojiPickerWrapper';
+import { socket } from '../../utils/socket';
 
 const StyledChatInput = styled.form`
   width: 100%;
@@ -33,6 +34,9 @@ const ChatInput = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+
+    socket.emit('send_message');
+    setMessage('');
   };
 
   const onEmojiClickHandler = (emoji) => {
