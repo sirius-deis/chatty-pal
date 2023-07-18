@@ -14,7 +14,7 @@ const StyledChat = styled.div`
 const StyledMessageContainer = styled.div`
   padding: 0.9rem 1.5rem;
   width: 100%;
-  height: 100%;
+  min-height: calc(100% - 5rem);
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;

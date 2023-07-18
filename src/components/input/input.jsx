@@ -21,7 +21,12 @@ const Input = ({
   border,
   borderRounded = true,
   shadow = true,
+  onChangeHandler = () => {},
+  value,
 }) => {
+  const onChange = (event) => {
+    onChangeHandler(event.target.value);
+  };
   return (
     <StyledInput
       type={type}
@@ -30,6 +35,8 @@ const Input = ({
       border={border}
       borderRounded={borderRounded}
       shadow={shadow}
+      onChange={onChange}
+      value={value}
     />
   );
 };

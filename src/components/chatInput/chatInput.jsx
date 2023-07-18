@@ -1,15 +1,18 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import { HiOutlinePaperClip } from 'react-icons/hi';
+import { HiOutlinePaperClip, HiOutlineMicrophone } from 'react-icons/hi';
+import { BsEmojiSmile, BsSend } from 'react-icons/bs';
 import Input from '../input/input';
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPickerWrapper from '../emojiPickerWrapper/emojiPickerWrapper';
 
-const StyledChatInput = styled.div`
+const StyledChatInput = styled.form`
   width: 100%;
   display: flex;
   background-color: var(--bg-color-lighter);
 `;
 
-const StyledAttachment = styled.label`
+const StyledLabel = styled.label`
+  position: relative;
   padding: 1.2rem;
   display: flex;
   justify-content: center;
@@ -25,13 +28,36 @@ const StyledAttachment = styled.label`
 `;
 
 const ChatInput = () => {
+  const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const onEmojiClickHandler = (emoji) => {
+    setMessage((prevState) => prevState + emoji);
+  };
+
   return (
-    <StyledChatInput>
-      <StyledAttachment>
+    <StyledChatInput onSubmit={onFormSubmit}>
+      <StyledLabel>
         <HiOutlinePaperClip />
         <input type='file' />
-      </StyledAttachment>
-      <Input type='text' placeholder='Write a message' borderRounded={false} shadow={false} />
+      </StyledLabel>
+      <Input
+        type='text'
+        placeholder='Write a message'
+        borderRounded={false}
+        shadow={false}
+        onChangeHandler={(text) => setMessage(text)}
+        value={message}
+      />
+      <StyledLabel>
+        <BsEmojiSmile onClick={() => setIsEmojiPickerOpened((prevState) => !prevState)} />
+        {isEmojiPickerOpened && <EmojiPickerWrapper onEmojiClickHandler={onEmojiClickHandler} />}
+      </StyledLabel>
+      <StyledLabel>{message ? <BsSend /> : <HiOutlineMicrophone />}</StyledLabel>
     </StyledChatInput>
   );
 };
