@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageGroup from '../messageGroup/messageGroup';
+import ChatInput from '../chatInput/chatInput';
 import useFetch from '../../hooks/useFetch';
 
 const StyledChat = styled.div`
@@ -81,6 +82,7 @@ const Chat = ({ chatId }) => {
   return (
     <StyledChat>
       <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
+      <ChatInput />
     </StyledChat>
   );
 };
