@@ -6,6 +6,8 @@ import RootLayout from './layouts/rootLayout/rootLayout';
 import AuthLayout from './layouts/authLayout/authLayout';
 import StartPage from './pages/startPage/startPage';
 
+import { SocketProvider } from './store/socketContext';
+
 const SignUp = lazy(() => import('./pages/signUpPage/signUpPage'));
 const SignIn = lazy(() => import('./pages/signInPage/signInPage'));
 const ResetPassword = lazy(() => import('./pages/resetPasswordPage/resetPasswordPage'));
@@ -48,7 +50,9 @@ function App() {
             path='chat'
             element={
               <Suspense fallback={<Loader />}>
-                <ChatPage />
+                <SocketProvider>
+                  <ChatPage />
+                </SocketProvider>
               </Suspense>
             }
           />

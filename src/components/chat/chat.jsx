@@ -4,20 +4,24 @@ import MessageGroup from '../messageGroup/messageGroup';
 import ChatInput from '../chatInput/chatInput';
 import Loader from '../loader/loader';
 import useFetch from '../../hooks/useFetch';
-import { socket } from '../../utils/socket';
-import { useEffect } from 'react';
 
 const StyledChat = styled.div`
+  position: relative;
   width: 85%;
   height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
+const StyledMessageContainerWrapper = styled.div`
+  width: 100%;
+  min-height: calc(100% - 5rem);
+`;
+
 const StyledMessageContainer = styled.div`
   padding: 0.9rem 1.5rem;
   width: 100%;
-  min-height: calc(100% - 5rem);
+  height: 100%;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
@@ -68,14 +72,6 @@ const Chat = ({ chatId }) => {
   const [messages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
   const sortedMessages = divideMessagesInGroups(messages?.messages);
 
-  useEffect(() => {
-    socket.on('send_message');
-
-    return () => {
-      socket.off('send_message');
-    };
-  }, []);
-
   const messagesToRender = [];
 
   for (let key in sortedMessages) {
@@ -92,12 +88,14 @@ const Chat = ({ chatId }) => {
 
   return (
     <StyledChat>
-      {!isLoading ? (
-        <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
-      ) : (
-        <Loader />
-      )}
-      <ChatInput />
+      <StyledMessageContainerWrapper>
+        {!isLoading ? (
+          <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
+        ) : (
+          <Loader />
+        )}
+      </StyledMessageContainerWrapper>
+      <ChatInput chatId={chatId} />
     </StyledChat>
   );
 };

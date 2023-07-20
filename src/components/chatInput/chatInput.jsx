@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { HiOutlinePaperClip, HiOutlineMicrophone } from 'react-icons/hi';
 import { BsEmojiSmile, BsSend } from 'react-icons/bs';
 import Input from '../input/input';
 import EmojiPickerWrapper from '../emojiPickerWrapper/emojiPickerWrapper';
-import { socket } from '../../utils/socket';
+import { SocketContext } from '../../store/socketContext';
 
 const StyledChatInput = styled.form`
   width: 100%;
@@ -28,14 +28,22 @@ const StyledLabel = styled.label`
   }
 `;
 
-const ChatInput = () => {
+const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
   const [message, setMessage] = useState('');
+  const { socket } = useContext(SocketContext);
+
+  socket.connect();
 
   const onFormSubmit = (event) => {
     event.preventDefault();
 
-    socket.emit('send_message');
+    socket.emit('send_message', {
+      message,
+      isNew: false,
+      chatId,
+    });
+
     setMessage('');
   };
 
