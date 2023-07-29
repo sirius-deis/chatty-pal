@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../assets/images/logo.png';
 import { FaFacebookF, FaGoogle, FaTwitter } from 'react-icons/fa';
@@ -17,6 +17,7 @@ import Modal from '../modal/modal';
 const SignIn = () => {
   const { error } = useSelector((state) => state.user);
   const [isSent, setIsSent] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const onSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +25,13 @@ const SignIn = () => {
     dispatch(signIn({ email: email.value, password: password.value }));
     setIsSent(true);
   };
+
+  useEffect(() => {
+    if (error) {
+      setIsModalOpen(true);
+    }
+  }, [error]);
+
   return (
     <StyledSignIn>
       <Form onSubmit={onSubmit}>
@@ -60,7 +68,9 @@ const SignIn = () => {
           </Link>
         </div>
       </Form>
-      {isSent && error !== null && <Modal>{error.message}</Modal>}
+      {isSent && isModalOpen && error !== null && (
+        <Modal closeModal={() => setIsModalOpen(false)}>{error.message}</Modal>
+      )}
     </StyledSignIn>
   );
 };
