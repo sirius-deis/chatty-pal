@@ -32,6 +32,10 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
     setSearchTerm(value);
   };
 
+  const chats = conversations?.chats;
+
+  const regexp = new RegExp(searchTerm);
+
   return (
     <StyledSidebar>
       <Row style={{ gap: '2rem', padding: '0 1rem' }}>
@@ -41,10 +45,12 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
       <StyledScroll>
         {!isLoading ? (
           <List>
-            {conversations &&
-              conversations.chats.map((item) => (
-                <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
-              ))}
+            {chats &&
+              chats
+                .filter((item) => regexp.test(item.title))
+                .map((item) => (
+                  <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
+                ))}
           </List>
         ) : (
           <Loader />
