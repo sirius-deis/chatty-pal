@@ -9,10 +9,11 @@ import Button from '../button/button';
 import H1 from '../h1/h1';
 import { signUp } from '../../store/user/user.actions';
 import Modal from '../modal/modal';
+import Loader from '../loader/loader';
 
 //TODO: add error checking
 const SignUp = () => {
-  const { error } = useSelector((state) => state.user);
+  const { error, isLoading } = useSelector((state) => state.user);
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const SignUp = () => {
           </Link>
         </div>
       </Form>
+      {isLoading && <Loader />}
       {isSent && isModalOpen && error !== null && (
         <Modal closeModal={() => setIsModalOpen(false)}>{error.message}</Modal>
       )}
