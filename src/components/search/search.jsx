@@ -34,18 +34,25 @@ const StyledCross = styled.button`
   cursor: pointer;
 `;
 
-const Search = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+const Search = ({ searchTerm = '', onSearchTermChange }) => {
   const onChangeHandler = (event) => {
-    setSearchTerm(event.target.value);
+    onSearchTermChange(event.target.value);
   };
-  const clickHandler = () => {
-    setSearchTerm('');
+
+  const onClearClickHandler = () => {
+    onSearchTermChange('');
   };
+
   return (
     <StyledWrapper>
-      <StyledSearch type='search' placeholder='Search' name='search' value={searchTerm} onChange={onChangeHandler} />
-      {searchTerm.length > 0 && <StyledCross onClick={clickHandler}>&#x2715;</StyledCross>}
+      <StyledSearch
+        type='search'
+        placeholder='Search'
+        name='search'
+        value={searchTerm}
+        onChange={onChangeHandler}
+      />
+      {searchTerm.length > 0 && <StyledCross onClick={onClearClickHandler}>&#x2715;</StyledCross>}
     </StyledWrapper>
   );
 };

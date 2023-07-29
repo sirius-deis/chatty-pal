@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 
 import Row from '../row/row';
@@ -24,12 +25,18 @@ const StyledScroll = styled.div`
 `;
 
 const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [conversations, isLoading, error] = useFetch('chats');
+
+  const onSearchTermChange = (value) => {
+    setSearchTerm(value);
+  };
+
   return (
     <StyledSidebar>
       <Row style={{ gap: '2rem', padding: '0 1rem' }}>
         <Burger onClick={toggleMenuClickHandler} />
-        <Search />
+        <Search searchTerm={searchTerm} onSearchTermChange={onSearchTermChange} />
       </Row>
       <StyledScroll>
         {!isLoading ? (
