@@ -27,6 +27,7 @@ const settingOptions = [
 
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
+
   return (
     <StyledMenu style={style}>
       <StyledUserInfo>
