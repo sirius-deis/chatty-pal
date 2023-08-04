@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
-export const messageReducer = (state = INITIAL_STATE, action) => {
+const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case MessageActionTypes.FETCH_MESSAGES_START:
       return { ...state, isLoading: true, error: null };
@@ -39,12 +39,14 @@ export const messageReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case MessageActionTypes.DELETE_MESSAGE_FAILURE:
-      const failureIndex = state.messages.findIndex((message) => message.id === action.payload);
+      const failureIndex = state.messages.findIndex(
+        (message) => message.id === action.payload.messageId,
+      );
       return {
         ...state,
         messages: [
           ...state.messages.slice(0, failureIndex),
-          { ...state.messages[failureIndex], isDeleting: false, error: action.payload },
+          { ...state.messages[failureIndex], isDeleting: false, error: action.payload.error },
           ...state.messages.slice(failureIndex),
         ],
       };
@@ -63,3 +65,5 @@ export const messageReducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export default messageReducer;
