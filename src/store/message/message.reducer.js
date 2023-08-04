@@ -9,11 +9,11 @@ const INITIAL_STATE = {
 
 export const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case MessageActionTypes.FETCH_MESSAGE_START:
+    case MessageActionTypes.FETCH_MESSAGES_START:
       return { ...state, isLoading: true, error: null };
-    case MessageActionTypes.FETCH_MESSAGE_FAILURE:
+    case MessageActionTypes.FETCH_MESSAGES_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case MessageActionTypes.FETCH_MESSAGE_SUCCESS:
+    case MessageActionTypes.FETCH_MESSAGES_SUCCESS:
       return {
         ...state,
         isLoading: false,
