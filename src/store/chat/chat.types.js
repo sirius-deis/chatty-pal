@@ -7,6 +7,7 @@ const ChatActionTypes = {
   DELETE_CHAT_FAILURE: 'DELETE_CHAT',
   ONLINE: 'ONLINE',
   OFFLINE: 'OFFLINE',
+  ADD_CHAT_SUCCESS: 'ADD_CHAT_SUCCESS',
 };
 
 export default ChatActionTypes;

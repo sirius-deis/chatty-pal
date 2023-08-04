@@ -61,6 +61,8 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         ],
         ...state.chats.slice(foundChatIndex_Offline),
       };
+    case ChatActionTypes.ADD_CHAT_SUCCESS:
+      return { ...state, isLoading: false, error: null, chats: [...state.chats, action.payload] };
     default:
       return state;
   }
