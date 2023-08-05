@@ -38,6 +38,10 @@ const SignUp = () => {
   }, [error]);
   return (
     <StyledSignUp>
+      {isLoading && <Loader />}
+      {isSent && isModalOpen && error !== null && (
+        <Modal closeModal={() => setIsModalOpen(false)}>{error.message}</Modal>
+      )}
       <Form onSubmit={onSubmit}>
         <Link to='/'>
           <img src={Logo} alt='logo' />
@@ -54,10 +58,6 @@ const SignUp = () => {
           </Link>
         </div>
       </Form>
-      {isLoading && <Loader />}
-      {isSent && isModalOpen && error !== null && (
-        <Modal closeModal={() => setIsModalOpen(false)}>{error.message}</Modal>
-      )}
     </StyledSignUp>
   );
 };
