@@ -7,9 +7,14 @@ import Button from '../button/button';
 import H1 from '../h1/h1';
 
 const ResetPassword = () => {
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const { email } = event.target.elements;
+  };
+
   return (
     <StyledResetPassword>
-      <Form>
+      <Form onSubmit={onSubmitHandler}>
         <Link to='/'>
           <img src={Logo} alt='logo' />
         </Link>
