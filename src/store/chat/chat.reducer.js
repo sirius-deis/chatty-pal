@@ -23,6 +23,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isLoading: true, error: null };
     case ChatActionTypes.FETCH_CHATS_FAILURE:
     case ChatActionTypes.DELETE_CHAT_FAILURE:
+    case ChatActionTypes.ADD_CHAT_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case ChatActionTypes.FETCH_CHATS_SUCCESS:
       return { ...state, isLoading: false, error: null, chats: action.payload };
