@@ -30,3 +30,21 @@ export const deleteMessage = (messageId) => async (dispatch) => {
     dispatch({ type: MessageActionTypes.DELETE_MESSAGE_FAILURE, payload: { messageId, error } });
   }
 };
+
+export const editMessage =
+  ({ messageId, message }) =>
+  async (dispatch) => {
+    dispatch({ type: MessageActionTypes.EDIT_MESSAGE_START });
+    try {
+      await fetchData(`messages/${messageId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ message }),
+      });
+      dispatch({
+        type: MessageActionTypes.DELETE_MESSAGE_SUCCESS,
+        payload: { messageId, message },
+      });
+    } catch (error) {
+      dispatch({ type: MessageActionTypes.DELETE_MESSAGE_FAILURE, payload: error });
+    }
+  };
