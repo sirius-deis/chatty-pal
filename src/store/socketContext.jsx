@@ -1,6 +1,8 @@
 import { useState, createContext, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
+import { online, offline } from './chat/chat.actions';
+import { addMessage } from './message/message.actions';
 
 const URL = 'http://localhost:3000';
 
@@ -9,14 +11,15 @@ const SocketContext = createContext({ socket: null });
 const SocketProvider = ({ children }) => {
   const [sock, setSock] = useState(null);
   const user = useSelector((state) => state?.user);
+  const dispatch = useDispatch();
 
   const token = user && user.token;
 
-  const onOnline = () => {};
+  const onOnline = (id) => dispatch(online(id));
 
-  const onOffline = () => {};
+  const onOffline = (id) => dispatch(offline(id));
 
-  const onSendMessage = () => {};
+  const onSendMessage = ({ message }) => dispatch(addMessage(message));
 
   const onEditMessage = () => {};
 
