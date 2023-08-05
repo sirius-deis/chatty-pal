@@ -13,10 +13,13 @@ export const fetchChats = () => async (dispatch) => {
 };
 
 export const addChat = (chatId) => async (dispatch) => {
+  dispatch({ type: ChatActionTypes.ADD_CHAT_START });
   try {
     const data = await fetchData(`chats/${chatId}`, { method: 'GET' });
     dispatch({ type: ChatActionTypes.ADD_CHAT_SUCCESS, payload: data });
-  } catch (error) {}
+  } catch (error) {
+    dispatch({ type: ChatActionTypes.ADD_CHAT_FAILURE, payload: error });
+  }
 };
 
 export const deleteChat = (idOfChatToDelete) => async (dispatch) => {

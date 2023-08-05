@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import MessageGroup from '../messageGroup/messageGroup';
 import ChatInput from '../chatInput/chatInput';
 import Loader from '../loader/loader';
-import useFetch from '../../hooks/useFetch';
+import { fetchMessages } from '../../store/message/message.actions';
 
 const StyledChat = styled.div`
   position: relative;
@@ -68,9 +69,10 @@ const divideMessagesInGroups = (messages = []) => {
 };
 
 const Chat = ({ chatId }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const [messages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
-  const sortedMessages = divideMessagesInGroups(messages?.messages);
+  const messageState = useSelector((state) => state.message);
+  const sortedMessages = divideMessagesInGroups(messageState.messages);
 
   const messagesToRender = [];
 
@@ -86,10 +88,14 @@ const Chat = ({ chatId }) => {
     messagesToRender.push(<StyledDate>{key}</StyledDate>);
   }
 
+  useEffect(() => {
+    dispatch(fetchMessages(chatId));
+  }, [dispatch, chatId]);
+
   return (
     <StyledChat>
       <StyledMessageContainerWrapper>
-        {!isLoading ? (
+        {!messageState.isLoading ? (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
         ) : (
           <Loader />
