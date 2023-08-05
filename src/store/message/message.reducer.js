@@ -27,6 +27,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         messages: [...state.messages, action.payload],
       };
     case MessageActionTypes.DELETE_MESSAGE_START:
+    case MessageActionTypes.EDIT_MESSAGE_START:
       const messageToDeleteIndex = state.messages.findIndex(
         (message) => message.id === action.payload,
       );
@@ -34,11 +35,12 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         ...state,
         messages: [
           ...state.messages.slice(0, messageToDeleteIndex),
-          { ...state.messages[messageToDeleteIndex], isDeleting: true },
+          { ...state.messages[messageToDeleteIndex], isOperating: true },
           ...state.messages.slice(messageToDeleteIndex),
         ],
       };
     case MessageActionTypes.DELETE_MESSAGE_FAILURE:
+    case MessageActionTypes.EDIT_MESSAGE_FAILURE:
       const failureIndex = state.messages.findIndex(
         (message) => message.id === action.payload.messageId,
       );
@@ -46,7 +48,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         ...state,
         messages: [
           ...state.messages.slice(0, failureIndex),
-          { ...state.messages[failureIndex], isDeleting: false, error: action.payload.error },
+          { ...state.messages[failureIndex], isOperating: false, error: action.payload.error },
           ...state.messages.slice(failureIndex),
         ],
       };
@@ -59,6 +61,24 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         messages: [
           ...state.messages.slice(0, deletedMessageIndex),
           ...state.messages.slice(deletedMessageIndex),
+        ],
+      };
+    case MessageActionTypes.EDIT_MESSAGE_SUCCESS:
+      const foundMessageIndex = state.messages.findIndex(
+        (message) => message.id === action.payload.messageId,
+      );
+
+      return {
+        ...state,
+        messages: [
+          ...state.messages.slice(0, foundMessageIndex),
+          {
+            ...state.messages[foundMessageIndex],
+            message: action.payload.message,
+            isOperating: undefined,
+            error: undefined,
+          },
+          ...state.messages.slice(foundMessageIndex),
         ],
       };
     default:
