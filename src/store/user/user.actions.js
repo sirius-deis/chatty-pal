@@ -36,3 +36,16 @@ export const signOut = () => async (dispatch) => {
     dispatch({ type: UserActionTypes.SIGN_OUT_FAILURE, payload: error });
   }
 };
+
+export const resetPassword = (email) => async (dispatch) => {
+  dispatch({ type: UserActionTypes.RESET_PASSWORD_START });
+  try {
+    const data = await fetchData('users/reset-password', {
+      method: 'GET',
+      body: JSON.stringify({ email }),
+    });
+    dispatch({ type: UserActionTypes.RESET_PASSWORD_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: UserActionTypes.RESET_PASSWORD_FAILURE, payload: error });
+  }
+};
