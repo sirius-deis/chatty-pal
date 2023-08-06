@@ -27,7 +27,6 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         messages: [...state.messages, action.payload],
       };
     case MessageActionTypes.DELETE_MESSAGE_START:
-    case MessageActionTypes.EDIT_MESSAGE_START:
       const messageToDeleteIndex = state.messages.findIndex(
         (message) => message.id === action.payload,
       );
@@ -40,7 +39,6 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case MessageActionTypes.DELETE_MESSAGE_FAILURE:
-    case MessageActionTypes.EDIT_MESSAGE_FAILURE:
       const failureIndex = state.messages.findIndex(
         (message) => message.id === action.payload.messageId,
       );
@@ -63,7 +61,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
           ...state.messages.slice(deletedMessageIndex),
         ],
       };
-    case MessageActionTypes.EDIT_MESSAGE_SUCCESS:
+    case MessageActionTypes.EDIT_MESSAGE:
       const foundMessageIndex = state.messages.findIndex(
         (message) => message.id === action.payload.messageId,
       );
