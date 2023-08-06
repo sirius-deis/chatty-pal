@@ -2,7 +2,7 @@ import MessageActionTypes from './message.types';
 
 const INITIAL_STATE = {
   messages: [],
-  chatId: '',
+  chosenChatId: '',
   isLoading: false,
   error: null,
 };
@@ -18,7 +18,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         error: null,
-        chatId: action.payload.chatId,
+        chosenChatId: action.payload.chatId,
         messages: action.payload.messages,
       };
     case MessageActionTypes.ADD_MESSAGE:

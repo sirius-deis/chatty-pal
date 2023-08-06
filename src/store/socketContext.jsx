@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { online, offline } from './chat/chat.actions';
 import { addMessage, editMessage, deleteMessageFromSocket } from './message/message.actions';
+import { addChat } from './chat/chat.actions';
 
 const URL = 'http://localhost:3000';
 
@@ -11,6 +12,8 @@ const SocketContext = createContext({ socket: null });
 const SocketProvider = ({ children }) => {
   const [sock, setSock] = useState(null);
   const user = useSelector((state) => state?.user);
+  const chats = useSelector((state) => state?.chat.chats);
+  const message = useSelector((state) => state?.message);
   const dispatch = useDispatch();
 
   const token = user && user.token;
@@ -19,11 +22,27 @@ const SocketProvider = ({ children }) => {
 
   const onOffline = (id) => dispatch(offline(id));
 
-  const onSendMessage = ({ message }) => dispatch(addMessage(message));
+  const onSendMessage = ({ chatId, receivedMessage }) => {
+    const chat = chats.find((chat) => chat.id === chatId);
+    if (!chat) {
+      dispatch(addChat(chatId));
+    }
+    if (message.chosenChatId === chatId) {
+      dispatch(addMessage(receivedMessage));
+    }
+  };
 
-  const onEditMessage = ({ messageId, message }) => dispatch(editMessage(messageId, message));
+  const onEditMessage = ({ chatId, messageId, message }) => {
+    if (message.chosenChatId === chatId) {
+      dispatch(editMessage(messageId, message));
+    }
+  };
 
-  const onUnsendMessage = (messageId) => dispatch(deleteMessageFromSocket(messageId));
+  const onUnsendMessage = (chatId, messageId) => {
+    if (message.chosenChatId === chatId) {
+      dispatch(deleteMessageFromSocket(messageId));
+    }
+  };
 
   const onRateMessage = () => {};
 
