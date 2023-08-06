@@ -31,6 +31,10 @@ export const deleteMessage = (messageId) => async (dispatch) => {
   }
 };
 
+export const deleteMessageFromSocket = (messageId) => {
+  return { type: MessageActionTypes.DELETE_MESSAGE_FROM_SOCKET, payload: messageId };
+};
+
 export const editMessage = ({ messageId, message }) => {
   return { type: MessageActionTypes.EDIT_MESSAGE, payload: { messageId, message } };
 };

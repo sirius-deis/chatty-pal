@@ -51,6 +51,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case MessageActionTypes.DELETE_MESSAGE_SUCCESS:
+    case MessageActionTypes.DELETE_MESSAGE_FROM_SOCKET:
       const deletedMessageIndex = state.messages.findIndex(
         (message) => message.id === action.payload,
       );

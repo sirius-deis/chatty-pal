@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { online, offline } from './chat/chat.actions';
-import { addMessage } from './message/message.actions';
+import { addMessage, editMessage, deleteMessageFromSocket } from './message/message.actions';
 
 const URL = 'http://localhost:3000';
 
@@ -21,9 +21,9 @@ const SocketProvider = ({ children }) => {
 
   const onSendMessage = ({ message }) => dispatch(addMessage(message));
 
-  const onEditMessage = () => {};
+  const onEditMessage = ({ messageId, message }) => dispatch(editMessage(messageId, message));
 
-  const onUnsendMessage = () => {};
+  const onUnsendMessage = (messageId) => dispatch(deleteMessageFromSocket(messageId));
 
   const onRateMessage = () => {};
 
