@@ -7,9 +7,9 @@ import { addChat } from './chat/chat.actions';
 
 const URL = 'http://localhost:3000';
 
-const SocketContext = createContext({ socket: null });
+export const SocketContext = createContext({ socket: null });
 
-const SocketProvider = ({ children }) => {
+export const SocketProvider = ({ children }) => {
   const [sock, setSock] = useState(null);
   const user = useSelector((state) => state?.user);
   const chats = useSelector((state) => state?.chat.chats);
@@ -100,5 +100,3 @@ const SocketProvider = ({ children }) => {
 
   return <SocketContext.Provider value={value}>{children}</SocketContext.Provider>;
 };
-
-export { SocketContext, SocketProvider };
