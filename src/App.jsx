@@ -17,7 +17,7 @@ const ChatPage = lazy(() => import('./pages/chatPage/chatPage'));
 function App() {
   const themeContext = useContext(ThemeContext);
   return (
-    <div className={themeContext.theme === 'dark' ? 'dark-theme' : ''}>
+    <div className={themeContext.theme === 'dark' ? 'theme_dark' : ''}>
       <Routes>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<StartPage />} />

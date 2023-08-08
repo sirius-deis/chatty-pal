@@ -33,6 +33,17 @@ a {
   text-decoration: none;
 }
 
+.theme_dark {
+  --bg-color-lighter: #57534e;
+  --bg-color: #292524;
+  --bg-color-darker: #0c0a09;
+  --text-color-dark: #fafaf9;
+  --text-color: #e7e5e4;
+  --text-color-lighter: #57534e;
+  --main-color: #ef4444;
+  --main-color-lighter: #fca5a5;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 0;
