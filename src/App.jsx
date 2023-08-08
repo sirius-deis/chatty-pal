@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import Loader from './components/loader/loader';
 import './App.css';
 import RootLayout from './layouts/rootLayout/rootLayout';
@@ -7,6 +7,7 @@ import AuthLayout from './layouts/authLayout/authLayout';
 import StartPage from './pages/startPage/startPage';
 
 import { SocketProvider } from './store/socketContext';
+import { ThemeProvider, ThemeContext } from './store/themeContext';
 
 const SignUp = lazy(() => import('./pages/signUpPage/signUpPage'));
 const SignIn = lazy(() => import('./pages/signInPage/signInPage'));
@@ -14,8 +15,9 @@ const ResetPassword = lazy(() => import('./pages/resetPasswordPage/resetPassword
 const ChatPage = lazy(() => import('./pages/chatPage/chatPage'));
 
 function App() {
+  const themeContext = useContext(ThemeContext);
   return (
-    <div className='App'>
+    <div className={themeContext.theme === 'dark' ? 'dark-theme' : ''}>
       <Routes>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<StartPage />} />
@@ -50,9 +52,11 @@ function App() {
             path='chat'
             element={
               <Suspense fallback={<Loader />}>
-                <SocketProvider>
-                  <ChatPage />
-                </SocketProvider>
+                <ThemeProvider>
+                  <SocketProvider>
+                    <ChatPage />
+                  </SocketProvider>
+                </ThemeProvider>
               </Suspense>
             }
           />
