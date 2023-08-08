@@ -34,7 +34,7 @@ const StyledSlider = styled.span`
   }
 `;
 
-const Toggle = () => {
+const Toggle = ({ theme, changeTheme }) => {
   return (
     <StyledSwitch>
       <StyledCheckbox />

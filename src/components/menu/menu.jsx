@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaUserAlt, FaBookmark, FaMoon } from 'react-icons/fa';
@@ -14,6 +15,8 @@ import {
 
 import Row from '../row/row';
 import List from '../list/list';
+import Toggle from '../toggle/toggle';
+import { ThemeContext } from '../../store/themeContext';
 
 const settingOptions = [
   [<MdGroups2 />, 'New Group'],
@@ -27,6 +30,7 @@ const settingOptions = [
 
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
     <StyledMenu style={style}>
@@ -44,12 +48,23 @@ const Menu = ({ style }) => {
 
       <hr />
       <List>
-        {settingOptions.map((option) => (
-          <StyledMenuItem>
-            <StyledIconWrapper>{option[0]}</StyledIconWrapper>
-            <Link>{option[1]}</Link>
-          </StyledMenuItem>
-        ))}
+        {settingOptions.map((option, i) => {
+          if (i === settingOptions.length - 1) {
+            return (
+              <StyledMenuItem>
+                <StyledIconWrapper>{option[0]}</StyledIconWrapper>
+                <Link>{option[1]}</Link>
+                <Toggle theme={theme} changeTheme={changeTheme} />
+              </StyledMenuItem>
+            );
+          }
+          return (
+            <StyledMenuItem>
+              <StyledIconWrapper>{option[0]}</StyledIconWrapper>
+              <Link>{option[1]}</Link>
+            </StyledMenuItem>
+          );
+        })}
       </List>
     </StyledMenu>
   );
