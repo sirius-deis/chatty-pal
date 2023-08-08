@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense, useContext } from 'react';
 import Loader from './components/loader/loader';
-import './App.css';
 import RootLayout from './layouts/rootLayout/rootLayout';
 import AuthLayout from './layouts/authLayout/authLayout';
 import StartPage from './pages/startPage/startPage';
