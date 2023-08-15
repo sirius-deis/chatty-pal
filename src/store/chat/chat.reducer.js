@@ -26,6 +26,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
     case ChatActionTypes.ADD_CHAT_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case ChatActionTypes.FETCH_CHATS_SUCCESS:
+      console.log('TEST', action.payload);
       return { ...state, isLoading: false, error: null, chats: action.payload };
     case ChatActionTypes.DELETE_CHAT_SUCCESS:
       const chatsWithoutDeleted = state.chats.filter((chat) => chat.id === action.payload);

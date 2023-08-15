@@ -1,12 +1,11 @@
 import ChatActionTypes from './chat.types';
 import fetchData from '../../utils/fetchData';
 
-export const fetchChats = () => async (dispatch) => {
+export const fetchChats = (token) => async (dispatch) => {
   dispatch({ type: ChatActionTypes.FETCH_CHATS_START });
   try {
-    const data = await fetchData('chats', { method: 'GET' });
-
-    dispatch({ type: ChatActionTypes.FETCH_CHATS_SUCCESS, payload: data });
+    const data = await fetchData('chats', { method: 'GET' }, token);
+    dispatch({ type: ChatActionTypes.FETCH_CHATS_SUCCESS, payload: data.data.chats });
   } catch (error) {
     dispatch({ type: ChatActionTypes.FETCH_CHATS_FAILURE });
   }

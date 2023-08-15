@@ -20,7 +20,9 @@ const StyledSidebar = styled.div`
 `;
 
 const StyledScroll = styled.div`
+  position: relative;
   width: 100%;
+  min-height: 100%;
   padding-top: 1.2rem;
   overflow-y: scroll;
 `;
@@ -29,13 +31,13 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
   const chat = useSelector((state) => state.chat);
-
+  const token = useSelector((state) => state.user.token);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
   };
 
   useEffect(() => {
-    dispatch(fetchChats());
+    dispatch(fetchChats(token));
   }, [dispatch]);
 
   const regexp = new RegExp(searchTerm);
