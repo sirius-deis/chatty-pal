@@ -1,6 +1,7 @@
 import MessageActionTypes from './message.types';
 import fetchData from '../../utils/fetchData';
 
+//TODO: CHANGE TO WORK WITH useFetch
 export const fetchMessages = (chatId) => async (dispatch) => {
   dispatch({ type: MessageActionTypes.FETCH_MESSAGES_START });
   const data = await fetchData(`chats/${chatId}/messages`, { method: 'GET' });

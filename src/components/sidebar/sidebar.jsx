@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChats } from '../../store/chat/chat.actions';
+import useFetch from '../../hooks/useFetch';
 
 import Row from '../row/row';
 import Burger from '../burger/burger';
@@ -30,15 +31,17 @@ const StyledScroll = styled.div`
 const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
-  const chat = useSelector((state) => state.chat);
-  const token = useSelector((state) => state.user.token);
+  const [chats, isLoading, error] = useFetch('chats');
+  const chat = useSelector((state) => state.chat.chats);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
   };
 
   useEffect(() => {
-    dispatch(fetchChats(token));
-  }, [dispatch]);
+    if (chats) {
+      dispatch(fetchChats(chats));
+    }
+  }, [chats, dispatch]);
 
   const regexp = new RegExp(searchTerm);
 
@@ -49,9 +52,10 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
         <Search searchTerm={searchTerm} onSearchTermChange={onSearchTermChange} />
       </Row>
       <StyledScroll>
-        {!chat.isLoading ? (
+        {!isLoading ? (
           <List>
-            {chat.chats &&
+            {chat &&
+              chat.chats &&
               chat.chats
                 .filter((item) => regexp.test(item.title))
                 .map((item) => (

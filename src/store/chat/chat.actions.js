@@ -1,15 +1,10 @@
 import ChatActionTypes from './chat.types';
 import fetchData from '../../utils/fetchData';
 
-export const fetchChats = (token) => async (dispatch) => {
-  dispatch({ type: ChatActionTypes.FETCH_CHATS_START });
-  try {
-    const data = await fetchData('chats', { method: 'GET' }, token);
-    dispatch({ type: ChatActionTypes.FETCH_CHATS_SUCCESS, payload: data.data.chats });
-  } catch (error) {
-    dispatch({ type: ChatActionTypes.FETCH_CHATS_FAILURE });
-  }
-};
+export const fetchChats = (chats) => ({
+  type: ChatActionTypes.FETCH_CHATS,
+  payload: chats,
+});
 
 export const addChat = (chatId) => async (dispatch) => {
   try {
@@ -21,19 +16,15 @@ export const addChat = (chatId) => async (dispatch) => {
 };
 
 export const deleteChat = (idOfChatToDelete) => async (dispatch) => {
-  dispatch({ type: ChatActionTypes.DELETE_CHAT_START });
+  dispatch({ type: ChatActionTypes.DELETE_CHAT_START, payload: idOfChatToDelete });
   try {
     await fetchData(`chats/${idOfChatToDelete}`, { method: 'DELETE' });
     dispatch({ type: ChatActionTypes.DELETE_CHAT_SUCCESS, payload: idOfChatToDelete });
   } catch (error) {
-    dispatch({ type: ChatActionTypes.DELETE_CHAT_FAILURE });
+    dispatch({ type: ChatActionTypes.DELETE_CHAT_FAILURE, payload: idOfChatToDelete });
   }
 };
 
-export const online = (id) => {
-  return { type: ChatActionTypes.ONLINE, payload: id };
-};
+export const online = (id) => ({ type: ChatActionTypes.ONLINE, payload: id });
 
-export const offline = (id) => {
-  return { type: ChatActionTypes.OFFLINE, payload: id };
-};
+export const offline = (id) => ({ type: ChatActionTypes.OFFLINE, payload: id });
