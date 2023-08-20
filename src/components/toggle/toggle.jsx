@@ -4,7 +4,11 @@ const StyledSwitch = styled.label`
   position: relative;
   display: inline-block;
   width: 5rem;
-  height: 2.5rem;
+  height: 2rem;
+  margin-left: auto;
+  & input:checked + span:before {
+    transform: translateX(2rem);
+  }
 `;
 
 const StyledCheckbox = styled.input`
@@ -26,18 +30,20 @@ const StyledSlider = styled.span`
   &:before {
     content: '';
     position: absolute;
-    height: 2rem;
-    width: 2rem;
-    top: 0.25rem;
-    left: 0.25rem;
+    height: 3rem;
+    width: 3rem;
+    top: -0.5rem;
+    left: 0;
     background-color: var(--online-color);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
   }
 `;
 
 const Toggle = ({ theme, changeTheme }) => {
   return (
     <StyledSwitch>
-      <StyledCheckbox />
+      <StyledCheckbox type='checkbox' />
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );
