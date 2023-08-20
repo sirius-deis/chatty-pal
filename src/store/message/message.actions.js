@@ -1,19 +1,10 @@
 import MessageActionTypes from './message.types';
 import fetchData from '../../utils/fetchData';
 
-//TODO: CHANGE TO WORK WITH useFetch
-export const fetchMessages = (chatId) => async (dispatch) => {
-  dispatch({ type: MessageActionTypes.FETCH_MESSAGES_START });
-  const data = await fetchData(`chats/${chatId}/messages`, { method: 'GET' });
-  dispatch({
-    type: MessageActionTypes.FETCH_MESSAGES_SUCCESS,
-    payload: { chatId, messages: data },
-  });
-  try {
-  } catch (error) {
-    dispatch({ type: MessageActionTypes.FETCH_MESSAGES_FAILURE, payload: error });
-  }
-};
+export const fetchMessages = (chatId, messages) => ({
+  type: MessageActionTypes.FETCH_MESSAGES,
+  payload: { chatId, messages },
+});
 
 export const addMessage = (message) => {
   return {

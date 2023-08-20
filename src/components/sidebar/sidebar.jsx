@@ -32,7 +32,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
   const [chats, isLoading, error] = useFetch('chats');
-  const chat = useSelector((state) => state.chat.chats);
+  const chatState = useSelector((state) => state.chat.chats);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
   };
@@ -54,9 +54,9 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
       <StyledScroll>
         {!isLoading ? (
           <List>
-            {chat &&
-              chat.chats &&
-              chat.chats
+            {chatState &&
+              chatState.chats &&
+              chatState.chats
                 .filter((item) => regexp.test(item.title))
                 .map((item) => (
                   <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />

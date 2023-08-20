@@ -5,6 +5,7 @@ import MessageGroup from '../messageGroup/messageGroup';
 import ChatInput from '../chatInput/chatInput';
 import Loader from '../loader/loader';
 import { fetchMessages } from '../../store/message/message.actions';
+import useFetch from '../../hooks/useFetch';
 
 const StyledChat = styled.div`
   position: relative;
@@ -71,8 +72,9 @@ const divideMessagesInGroups = (messages = []) => {
 const Chat = ({ chatId }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const messageState = useSelector((state) => state.message);
-  const sortedMessages = divideMessagesInGroups(messageState.messages);
+  const messagesState = useSelector((state) => state.message);
+  const [fetchedMessages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
+  const sortedMessages = divideMessagesInGroups(messagesState.messages);
 
   const messagesToRender = [];
 
@@ -89,13 +91,17 @@ const Chat = ({ chatId }) => {
   }
 
   useEffect(() => {
-    dispatch(fetchMessages(chatId));
-  }, [dispatch, chatId]);
+    if (fetchedMessages) {
+      dispatch(fetchMessages(chatId, fetchedMessages.messages));
+    }
+  }, [dispatch, chatId, fetchedMessages]);
+
+  console.log(messagesState);
 
   return (
     <StyledChat>
       <StyledMessageContainerWrapper>
-        {!messageState.isLoading ? (
+        {!isLoading ? (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
         ) : (
           <Loader />

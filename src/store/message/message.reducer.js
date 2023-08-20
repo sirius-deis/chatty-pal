@@ -3,21 +3,13 @@ import MessageActionTypes from './message.types';
 const INITIAL_STATE = {
   messages: [],
   chosenChatId: '',
-  isLoading: false,
-  error: null,
 };
 
 const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case MessageActionTypes.FETCH_MESSAGES_START:
-      return { ...state, isLoading: true, error: null };
-    case MessageActionTypes.FETCH_MESSAGES_FAILURE:
-      return { ...state, isLoading: false, error: action.payload };
-    case MessageActionTypes.FETCH_MESSAGES_SUCCESS:
+    case MessageActionTypes.FETCH_MESSAGES:
       return {
         ...state,
-        isLoading: false,
-        error: null,
         chosenChatId: action.payload.chatId,
         messages: action.payload.messages,
       };
