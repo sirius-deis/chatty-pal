@@ -14,8 +14,9 @@ const StyledMessage = styled.div`
 const StyledInfo = styled.div`
   margin-left: 0.4rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   float: right;
   font-size: 0.8rem;
   color: var(--text-color);
@@ -32,7 +33,8 @@ const Message = ({ children, isLast, isOwn }) => {
       {children.message}
       <StyledInfo>
         {time}
-        {isOwn && children.isRead && <BsCheck2All />}
+        {isOwn && !children.isRead && <BsCheck2All />}
+        {isOwn && children.isRead && <BsCheck2All color='var(--main-color-lighter)' />}
       </StyledInfo>
     </StyledMessage>
   );
