@@ -14,6 +14,7 @@ const StyledChatPage = styled.div`
   height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 `;
 
 const Greeting = styled.div`
