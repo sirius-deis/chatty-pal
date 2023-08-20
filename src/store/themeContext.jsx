@@ -9,6 +9,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
   const changeTheme = (theme) => {
+    console.log(theme);
     setTheme(theme);
   };
 

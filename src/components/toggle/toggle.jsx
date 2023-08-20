@@ -43,7 +43,11 @@ const StyledSlider = styled.span`
 const Toggle = ({ theme, changeTheme }) => {
   return (
     <StyledSwitch>
-      <StyledCheckbox type='checkbox' />
+      <StyledCheckbox
+        type='checkbox'
+        checked={theme === 'dark'}
+        onChange={() => changeTheme(theme === 'light' ? 'dark' : 'light')}
+      />
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );
