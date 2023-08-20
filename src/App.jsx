@@ -49,7 +49,7 @@ function App() {
           </Route>
 
           <Route
-            path='chat'
+            path='chat/:chatIdParam?'
             element={
               <Suspense fallback={<Loader />}>
                 <SocketProvider>

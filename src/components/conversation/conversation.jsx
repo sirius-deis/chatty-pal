@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   StyleConversation,
   StyledImageContainer,
@@ -21,8 +22,15 @@ const Conversation = ({
   isOnline = false,
   onClickHandler,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    onClickHandler(id);
+    navigate(`/chat/${id}`);
+  };
+
   return (
-    <StyleConversation onClick={() => onClickHandler(id)}>
+    <StyleConversation onClick={handleClick}>
       <StyledImageContainer>
         {pictures ? (
           <img src={pictures[0]} alt='chanel logo' />

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -37,6 +37,13 @@ const ChatPage = () => {
   const user = useSelector((state) => state.user.user);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [chatId, setChatId] = useState(null);
+  const { chatIdParam } = useParams();
+
+  useEffect(() => {
+    if (chatIdParam) {
+      setChatId(chatIdParam);
+    }
+  }, []);
 
   if (!user) {
     return <Navigate to='/login' />;
@@ -48,6 +55,7 @@ const ChatPage = () => {
   const chatClickHandler = (id) => {
     setChatId(id);
   };
+
   return (
     <StyledChatPage>
       {isMenuOpened && (
