@@ -41,13 +41,13 @@ const StyledSlider = styled.span`
 `;
 
 const Toggle = ({ theme, changeTheme }) => {
+  const onClickHandler = () => {
+    changeTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   return (
     <StyledSwitch>
-      <StyledCheckbox
-        type='checkbox'
-        checked={theme === 'dark'}
-        onChange={() => changeTheme(theme === 'light' ? 'dark' : 'light')}
-      />
+      <StyledCheckbox type='checkbox' checked={theme === 'dark'} onClick={onClickHandler} />
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );

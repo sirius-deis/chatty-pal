@@ -8,9 +8,8 @@ export const ThemeContext = createContext({
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
-  const changeTheme = (theme) => {
-    console.log(theme);
-    setTheme(theme);
+  const changeTheme = (newTheme) => {
+    setTheme(newTheme);
   };
 
   const value = {

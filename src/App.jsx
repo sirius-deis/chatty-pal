@@ -6,7 +6,7 @@ import AuthLayout from './layouts/authLayout/authLayout';
 import StartPage from './pages/startPage/startPage';
 
 import { SocketProvider } from './store/socketContext';
-import { ThemeProvider, ThemeContext } from './store/themeContext';
+import { ThemeContext } from './store/themeContext';
 
 const SignUp = lazy(() => import('./pages/signUpPage/signUpPage'));
 const SignIn = lazy(() => import('./pages/signInPage/signInPage'));
@@ -15,6 +15,7 @@ const ChatPage = lazy(() => import('./pages/chatPage/chatPage'));
 
 function App() {
   const themeContext = useContext(ThemeContext);
+
   return (
     <div className={themeContext.theme === 'dark' ? 'theme_dark' : ''}>
       <Routes>
@@ -51,11 +52,9 @@ function App() {
             path='chat'
             element={
               <Suspense fallback={<Loader />}>
-                <ThemeProvider>
-                  <SocketProvider>
-                    <ChatPage />
-                  </SocketProvider>
-                </ThemeProvider>
+                <SocketProvider>
+                  <ChatPage />
+                </SocketProvider>
               </Suspense>
             }
           />
