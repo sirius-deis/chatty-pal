@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Burger component should match snapshot 1`] = `
+<div>
+  <button
+    class="sc-bgqQcB gbRAZT"
+  >
+    <div
+      class="sc-gTRrQi kvyedm"
+    />
+    <div
+      class="sc-gTRrQi kvyedm"
+    />
+    <div
+      class="sc-gTRrQi kvyedm"
+    />
+  </button>
+</div>
+`;
