@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledMenu = styled.button`
   flex-grow: 1;
@@ -28,6 +29,10 @@ const Burger = ({ onClick }) => {
       <StyledMenuItem />
     </StyledMenu>
   );
+};
+
+Burger.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default Burger;
