@@ -12,5 +12,6 @@ describe('Burger component', () => {
     render(<Burger onClick={fn}></Burger>);
     fireEvent.click(screen.getByRole('button'));
     expect(fn).toHaveBeenCalled();
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 });
