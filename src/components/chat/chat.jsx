@@ -97,8 +97,6 @@ const Chat = ({ chatId }) => {
     }
   }, [dispatch, chatId, fetchedMessages]);
 
-  console.log(messagesState);
-
   return (
     <StyledChat>
       <StyledMessageContainerWrapper>

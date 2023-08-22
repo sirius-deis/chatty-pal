@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { HiOutlinePaperClip, HiOutlineMicrophone } from 'react-icons/hi';
 import { BsEmojiSmile, BsSend } from 'react-icons/bs';
 import Input from '../input/input';
@@ -72,6 +73,10 @@ const ChatInput = ({ chatId }) => {
       <StyledLabel>{message ? <BsSend /> : <HiOutlineMicrophone />}</StyledLabel>
     </StyledChatInput>
   );
+};
+
+ChatInput.propTypes = {
+  chatId: PropTypes.string,
 };
 
 export default ChatInput;
