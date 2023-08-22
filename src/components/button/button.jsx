@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StyledPlainButton, StyledRoundedButton } from './button.styles';
 
 const Button = ({ children, backgroundColor, color, kind, onClick = () => {}, styles }) => {
@@ -26,6 +27,15 @@ const Button = ({ children, backgroundColor, color, kind, onClick = () => {}, st
         </StyledPlainButton>
       );
   }
+};
+
+Button.propTypes = {
+  children: PropTypes.node,
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
+  kind: PropTypes.string,
+  onClick: PropTypes.func,
+  styles: PropTypes.object,
 };
 
 export default Button;
