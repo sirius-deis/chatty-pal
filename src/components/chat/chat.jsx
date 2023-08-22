@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import MessageGroup from '../messageGroup/messageGroup';
 import ChatInput from '../chatInput/chatInput';
 import Loader from '../loader/loader';
@@ -110,6 +111,10 @@ const Chat = ({ chatId }) => {
       <ChatInput chatId={chatId} />
     </StyledChat>
   );
+};
+
+Chat.propTypes = {
+  chatId: PropTypes.string,
 };
 
 export default Chat;
