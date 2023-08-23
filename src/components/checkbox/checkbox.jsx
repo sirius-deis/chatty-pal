@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StyledCheckbox, StyledCheckMark, StyledLabelWithCheckbox } from './checkbox.styles';
 
 const LabelWithCheckbox = ({ label }) => {
@@ -8,6 +9,10 @@ const LabelWithCheckbox = ({ label }) => {
       {label}
     </StyledLabelWithCheckbox>
   );
+};
+
+LabelWithCheckbox.propTypes = {
+  label: PropTypes.string,
 };
 
 export default LabelWithCheckbox;

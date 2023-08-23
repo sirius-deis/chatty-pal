@@ -6,4 +6,10 @@ describe('ChatInput component', () => {
     const { container } = render(<ChatInput chatId={1} />);
     expect(container).toMatchSnapshot();
   });
+  it('should fire an event', () => {
+    render(<ChatInput chatId={1} />);
+    fireEvent.change(screen.getByPlaceholderText('Write a message'), {
+      target: { value: 'Some message' },
+    });
+  });
 });
