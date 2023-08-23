@@ -74,7 +74,7 @@ const ChatInput = ({ chatId }) => {
 };
 
 ChatInput.propTypes = {
-  chatId: PropTypes.string,
+  chatId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default ChatInput;
