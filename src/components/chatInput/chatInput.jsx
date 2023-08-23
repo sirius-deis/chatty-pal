@@ -34,8 +34,6 @@ const ChatInput = ({ chatId }) => {
   const [message, setMessage] = useState('');
   const { socket } = useContext(SocketContext);
 
-  socket.connect();
-
   const onFormSubmit = (event) => {
     event.preventDefault();
 

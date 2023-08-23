@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import Chat from '../../components/chat/chat';
 import Menu from '../../components/menu/menu';
 import AnimateWrapper from '../../components/animateWrapper/animateWrapper';
 import Backdrop from '../../components/backdrop/backdrop';
+import { SocketContext } from '../../store/socketContext';
 
 const StyledChatPage = styled.div`
   width: 100%;
@@ -38,6 +39,13 @@ const ChatPage = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [chatId, setChatId] = useState(null);
   const { chatIdParam } = useParams();
+  const { socket } = useContext(SocketContext);
+
+  useEffect(() => {
+    if (!socket.connected) {
+      socket.connect();
+    }
+  });
 
   useEffect(() => {
     if (chatIdParam) {
