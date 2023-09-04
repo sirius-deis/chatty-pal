@@ -23,6 +23,7 @@ export const SocketProvider = ({ children }) => {
   const onOffline = (id) => dispatch(offline(id));
 
   const onSendMessage = ({ chatId, receivedMessage }) => {
+    console.log('onSendMessage');
     const chat = chats.find((chat) => chat.id === chatId);
     if (!chat) {
       dispatch(addChat(chatId));
@@ -75,7 +76,6 @@ export const SocketProvider = ({ children }) => {
     socket.on('error_edit_message', onErrorEditMessage);
     socket.on('error_unsend_message', onErrorUnsendMessage);
     socket.on('error_rate_message', onErrorRateMessage);
-    console.log('SOCKET', socket);
     setSock(socket);
 
     return () => {

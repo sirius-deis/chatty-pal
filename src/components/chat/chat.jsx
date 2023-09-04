@@ -65,7 +65,7 @@ const divideMessagesInGroups = (messages = []) => {
       messagesObj[currDate].push([]);
       curArrLength++;
     }
-    messagesObj[currDate][curArrLength].push(messages[i]);
+    messagesObj[currDate][curArrLength].unshift(messages[i]);
   }
   return messagesObj;
 };
