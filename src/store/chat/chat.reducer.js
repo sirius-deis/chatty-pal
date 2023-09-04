@@ -4,14 +4,13 @@ const INITIAL_STATE = {
   chats: [],
 };
 
-const findChatAndIndexById = (id, chats) => {
-  const foundChatIndex = chats.find((chat) => chat.id === id);
-  if (!foundChatIndex) {
+const findChatIndexById = (id, chats) => {
+  const foundChatIndex = chats.findIndex((chat) => chat.id === id);
+  if (foundChatIndex === -1) {
     return null;
   }
-  const foundChat = chats[foundChatIndex];
 
-  return [foundChatIndex, foundChat];
+  return foundChatIndex;
 };
 
 const chatReducer = (state = INITIAL_STATE, action) => {
@@ -42,37 +41,30 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       const chatsWithoutDeleted = state.chats.filter((chat) => chat.id === action.payload);
       return { ...state, chats: chatsWithoutDeleted };
     case ChatActionTypes.ONLINE:
-      const [foundChatIndex_Online, foundChat_Online] = findChatAndIndexById(
-        action.payload,
-        state.chats,
-      );
-      console.log('TEST', foundChat_Online);
-      if (!foundChat_Online) {
+      const foundChatIndex_Online = findChatIndexById(action.payload, state.chats);
+      if (!foundChatIndex_Online) {
         return state;
       }
       return {
         ...state,
         chats: [
           ...state.chats.slice(0, foundChatIndex_Online),
-          { ...foundChat_Online, online: true },
-          ...state.chats.slice(foundChatIndex_Online),
+          { ...state.chats[foundChatIndex_Online], isOnline: true },
+          ...state.chats.slice(foundChatIndex_Online + 1),
         ],
       };
     case ChatActionTypes.OFFLINE:
-      const [foundChatIndex_Offline, foundChat_Offline] = findChatAndIndexById(
-        action.payload,
-        state.chats,
-      );
-      if (!foundChat_Offline) {
+      const foundChatIndex_Offline = findChatIndexById(action.payload, state.chats);
+      if (!foundChatIndex_Offline) {
         return state;
       }
       return {
         ...state,
         chats: [
           ...state.chats.slice(0, foundChatIndex_Offline),
-          { ...foundChat_Offline, online: false },
+          { ...state.chats[foundChatIndex_Offline], isOnline: undefined },
+          ...state.chats.slice(foundChatIndex_Offline + 1),
         ],
-        ...state.chats.slice(foundChatIndex_Offline),
       };
     case ChatActionTypes.ADD_CHAT_SUCCESS:
       return { ...state, chats: [...state.chats, action.payload] };
