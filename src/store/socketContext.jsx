@@ -75,8 +75,9 @@ export const SocketProvider = ({ children }) => {
     socket.on('error_edit_message', onErrorEditMessage);
     socket.on('error_unsend_message', onErrorUnsendMessage);
     socket.on('error_rate_message', onErrorRateMessage);
-
+    console.log('SOCKET', socket);
     setSock(socket);
+
     return () => {
       socket.off('send_message', onSendMessage);
       socket.off('online', onOnline);

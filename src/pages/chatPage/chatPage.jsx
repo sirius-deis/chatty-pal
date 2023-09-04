@@ -42,16 +42,16 @@ const ChatPage = () => {
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
-    if (!socket.connected) {
+    if (socket && !socket.connected) {
       socket.connect();
     }
-  });
+  }, [socket]);
 
   useEffect(() => {
     if (chatIdParam) {
       setChatId(chatIdParam);
     }
-  }, []);
+  }, [chatIdParam]);
 
   if (!user) {
     return <Navigate to='/login' />;
