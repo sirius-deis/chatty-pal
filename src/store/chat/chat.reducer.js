@@ -37,7 +37,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case ChatActionTypes.FETCH_CHATS:
-      return { ...state, chats: action.payload };
+      return { ...state, chats: action.payload.chats };
     case ChatActionTypes.DELETE_CHAT_SUCCESS:
       const chatsWithoutDeleted = state.chats.filter((chat) => chat.id === action.payload);
       return { ...state, chats: chatsWithoutDeleted };
@@ -46,7 +46,8 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload,
         state.chats,
       );
-      if (!foundChatIndex_Online) {
+      console.log('TEST', foundChat_Online);
+      if (!foundChat_Online) {
         return state;
       }
       return {
@@ -54,15 +55,15 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         chats: [
           ...state.chats.slice(0, foundChatIndex_Online),
           { ...foundChat_Online, online: true },
+          ...state.chats.slice(foundChatIndex_Online),
         ],
-        ...state.chats.slice(foundChatIndex_Online),
       };
     case ChatActionTypes.OFFLINE:
       const [foundChatIndex_Offline, foundChat_Offline] = findChatAndIndexById(
         action.payload,
         state.chats,
       );
-      if (!foundChatIndex_Offline) {
+      if (!foundChat_Offline) {
         return state;
       }
       return {

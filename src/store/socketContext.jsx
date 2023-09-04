@@ -23,7 +23,6 @@ export const SocketProvider = ({ children }) => {
   const onOffline = (id) => dispatch(offline(id));
 
   const onSendMessage = ({ chatId, receivedMessage }) => {
-    console.log('onSendMessage');
     const chat = chats.find((chat) => chat.id === chatId);
     if (!chat) {
       dispatch(addChat(chatId));
@@ -60,6 +59,7 @@ export const SocketProvider = ({ children }) => {
       return;
     }
     const socket = io(URL, {
+      withCredentials: true,
       extraHeaders: {
         Authorization: `Bearer ${token}`,
       },

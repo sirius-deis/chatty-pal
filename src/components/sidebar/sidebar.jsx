@@ -32,7 +32,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
   const [chats, isLoading, error] = useFetch('chats');
-  const chatState = useSelector((state) => state.chat.chats);
+  const chatState = useSelector((state) => state.chat);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
   };
