@@ -40,6 +40,13 @@ const StyledDate = styled.div`
   color: var(--bg-color-lighter);
 `;
 
+const StyledError = styled.div`
+  margin: 0 auto;
+  padding: 0.3rem 10rem;
+  border-radius: 15px;
+  color: var(--main-color);
+`;
+
 const formatDateFromString = (date) => {
   const regexp = /^(\d{4}-\d{1,2}-\d{1,2})/;
   return date.match(regexp)[1];
@@ -100,10 +107,12 @@ const Chat = ({ chatId }) => {
   return (
     <StyledChat>
       <StyledMessageContainerWrapper>
-        {!isLoading ? (
+        {isLoading && <Loader />}
+        {!isLoading && error && (
+          <StyledError>Something went wrong. Please reload the page</StyledError>
+        )}
+        {!isLoading && !error && (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
-        ) : (
-          <Loader />
         )}
       </StyledMessageContainerWrapper>
       <ChatInput chatId={chatId} />
