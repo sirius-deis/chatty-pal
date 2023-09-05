@@ -37,6 +37,10 @@ const ChatInput = ({ chatId }) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
 
+    if (message.trim().length < 1) {
+      return;
+    }
+
     socket.emit('send_message', {
       message,
       isNew: false,
