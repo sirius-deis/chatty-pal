@@ -58,6 +58,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
               chatState.chats &&
               chatState.chats
                 .filter((item) => regexp.test(item.title))
+                .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
                 .map((item) => (
                   <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
                 ))}
