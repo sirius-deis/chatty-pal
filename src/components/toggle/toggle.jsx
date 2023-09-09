@@ -7,7 +7,7 @@ const StyledSwitch = styled.label`
   height: 2rem;
   margin-left: auto;
   & input:checked + span:before {
-    transform: translateX(2rem);
+    transform: translateX(2.05rem);
   }
 `;
 
@@ -23,7 +23,7 @@ const StyledSlider = styled.span`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: var(--main-color-lighter);
+  background-color: var(--text-color);
   transition: 0.3s;
   border-radius: 20px;
   cursor: pointer;
@@ -34,7 +34,7 @@ const StyledSlider = styled.span`
     width: 3rem;
     top: -0.5rem;
     left: 0;
-    background-color: var(--online-color);
+    background-color: var(--bg-color);
     border-radius: 50%;
     transition: transform 0.2s ease;
   }
