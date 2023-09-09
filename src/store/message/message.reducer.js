@@ -72,6 +72,18 @@ const messageReducer = (state = INITIAL_STATE, action) => {
           ...state.messages.slice(foundMessageIndex),
         ],
       };
+    case MessageActionTypes.MARK_MESSAGE_AS_READ:
+      const foundMessageIndexToMark = state.messages.findIndex(
+        (message) => message.id === action.payload.messageId,
+      );
+      return {
+        ...state,
+        messages: [
+          ...state.messages.slice(0, foundMessageIndexToMark),
+          { ...state.messages[foundMessageIndex], isRead: true },
+          ...state.messages.slice(foundMessageIndexToMark),
+        ],
+      };
     default:
       return state;
   }
