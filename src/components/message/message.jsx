@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { BsCheck2All } from 'react-icons/bs';
 
@@ -42,7 +41,6 @@ const StyledInfo = styled.div`
 `;
 
 const Message = ({ children, isLast, isOwn }) => {
-  const dispatch = useDispatch();
   const time = children.createdAt.match(/T(\d{1,2}:\d{1,2}:\d{1,2})\./)[1];
 
   const onMessageClickHandler = () => {};
