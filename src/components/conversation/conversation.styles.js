@@ -33,7 +33,7 @@ export const StyledImageContainer = styled.div`
     border-radius: 50%;
     font-size: 2rem;
     font-weight: 500;
-    background-color: var(--bg-color);
+    background-color: var(--text-color);
   }
 `;
 
@@ -69,6 +69,7 @@ export const StyledMessage = styled.div`
 export const StyledName = styled.h6`
   font-size: 1.4rem;
   font-weight: 400;
+  color: var(--text-color);
 `;
 
 export const StyledTime = styled.div`

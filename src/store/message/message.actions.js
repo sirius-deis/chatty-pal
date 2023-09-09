@@ -30,3 +30,10 @@ export const deleteMessageFromSocket = (messageId) => {
 export const editMessage = ({ messageId, message }) => {
   return { type: MessageActionTypes.EDIT_MESSAGE, payload: { messageId, message } };
 };
+
+export const markMessageAsRead = (messageId) => {
+  return {
+    type: MessageActionTypes.MARK_MESSAGE_AS_READ,
+    payload: messageId,
+  };
+};

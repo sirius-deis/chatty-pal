@@ -15,6 +15,7 @@ const StyledSearch = styled.input`
   caret-color: var(--main-color);
   border: 0;
   background-color: transparent;
+  color: var(--text-color);
   &:focus {
     outline: none;
   }

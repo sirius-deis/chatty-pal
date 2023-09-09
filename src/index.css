@@ -41,8 +41,9 @@ a {
   --text-color-dark: #fafaf9;
   --text-color: #e7e5e4;
   --text-color-lighter: #57534e;
-  --main-color: #ef4444;
-  --main-color-lighter: #fca5a5;
+  --main-color: #fecaca;
+  --main-color-lighter: #f87171;
+  --online-color: #bef264;
 }
 
 @keyframes fadeOut {

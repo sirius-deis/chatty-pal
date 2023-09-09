@@ -46,7 +46,8 @@ export const StyledMenuItem = styled.div`
   align-items: center;
   gap: 1rem;
   &:hover {
-    background-color: var(--bg-color);
+    background-color: var(--text-color);
+    color: var(--text-color-lighter);
   }
 `;
 
