@@ -81,7 +81,7 @@ const divideMessagesInGroups = (messages = []) => {
 
 const Chat = ({ chatId }) => {
   const dispatch = useDispatch();
-  const [isHovered, setIsHovered] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const user = useSelector((state) => state.user.user);
   const messagesState = useSelector((state) => state.message);
   const [fetchedMessages, isLoading, error] = useFetch(`chats/${chatId}/messages`);

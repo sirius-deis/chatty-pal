@@ -7,6 +7,7 @@ export const StyledMenu = styled.div`
   bottom: 0;
   right: calc(100% - 15%);
   background-color: var(--bg-color-lighter);
+  color: var(--text-color);
   z-index: 100;
 `;
 
@@ -36,7 +37,6 @@ export const StyledInfo = styled.div`
 `;
 
 export const StyledStatus = styled.div`
-  color: var(--text-color);
   cursor: pointer;
 `;
 

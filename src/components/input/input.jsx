@@ -12,6 +12,10 @@ const StyledInput = styled.input`
     outline: none;
     box-shadow: ${(props) => (props.shadow ? 'var(--shadow)' : 'unset')};
   }
+  &::placeholder {
+    color: var(--text-color);
+    opacity: 1;
+  }
 `;
 
 const Input = ({
