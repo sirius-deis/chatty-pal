@@ -1,20 +1,36 @@
 const audioRecorder = {
   mediaRecorder: null,
   audioBlobs: [],
-  start() {
+  streamBeingCaptured: null,
+  async start() {
     if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
-      return Promise.reject(new Error('This features is not supported on your device'));
+      throw new Error('This features is not supported on your device');
     } else {
-      return navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        this.mediaRecorder = new MediaRecorder(stream);
-        this.mediaRecorder.addEventListener('dataavailable', (event) => {
-          this.audioBlobs.push(event.data);
-        });
-        this.mediaRecorder.start();
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.streamBeingCaptured = stream;
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.audioBlobs = [];
+      this.mediaRecorder.addEventListener('dataavailable', (event) => {
+        this.audioBlobs.push(event.data);
       });
+      this.mediaRecorder.start();
     }
   },
-  stop() {},
+  async stop() {
+    const mimeType = this.mediaRecorder.mimeType;
+
+    this.mediaRecorder.addEventListener('stop', () => {
+      return new Blob(this.audioBlobs, { type: mimeType });
+    });
+
+    this.mediaRecorder.stop();
+    this.stopStream();
+  },
+  stopStream() {
+    this.streamBeingCaptured.getTracks().forEach((track) => track.stop());
+    this.mediaRecorder = null;
+    this.mediaRecorder = null;
+  },
   cancel() {},
 };
 
