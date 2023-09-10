@@ -31,7 +31,10 @@ const audioRecorder = {
     this.mediaRecorder = null;
     this.mediaRecorder = null;
   },
-  cancel() {},
+  cancel() {
+    this.mediaRecorder.stop();
+    this.stopStream();
+  },
 };
 
 export default audioRecorder;
