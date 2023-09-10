@@ -31,6 +31,7 @@ const StyledLabel = styled.label`
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
+  const [mode, setMode] = useState('text');
   const [message, setMessage] = useState('');
   const { socket } = useContext(SocketContext);
 
@@ -54,6 +55,19 @@ const ChatInput = ({ chatId }) => {
     setMessage((prevState) => prevState + emoji);
   };
 
+  const onInputChangeHandler = (text) => {
+    setMessage(text);
+    if (text.length < 1) {
+      if (mode !== 'audio') {
+        setMode('audio');
+      }
+    } else {
+      if (mode !== 'text') {
+        setMode('text');
+      }
+    }
+  };
+
   return (
     <StyledChatInput onSubmit={onFormSubmit}>
       <StyledLabel>
@@ -65,14 +79,14 @@ const ChatInput = ({ chatId }) => {
         placeholder='Write a message'
         borderRounded={false}
         shadow={false}
-        onChangeHandler={(text) => setMessage(text)}
+        onChangeHandler={onInputChangeHandler}
         value={message}
       />
       <StyledLabel>
         <BsEmojiSmile onClick={() => setIsEmojiPickerOpened((prevState) => !prevState)} />
         {isEmojiPickerOpened && <EmojiPickerWrapper onEmojiClickHandler={onEmojiClickHandler} />}
       </StyledLabel>
-      <StyledLabel>{message ? <BsSend /> : <HiOutlineMicrophone />}</StyledLabel>
+      <StyledLabel>{mode === 'text' ? <BsSend /> : <HiOutlineMicrophone />}</StyledLabel>
     </StyledChatInput>
   );
 };
