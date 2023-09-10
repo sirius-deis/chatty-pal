@@ -7,6 +7,7 @@ import ChatInput from '../chatInput/chatInput';
 import Loader from '../loader/loader';
 import AnimateWrapper from '../animateWrapper/animateWrapper';
 import ChatInfo from '../chatInfo/chatInfo';
+import Error from '../error/error';
 import { fetchMessages } from '../../store/message/message.actions';
 import useFetch from '../../hooks/useFetch';
 
@@ -40,13 +41,6 @@ const StyledDate = styled.div`
   border-radius: 15px;
   background-color: var(--bg-color-darker);
   color: var(--bg-color-lighter);
-`;
-
-const StyledError = styled.div`
-  margin: 0 auto;
-  padding: 0.3rem 10rem;
-  border-radius: 15px;
-  color: var(--main-color);
 `;
 
 const formatDateFromString = (date) => {
@@ -119,9 +113,7 @@ const Chat = ({ chatId }) => {
       </AnimateWrapper>
       <StyledMessageContainerWrapper>
         {isLoading && <Loader />}
-        {!isLoading && error && (
-          <StyledError>Something went wrong. Please reload the page</StyledError>
-        )}
+        {!isLoading && error && <Error>Something went wrong. Please reload the page</Error>}
         {!isLoading && !error && (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
         )}

@@ -10,6 +10,7 @@ import Search from '../search/search';
 import List from '../list/list';
 import Conversation from '../conversation/conversation';
 import Loader from '../loader/loader';
+import Error from '../error/error';
 
 const StyledSidebar = styled.div`
   display: flex;
@@ -52,7 +53,9 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
         <Search searchTerm={searchTerm} onSearchTermChange={onSearchTermChange} />
       </Row>
       <StyledScroll>
-        {!isLoading ? (
+        {isLoading && <Loader />}
+        {!isLoading && error && <Error>Something went wrong. Please reload the page</Error>}
+        {!isLoading && !error && (
           <List>
             {chatState &&
               chatState.chats &&
@@ -63,8 +66,6 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
                   <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
                 ))}
           </List>
-        ) : (
-          <Loader />
         )}
       </StyledScroll>
     </StyledSidebar>
