@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Button from '../button/button';
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Button from "../button/button";
 
-import Portal from '../portal/portal';
+import Portal from "../portal/portal";
 
 const StyledModal = styled.div`
   position: absolute;
@@ -45,12 +45,12 @@ const Modal = ({ children, closeModal }) => {
   };
 
   return (
-    <Portal wrapperId='modal'>
+    <Portal wrapperId="modal">
       <StyledBackdrop onClick={onBackdropClickHandler} />
       <StyledModal>
         {children}
         <StyledCloseButtonWrapper>
-          <Button onClick={closeModal} styles={{ padding: '0.3rem' }}>
+          <Button onClick={closeModal} styles={{ padding: "0.3rem" }}>
             &#x2715;
           </Button>
         </StyledCloseButtonWrapper>

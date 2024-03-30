@@ -10,6 +10,7 @@ import H1 from "../h1/h1";
 import { signUp } from "../../store/user/user.actions";
 import Modal from "../modal/modal";
 import Loader from "../loader/loader";
+import AnimateWrapper from "../animateWrapper/animateWrapper";
 
 //TODO: add error checking
 const SignUp = (props) => {
@@ -44,7 +45,16 @@ const SignUp = (props) => {
     <StyledSignUp>
       {isLoading && <Loader />}
       {isSent && isModalOpen && error !== null && (
-        <Modal closeModal={() => setIsModalOpen(false)}>{error.message}</Modal>
+        <AnimateWrapper
+          isMounted={isModalOpen}
+          mountedStyle={{ animation: "slideOut 0.2s linear 1 forwards" }}
+          unmountedStyle={{ animation: "slideIn 0.2s linear 1 forwards" }}
+          delay={200}
+        >
+          <Modal closeModal={() => setIsModalOpen(false)}>
+            {error.message}
+          </Modal>
+        </AnimateWrapper>
       )}
       <Form onSubmit={onSubmit}>
         <Link to="/">

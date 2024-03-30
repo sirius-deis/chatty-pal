@@ -1,10 +1,10 @@
-import UserActionTypes from './user.types';
-import fetchData from '../../utils/fetchData';
+import UserActionTypes from "./user.types";
+import fetchData from "../../utils/fetchData";
 
 export const signUp = (dataForServer) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_UP_START });
   try {
-    const data = await fetchData('users/signup', {
+    const data = await fetchData("users/signup", {
       body: JSON.stringify(dataForServer),
     });
     dispatch({ type: UserActionTypes.SIGN_UP_SUCCESS, payload: data });
@@ -16,7 +16,7 @@ export const signUp = (dataForServer) => async (dispatch) => {
 export const signIn = (dataForServer) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_IN_START });
   try {
-    const data = await fetchData('users/login', {
+    const data = await fetchData("users/login", {
       body: JSON.stringify(dataForServer),
     });
     dispatch({ type: UserActionTypes.SIGN_IN_SUCCESS, payload: data });
@@ -28,8 +28,8 @@ export const signIn = (dataForServer) => async (dispatch) => {
 export const signOut = () => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_OUT_START });
   try {
-    await fetchData('users/logout', {
-      method: 'GET',
+    await fetchData("users/logout", {
+      method: "GET",
     });
     dispatch({ type: UserActionTypes.SIGN_OUT_SUCCESS });
   } catch (error) {
@@ -40,8 +40,8 @@ export const signOut = () => async (dispatch) => {
 export const resetPassword = (email) => async (dispatch) => {
   dispatch({ type: UserActionTypes.RESET_PASSWORD_START });
   try {
-    const data = await fetchData('users/reset-password', {
-      method: 'GET',
+    const data = await fetchData("users/reset-password", {
+      method: "GET",
       body: JSON.stringify({ email }),
     });
     dispatch({ type: UserActionTypes.RESET_PASSWORD_SUCCESS, payload: data });
