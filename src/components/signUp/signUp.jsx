@@ -47,8 +47,8 @@ const SignUp = (props) => {
       {isSent && isModalOpen && error !== null && (
         <AnimateWrapper
           isMounted={isModalOpen}
-          mountedStyle={{ animation: "slideOut 0.2s linear 1 forwards" }}
-          unmountedStyle={{ animation: "slideIn 0.2s linear 1 forwards" }}
+          mountedStyle={{ animation: "fadeOut 3.2s linear 1 forwards" }}
+          unmountedStyle={{ animation: "fadeIn 3.2s linear 1 forwards" }}
           delay={200}
         >
           <Modal closeModal={() => setIsModalOpen(false)}>
