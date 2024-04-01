@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { FaUserAlt, FaBookmark, FaMoon } from 'react-icons/fa';
-import { BsMegaphoneFill } from 'react-icons/bs';
-import { MdGroups2, MdCall, MdSettings } from 'react-icons/md';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FaUserAlt, FaBookmark, FaMoon } from "react-icons/fa";
+import { BsMegaphoneFill } from "react-icons/bs";
+import { MdGroups2, MdCall, MdSettings } from "react-icons/md";
 import {
   StyledMenu,
   StyledUserInfo,
@@ -11,21 +11,21 @@ import {
   StyledStatus,
   StyledMenuItem,
   StyledIconWrapper,
-} from './menu.styles';
+} from "./menu.styles";
 
-import Row from '../row/row';
-import List from '../list/list';
-import Toggle from '../toggle/toggle';
-import { ThemeContext } from '../../store/themeContext';
+import Row from "../row/row";
+import List from "../list/list";
+import Toggle from "../toggle/toggle";
+import { ThemeContext } from "../../store/themeContext";
 
 const settingOptions = [
-  [<MdGroups2 />, 'New Group'],
-  [<BsMegaphoneFill />, 'New Channel'],
-  [<FaUserAlt />, 'Contacts'],
-  [<MdCall />, 'Calls'],
-  [<FaBookmark />, 'Saved Messages'],
-  [<MdSettings />, 'Settings'],
-  [<FaMoon />, 'Night Mode'],
+  [<MdGroups2 />, "New Group"],
+  [<BsMegaphoneFill />, "New Channel"],
+  [<FaUserAlt />, "Contacts"],
+  [<MdCall />, "Calls"],
+  [<FaBookmark />, "Saved Messages"],
+  [<MdSettings />, "Settings"],
+  [<FaMoon />, "Night Mode"],
 ];
 
 const Menu = ({ style }) => {
@@ -37,12 +37,15 @@ const Menu = ({ style }) => {
       <StyledUserInfo>
         <Row>
           <StyledInfo>
-            <img src='https://source.unsplash.com/random/300×300/?face' alt='avatar' />
+            <img
+              src="https://source.unsplash.com/random/300×300/?face"
+              alt="avatar"
+            />
             <h5>{user.userName}</h5>
           </StyledInfo>
         </Row>
         <Row>
-          <StyledStatus>{user.bio || 'Add bio'}</StyledStatus>
+          <StyledStatus>{user.bio || "Add bio"}</StyledStatus>
         </Row>
       </StyledUserInfo>
 
@@ -51,7 +54,7 @@ const Menu = ({ style }) => {
         {settingOptions.map((option, i) => {
           if (i === settingOptions.length - 1) {
             return (
-              <StyledMenuItem>
+              <StyledMenuItem key={i}>
                 <StyledIconWrapper>{option[0]}</StyledIconWrapper>
                 <Link>{option[1]}</Link>
                 <Toggle theme={theme} changeTheme={changeTheme} />
@@ -59,7 +62,7 @@ const Menu = ({ style }) => {
             );
           }
           return (
-            <StyledMenuItem>
+            <StyledMenuItem key={i}>
               <StyledIconWrapper>{option[0]}</StyledIconWrapper>
               <Link>{option[1]}</Link>
             </StyledMenuItem>
