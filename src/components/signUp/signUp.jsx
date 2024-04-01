@@ -40,7 +40,7 @@ const SignUp = (props) => {
     if (!error && !isLoading && isSent) {
       navigate("/login");
     }
-  }, [error, isSent]);
+  }, [error, isLoading, isSent]);
   return (
     <StyledSignUp>
       {isLoading && <Loader />}
