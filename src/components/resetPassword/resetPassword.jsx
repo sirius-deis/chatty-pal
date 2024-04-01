@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
@@ -17,6 +17,7 @@ const ResetPassword = () => {
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoading, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const onSubmitHandler = (event) => {
     event.preventDefault();
     const { email } = event.target.elements;
@@ -28,6 +29,9 @@ const ResetPassword = () => {
   useEffect(() => {
     if (error) {
       setIsModalOpen(true);
+    }
+    if (!error && !isLoading && isSent) {
+      navigate("/login");
     }
   }, [error]);
 
