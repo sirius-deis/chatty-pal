@@ -13,7 +13,7 @@ import Loader from "../loader/loader";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
 
 //TODO: add error checking
-const SignUp = (props) => {
+const SignUp = () => {
   const { error, isLoading } = useSelector((state) => state.user);
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
