@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledSwitch = styled.label`
   position: relative;
@@ -28,7 +28,7 @@ const StyledSlider = styled.span`
   border-radius: 20px;
   cursor: pointer;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     height: 3rem;
     width: 3rem;
@@ -42,12 +42,16 @@ const StyledSlider = styled.span`
 
 const Toggle = ({ theme, changeTheme }) => {
   const onClickHandler = () => {
-    changeTheme(theme === 'light' ? 'dark' : 'light');
+    changeTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
     <StyledSwitch>
-      <StyledCheckbox type='checkbox' checked={theme === 'dark'} onClick={onClickHandler} />
+      <StyledCheckbox
+        type="checkbox"
+        checked={theme === "dark"}
+        onChange={onClickHandler}
+      />
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );
