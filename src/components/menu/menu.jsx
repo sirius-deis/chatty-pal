@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { FaUserAlt, FaBookmark, FaMoon } from "react-icons/fa";
 import { BsMegaphoneFill } from "react-icons/bs";
 import { MdGroups2, MdCall, MdSettings } from "react-icons/md";
+import Image from "../../assets/images/no-camera.png";
 import {
   StyledMenu,
   StyledUserInfo,
@@ -37,10 +38,7 @@ const Menu = ({ style }) => {
       <StyledUserInfo>
         <Row>
           <StyledInfo>
-            <img
-              src="https://source.unsplash.com/random/300×300/?face"
-              alt="avatar"
-            />
+            <img src={user.photos[0] ? user.photos[0] : Image} alt="avatar" />
             <h5>{user.userName}</h5>
           </StyledInfo>
         </Row>

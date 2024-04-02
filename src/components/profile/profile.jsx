@@ -4,6 +4,7 @@ import Button from "../button/button";
 import Loader from "../loader/loader";
 import Row from "../row/row";
 import { useSelector } from "react-redux";
+import Image from "../../assets/images";
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
@@ -13,10 +14,7 @@ const Profile = () => {
         <h2>Profile</h2>
         <Button>Cancel</Button>
       </Row>
-      <img
-        src="https://source.unsplash.com/random/300×300/?face"
-        alt="avatar"
-      />
+      <img src={user.photos[0] ? user.photos[0] : Image} alt="avatar" />
       <h2>Change profile picture</h2>
       <Input type="text" name="name" placeholder="Name" value={user.name} />
       <Input type="email" name="email" placeholder="Email" value={user.email} />
