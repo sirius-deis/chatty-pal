@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+const bgColors = {
+  primary: "#1C76E2",
+  warning: "#E10D30",
+  default: "#155EC2",
+  success: "#12AC3F",
+};
+
+const size = {
+  sm: "1",
+  md: "2",
+  lg: "3",
+};
+
 const StyledButton = styled.button`
   font-size: 2rem;
   background-color: ${(props) =>
@@ -13,6 +26,8 @@ const StyledButton = styled.button`
   &:hover {
     filter: brightness(110%);
   }
+  font-size: ${(props) => `${size[props.size]}rem`};
+  padding: ${(props) => `${size[props.size]}rem ${size[props.size] * 3}rem`};
 `;
 
 export const StyledPlainButton = styled(StyledButton)`

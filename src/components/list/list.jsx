@@ -16,9 +16,9 @@ export const StyledListItem = styled.li`
 
 const List = ({ children }) => {
   const renderList = React.Children.map(children, (child) => (
-    <ListItem>{React.cloneElement(child)}</ListItem>
+    <StyledListItem>{React.cloneElement(child)}</StyledListItem>
   ));
-  return <StyledListItem>{renderList}</StyledListItem>;
+  return <StyledList>{renderList}</StyledList>;
 };
 
 export default List;
