@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchChats } from '../../store/chat/chat.actions';
-import useFetch from '../../hooks/useFetch';
+import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchChats } from "../../store/chat/chat.actions";
+import useFetch from "../../hooks/useFetch";
 
-import Row from '../row/row';
-import Burger from '../burger/burger';
-import Search from '../search/search';
-import List from '../list/list';
-import Conversation from '../conversation/conversation';
-import Loader from '../loader/loader';
-import Error from '../error/error';
+import Row from "../row/row";
+import Burger from "../burger/burger";
+import Search from "../search/search";
+import List from "../list/list";
+import Conversation from "../conversation/conversation";
+import Loader from "../loader/loader";
+import Error from "../error/error";
 
 const StyledSidebar = styled.div`
   display: flex;
@@ -31,8 +31,8 @@ const StyledScroll = styled.div`
 
 const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [chats, isLoading, error] = useFetch('chats');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [chats, isLoading, error] = useFetch("chats");
   const chatState = useSelector((state) => state.chat);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
@@ -48,13 +48,18 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
 
   return (
     <StyledSidebar>
-      <Row style={{ gap: '2rem', padding: '0 1rem' }}>
+      <Row style={{ gap: "2rem", padding: "0 1rem" }}>
         <Burger onClick={toggleMenuClickHandler} />
-        <Search searchTerm={searchTerm} onSearchTermChange={onSearchTermChange} />
+        <Search
+          searchTerm={searchTerm}
+          onSearchTermChange={onSearchTermChange}
+        />
       </Row>
       <StyledScroll>
         {isLoading && <Loader />}
-        {!isLoading && error && <Error>Something went wrong. Please reload the page</Error>}
+        {!isLoading && error && (
+          <Error>Something went wrong. Please reload the page</Error>
+        )}
         {!isLoading && !error && (
           <List>
             {chatState &&
@@ -63,7 +68,11 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
                 .filter((item) => regexp.test(item.title))
                 .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
                 .map((item) => (
-                  <Conversation onClickHandler={chatClickHandler} key={item.id} {...item} />
+                  <Conversation
+                    onClickHandler={chatClickHandler}
+                    key={item.id}
+                    {...item}
+                  />
                 ))}
           </List>
         )}

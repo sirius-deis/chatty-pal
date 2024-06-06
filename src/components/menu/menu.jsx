@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUserAlt, FaBookmark, FaMoon } from "react-icons/fa";
@@ -13,11 +13,14 @@ import {
   StyledMenuItem,
   StyledIconWrapper,
 } from "./menu.styles";
+import AnimateWrapper from "../../components/animateWrapper/animateWrapper";
+import Modal from "../modal/modal";
 
 import Row from "../row/row";
 import List from "../list/list";
 import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
+import Profile from "../profile/profile";
 
 const settingOptions = [
   [<MdGroups2 />, "New Group"],
@@ -32,6 +35,7 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
+  const [iSSettingsOpen, setIsSettingOpen] = useState();
 
   return (
     <StyledMenu style={style}>
@@ -46,7 +50,6 @@ const Menu = ({ style }) => {
           <StyledStatus>{user.bio || "Add bio"}</StyledStatus>
         </Row>
       </StyledUserInfo>
-
       <hr />
       <List>
         {settingOptions.map((option, i) => {
@@ -67,6 +70,17 @@ const Menu = ({ style }) => {
           );
         })}
       </List>
+
+      <AnimateWrapper
+        isMounted={true}
+        mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+        unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
+        delay={200}
+      >
+        <Modal>
+          <Profile />
+        </Modal>
+      </AnimateWrapper>
     </StyledMenu>
   );
 };

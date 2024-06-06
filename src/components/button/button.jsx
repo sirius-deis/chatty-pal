@@ -1,9 +1,16 @@
-import PropTypes from 'prop-types';
-import { StyledPlainButton, StyledRoundedButton } from './button.styles';
+import PropTypes from "prop-types";
+import { StyledPlainButton, StyledRoundedButton } from "./button.styles";
 
-const Button = ({ children, backgroundColor, color, kind, onClick = () => {}, styles }) => {
+const Button = ({
+  children,
+  backgroundColor,
+  color,
+  kind,
+  onClick = () => {},
+  styles,
+}) => {
   switch (kind) {
-    case 'rounded':
+    case "rounded":
       return (
         <StyledRoundedButton
           backgroundColor={backgroundColor}
@@ -14,7 +21,7 @@ const Button = ({ children, backgroundColor, color, kind, onClick = () => {}, st
           {children}
         </StyledRoundedButton>
       );
-    case 'plain':
+    case "plain":
     default:
       return (
         <StyledPlainButton
@@ -36,6 +43,7 @@ Button.propTypes = {
   kind: PropTypes.string,
   onClick: PropTypes.func,
   styles: PropTypes.object,
+  size: PropTypes.string,
 };
 
 export default Button;

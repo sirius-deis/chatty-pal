@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledButton = styled.button`
   font-size: 2rem;
-  background-color: ${(props) => (props.backgroundColor ? `var(--${props.backgroundColor})` : 'var(--main-color)')};
-  color: ${(props) => (props.color ? `var(--${props.color})` : 'var(--text-color-lighter)')};
+  background-color: ${(props) =>
+    props.backgroundColor
+      ? `var(--${props.backgroundColor})`
+      : "var(--main-color)"};
+  color: ${(props) =>
+    props.color ? `var(--${props.color})` : "var(--text-color-lighter)"};
   border: none;
   cursor: pointer;
   &:hover {

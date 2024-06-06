@@ -5,11 +5,10 @@ import Button from "../button/button";
 import Portal from "../portal/portal";
 
 const StyledModal = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 8rem 5rem;
   border-radius: 10px;
   background-color: var(--bg-color-lighter);
   box-shadow: var(--shadow);
@@ -18,7 +17,7 @@ const StyledModal = styled.div`
 `;
 
 const StyledBackdrop = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -38,7 +37,7 @@ const StyledCloseButtonWrapper = styled.div`
   }
 `;
 
-const Modal = ({ children, closeModal }) => {
+const Modal = ({ children, closeModal, withCloseBtn }) => {
   const onBackdropClickHandler = (event) => {
     event.stopPropagation();
     closeModal();
@@ -49,11 +48,13 @@ const Modal = ({ children, closeModal }) => {
       <StyledBackdrop onClick={onBackdropClickHandler} />
       <StyledModal>
         {children}
-        <StyledCloseButtonWrapper>
-          <Button onClick={closeModal} styles={{ padding: "0.3rem" }}>
-            &#x2715;
-          </Button>
-        </StyledCloseButtonWrapper>
+        {withCloseBtn && (
+          <StyledCloseButtonWrapper>
+            <Button onClick={closeModal} styles={{ padding: "0.3rem" }}>
+              &#x2715;
+            </Button>
+          </StyledCloseButtonWrapper>
+        )}
       </StyledModal>
     </Portal>
   );
@@ -62,6 +63,7 @@ const Modal = ({ children, closeModal }) => {
 Modal.propTypes = {
   children: PropTypes.node,
   closeModal: PropTypes.func,
+  withCloseBtn: PropTypes.bool,
 };
 
 export default Modal;
