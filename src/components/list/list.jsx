@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-import ListItem from '../listItem/listItem';
+import React from "react";
+import styled from "styled-components";
 
 const StyledList = styled.ul`
   display: flex;
@@ -10,9 +9,16 @@ const StyledList = styled.ul`
   list-style: none;
 `;
 
+export const StyledListItem = styled.li`
+  width: 100%;
+  cursor: pointer;
+`;
+
 const List = ({ children }) => {
-  const renderList = React.Children.map(children, (child) => <ListItem>{React.cloneElement(child)}</ListItem>);
-  return <StyledList>{renderList}</StyledList>;
+  const renderList = React.Children.map(children, (child) => (
+    <ListItem>{React.cloneElement(child)}</ListItem>
+  ));
+  return <StyledListItem>{renderList}</StyledListItem>;
 };
 
 export default List;
