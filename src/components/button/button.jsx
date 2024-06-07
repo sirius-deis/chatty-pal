@@ -8,6 +8,7 @@ const Button = ({
   kind,
   onClick = () => {},
   styles,
+  size = "md",
 }) => {
   switch (kind) {
     case "rounded":
@@ -17,6 +18,7 @@ const Button = ({
           color={color}
           onClick={onClick}
           style={styles}
+          size={size}
         >
           {children}
         </StyledRoundedButton>
@@ -29,6 +31,7 @@ const Button = ({
           color={color}
           onClick={onClick}
           style={styles}
+          size={size}
         >
           {children}
         </StyledPlainButton>
