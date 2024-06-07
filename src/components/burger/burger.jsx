@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledMenu = styled.button`
   flex-grow: 1;
@@ -18,7 +18,7 @@ const StyledMenu = styled.button`
 const StyledMenuItem = styled.div`
   width: 100%;
   height: 0.3rem;
-  background-color: var(--text-color);
+  background-color: var(--text);
 `;
 
 const Burger = ({ onClick }) => {

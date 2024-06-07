@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledLabelWithCheckbox = styled.label`
   display: flex;
@@ -17,7 +17,7 @@ export const StyledCheckbox = styled.input`
   visibility: hidden;
   & + span {
     &::after {
-      content: '';
+      content: "";
       width: 1rem;
       height: 0.4rem;
       display: none;
@@ -25,13 +25,13 @@ export const StyledCheckbox = styled.input`
       left: 0.2rem;
       position: absolute;
       transform: rotate(-45deg);
-      border-bottom: 3px solid var(--text-color-lighter);
-      border-left: 3px solid var(--text-color-lighter);
+      border-bottom: 3px solid var(--text-lighter);
+      border-left: 3px solid var(--text-lighter);
     }
   }
   &:checked + span {
     border: 0;
-    background-color: var(--main-color);
+    background-color: var(--default);
   }
   &:checked + span::after {
     display: block;
@@ -43,7 +43,7 @@ export const StyledCheckMark = styled.span`
   width: 1.7rem;
   height: 1.7rem;
   position: relative;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--text);
   border-radius: 5px;
   transition: background-color 0.1s ease-out, border 0.1s ease-out;
 `;
