@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
-import { StyledPlainButton, StyledRoundedButton } from "./button.styles";
+import {
+  StyledPlainButton,
+  StyledRoundedButton,
+  StyledOutlinedButton,
+} from "./button.styles";
 
 const getButtonByType = (type) => {
   switch (type) {
     case "rounded":
       return StyledRoundedButton;
-    case "plain":
+    case "outlined":
+      return StyledOutlinedButton;
     default:
       return StyledPlainButton;
   }

@@ -14,7 +14,7 @@ const size = {
 };
 
 const StyledButton = styled.button`
-  background-color: ${(props) => bgColors[props.bgColor]};
+  background-color: ${(props) => bgColors[props.bgColor] || bgColors.default};
   color: var(--text-lighter);
   border: none;
   cursor: pointer;
@@ -36,4 +36,11 @@ export const StyledRoundedButton = styled(StyledButton)`
   align-items: center;
   padding: ${(props) => `${size[props.size]}rem`};
   border-radius: 50%;
+`;
+
+export const StyledOutlinedButton = styled(StyledButton)`
+  background-color: transparent;
+  color: var("text-darker");
+  border: ${(props) =>
+    `1px solid ${bgColors[props.bgColor] || bgColors.default}`};
 `;

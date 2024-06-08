@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Form from "../form/form";
+import Panel from "../panel/panel";
 import Input from "../input/input";
 import Button from "../button/button";
 import Row from "../row/row";
@@ -12,7 +12,7 @@ const Profile = () => {
   const user = useSelector((state) => state.user.user);
   return (
     <StyledProfile>
-      <Form>
+      <Panel>
         <Row>
           <h2>Profile</h2>
           <Button>Cancel</Button>
@@ -29,7 +29,7 @@ const Profile = () => {
         <Input type="text" name="bio" placeholder="Bio" value={user.bio} />
 
         <Button>Save changes</Button>
-      </Form>
+      </Panel>
     </StyledProfile>
   );
 };
