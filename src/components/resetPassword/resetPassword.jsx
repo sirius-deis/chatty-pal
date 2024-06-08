@@ -11,6 +11,7 @@ import Loader from "../loader/loader";
 import Modal from "../modal/modal";
 import { resetPassword } from "../../store/user/user.actions";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
+import Panel from "../panel/panel";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -45,30 +46,32 @@ const ResetPassword = () => {
           unmountedStyle={{ animation: "fadeIn 3.2s linear 1 forwards" }}
           delay={200}
         >
-          <Modal closeModal={() => setIsModalOpen(false)}>
-            {error.message}
+          <Modal closeModal={() => setIsModalOpen(false)} withCloseBtn>
+            <Panel padding={6}>{error.message}</Panel>
           </Modal>
         </AnimateWrapper>
       )}
-      <Form onSubmit={onSubmitHandler}>
-        <Link to="/">
-          <img src={Logo} alt="logo" />
-        </Link>
-
-        <H1>Reset password</H1>
-        <Input type="email" name="email" placeholder="Email *" />
-        <Button>Submit</Button>
-        <div>Take a different action.</div>
-        <div>
-          <Link to="/register" style={{ color: "var(--main-color)" }}>
-            Sign up
-          </Link>{" "}
-          or{" "}
-          <Link to="/register" style={{ color: "var(--main-color)" }}>
-            Sign in
+      <form onSubmit={onSubmitHandler}>
+        <Panel>
+          <Link to="/">
+            <img src={Logo} alt="logo" />
           </Link>
-        </div>
-      </Form>
+
+          <H1>Reset password</H1>
+          <Input type="email" name="email" placeholder="Email *" />
+          <Button>Submit</Button>
+          <div>Take a different action.</div>
+          <div>
+            <Link to="/register" style={{ color: "var(--main-color)" }}>
+              Sign up
+            </Link>{" "}
+            or{" "}
+            <Link to="/register" style={{ color: "var(--main-color)" }}>
+              Sign in
+            </Link>
+          </div>
+        </Panel>
+      </form>
     </StyledResetPassword>
   );
 };

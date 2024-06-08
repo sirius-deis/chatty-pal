@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledList = styled.ul`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => props.direction};
   align-items: flex-start;
   justify-content: center;
   list-style: none;
@@ -14,11 +15,16 @@ export const StyledListItem = styled.li`
   cursor: pointer;
 `;
 
-const List = ({ children }) => {
+const List = ({ children, dir }) => {
   const renderList = React.Children.map(children, (child) => (
-    <StyledListItem>{React.cloneElement(child)}</StyledListItem>
+    <StyledListItem>{child}</StyledListItem>
   ));
-  return <StyledList>{renderList}</StyledList>;
+  return <StyledList direction={dir}>{renderList}</StyledList>;
+};
+
+List.propTypes = {
+  children: PropTypes.node,
+  dir: PropTypes.oneOf("column", "row"),
 };
 
 export default List;

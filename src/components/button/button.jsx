@@ -1,52 +1,44 @@
 import PropTypes from "prop-types";
 import { StyledPlainButton, StyledRoundedButton } from "./button.styles";
 
+const getButtonByType = (type) => {
+  switch (type) {
+    case "rounded":
+      return StyledRoundedButton;
+    case "plain":
+    default:
+      return StyledPlainButton;
+  }
+};
+
 const Button = ({
   children,
   backgroundColor,
   color,
-  kind,
-  onClick = () => {},
-  styles,
+  type,
   size = "md",
+  ...rest
 }) => {
-  switch (kind) {
-    case "rounded":
-      return (
-        <StyledRoundedButton
-          backgroundColor={backgroundColor}
-          color={color}
-          onClick={onClick}
-          style={styles}
-          size={size}
-        >
-          {children}
-        </StyledRoundedButton>
-      );
-    case "plain":
-    default:
-      return (
-        <StyledPlainButton
-          backgroundColor={backgroundColor}
-          color={color}
-          onClick={onClick}
-          style={styles}
-          size={size}
-        >
-          {children}
-        </StyledPlainButton>
-      );
-  }
+  const SelectedButton = getButtonByType(type);
+  return (
+    <SelectedButton
+      bgColor={backgroundColor}
+      color={color}
+      size={size}
+      {...rest}
+    >
+      {children}
+    </SelectedButton>
+  );
 };
 
 Button.propTypes = {
   children: PropTypes.node,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
-  kind: PropTypes.string,
+  type: PropTypes.string,
   onClick: PropTypes.func,
-  styles: PropTypes.object,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(["sm", "md", "lg"]),
 };
 
 export default Button;

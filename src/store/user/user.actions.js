@@ -41,7 +41,7 @@ export const resetPassword = (email) => async (dispatch) => {
   dispatch({ type: UserActionTypes.RESET_PASSWORD_START });
   try {
     const data = await fetchData("users/reset-password", {
-      method: "GET",
+      method: "POST",
       body: JSON.stringify({ email }),
     });
     dispatch({ type: UserActionTypes.RESET_PASSWORD_SUCCESS, payload: data });

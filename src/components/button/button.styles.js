@@ -14,7 +14,7 @@ const size = {
 };
 
 const StyledButton = styled.button`
-  background-color: ${(props) => bgColors.default || bgColors[props.bg]};
+  background-color: ${(props) => bgColors[props.bgColor] || bgColors.default};
   color: var(--text-lighter);
   border: none;
   cursor: pointer;
@@ -25,7 +25,8 @@ const StyledButton = styled.button`
 `;
 
 export const StyledPlainButton = styled(StyledButton)`
-  padding: ${(props) => `${size[props.size]}rem ${size[props.size] * 5}rem`};
+  padding: ${(props) =>
+    `${size[props.size] * 0.8}rem ${size[props.size] * 7}rem`};
   border-radius: 5px;
 `;
 

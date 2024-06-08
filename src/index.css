@@ -21,6 +21,8 @@
 
   --primary: #0ea5e9;
   --warning: #ef4444;
+  --warning-200: #fecaca;
+  --warning-300: #fca5a5;
   --success: #22c55e;
   --default: #3b82f6;
   --text-darker: #0c0a09;
@@ -37,8 +39,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(
     to left top,
-    var(--bg-color) 30%,
-    var(--main-color-lighter)
+    var(--warning-300) 30%,
+    var(--warning-200)
   );
   font-size: 1.5rem;
 }

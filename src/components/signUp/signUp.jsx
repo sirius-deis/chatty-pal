@@ -11,9 +11,13 @@ import { signUp } from "../../store/user/user.actions";
 import Modal from "../modal/modal";
 import Loader from "../loader/loader";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
+import Panel from "../panel/panel";
 
 //TODO: add error checking
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const { error, isLoading } = useSelector((state) => state.user);
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,13 +25,12 @@ const SignUp = () => {
   const navigate = useNavigate();
   const onSubmit = (event) => {
     event.preventDefault();
-    const { email, password, passwordConfirm } = event.target.elements;
 
     dispatch(
       signUp({
-        email: email.value,
-        password: password.value,
-        passwordConfirm: passwordConfirm.value,
+        email,
+        password,
+        passwordConfirm,
       })
     );
     setIsSent(true);
@@ -41,41 +44,62 @@ const SignUp = () => {
       navigate("/login");
     }
   }, [error, isLoading, isSent]);
+
+  const onChangeHandler = (fn) => (e) => {
+    fn(e.target.value);
+  };
+
   return (
     <StyledSignUp>
       {isLoading && <Loader />}
-      {isSent && isModalOpen && error !== null && (
+      {isSent && isModalOpen && error && (
         <AnimateWrapper
           isMounted={isModalOpen}
           mountedStyle={{ animation: "fadeOut 3.2s linear 1 forwards" }}
           unmountedStyle={{ animation: "fadeIn 3.2s linear 1 forwards" }}
           delay={200}
         >
-          <Modal closeModal={() => setIsModalOpen(false)}>
-            {error.message}
+          <Modal closeModal={() => setIsModalOpen(false)} withCloseBtn>
+            <Panel padding={6}>{error.message}</Panel>
           </Modal>
         </AnimateWrapper>
       )}
-      <Form onSubmit={onSubmit}>
-        <Link to="/">
-          <img src={Logo} alt="logo" />
-        </Link>
-        <H1>Sign up</H1>
-        <Input type="email" name="email" placeholder="Email *" />
-        <Input type="password" name="password" placeholder="Password *" />
-        <Input
-          type="password"
-          name="passwordConfirm"
-          placeholder="Password confirm *"
-        />
-        <Button>Sign Up</Button>
-        <div>
-          Already have an account?{" "}
-          <Link to="/login" style={{ color: "var(--main-color)" }}>
-            Sign in
+      <form onSubmit={onSubmit}>
+        <Panel>
+          <Link to="/">
+            <img src={Logo} alt="logo" />
           </Link>
-        </div>
-      </Form>
+          <H1>Sign up</H1>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email *"
+            onChange={onChangeHandler(setEmail)}
+            value={email}
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Password *"
+            onChange={onChangeHandler(setPassword)}
+            value={password}
+          />
+          <Input
+            type="password"
+            name="passwordConfirm"
+            placeholder="Password confirm *"
+            onChange={onChangeHandler(setPasswordConfirm)}
+            value={passwordConfirm}
+          />
+          <Button color="primary">Sign Up</Button>
+          <div>
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "var(--warning)" }}>
+              Sign in
+            </Link>
+          </div>
+        </Panel>
+      </form>
     </StyledSignUp>
   );
 };
