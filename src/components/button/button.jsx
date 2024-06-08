@@ -13,20 +13,14 @@ const getButtonByType = (type) => {
 
 const Button = ({
   children,
-  backgroundColor,
-  color,
+  backgroundColor = "default",
   type,
   size = "md",
   ...rest
 }) => {
   const SelectedButton = getButtonByType(type);
   return (
-    <SelectedButton
-      bgColor={backgroundColor}
-      color={color}
-      size={size}
-      {...rest}
-    >
+    <SelectedButton bgColor={backgroundColor} size={size} {...rest}>
       {children}
     </SelectedButton>
   );
@@ -35,7 +29,6 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node,
   backgroundColor: PropTypes.string,
-  color: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(["sm", "md", "lg"]),

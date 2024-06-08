@@ -14,14 +14,14 @@ const size = {
 };
 
 const StyledButton = styled.button`
-  background-color: ${(props) => bgColors[props.bgColor] || bgColors.default};
+  background-color: ${(props) => bgColors[props.bgColor]};
   color: var(--text-lighter);
   border: none;
   cursor: pointer;
   &:hover {
     filter: brightness(110%);
   }
-  font-size: ${(props) => `${size[props.size] * 1.3}rem`};
+  font-size: 1.8rem;
 `;
 
 export const StyledPlainButton = styled(StyledButton)`

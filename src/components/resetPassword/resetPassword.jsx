@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
 import { StyledResetPassword } from "./resetPassword.styles";
-import Form from "../form/form";
 import Input from "../input/input";
 import Button from "../button/button";
 import H1 from "../h1/h1";

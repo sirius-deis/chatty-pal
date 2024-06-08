@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/images/logo.png";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import { StyledSignIn } from "./signIn.styles";
-import Form from "../form/form";
 import Input from "../input/input";
 import Button from "../button/button";
 import H1 from "../h1/h1";

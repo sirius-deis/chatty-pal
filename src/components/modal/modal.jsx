@@ -50,7 +50,11 @@ const Modal = ({ children, closeModal, withCloseBtn }) => {
         {children}
         {withCloseBtn && (
           <StyledCloseButtonWrapper>
-            <Button onClick={closeModal} styles={{ padding: "0.3rem" }}>
+            <Button
+              onClick={closeModal}
+              style={{ padding: "0.4rem" }}
+              backgroundColor="warning"
+            >
               &#x2715;
             </Button>
           </StyledCloseButtonWrapper>
