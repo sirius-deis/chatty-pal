@@ -51,7 +51,7 @@ const Menu = ({ style }) => {
         </Row>
       </StyledUserInfo>
       <hr />
-      <List>
+      <List dir="column">
         {settingOptions.map((option, i) => {
           if (i === settingOptions.length - 1) {
             return (
@@ -77,7 +77,7 @@ const Menu = ({ style }) => {
         unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
         delay={200}
       >
-        <Modal>
+        <Modal withCloseBtn closeBtnTitle="Cancel">
           <Profile />
         </Modal>
       </AnimateWrapper>

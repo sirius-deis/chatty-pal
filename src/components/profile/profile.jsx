@@ -15,7 +15,6 @@ const Profile = () => {
       <Panel>
         <Row>
           <h2>Profile</h2>
-          <Button>Cancel</Button>
         </Row>
         <img src={user.photos[0] ? user.photos[0] : Image} alt="avatar" />
         <h2>Change profile picture</h2>

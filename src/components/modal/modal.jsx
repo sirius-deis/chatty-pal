@@ -24,6 +24,7 @@ const StyledBackdrop = styled.div`
   right: 0;
   background-color: var(--shadow-color);
   cursor: pointer;
+  z-index: 99;
 `;
 
 const StyledCloseButtonWrapper = styled.div`
@@ -37,7 +38,12 @@ const StyledCloseButtonWrapper = styled.div`
   }
 `;
 
-const Modal = ({ children, closeModal, withCloseBtn }) => {
+const Modal = ({
+  children,
+  closeModal,
+  withCloseBtn,
+  closeBtnTitle = "&#x2715;",
+}) => {
   const onBackdropClickHandler = (event) => {
     event.stopPropagation();
     closeModal();
@@ -55,7 +61,7 @@ const Modal = ({ children, closeModal, withCloseBtn }) => {
               style={{ padding: "0.4rem" }}
               backgroundColor="warning"
             >
-              &#x2715;
+              {closeBtnTitle}
             </Button>
           </StyledCloseButtonWrapper>
         )}
@@ -68,6 +74,7 @@ Modal.propTypes = {
   children: PropTypes.node,
   closeModal: PropTypes.func,
   withCloseBtn: PropTypes.bool,
+  closeBtnTitle: PropTypes.string,
 };
 
 export default Modal;
