@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledMenu = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: calc(100% - 15%);
-  background-color: var(--bg-color-lighter);
-  color: var(--text-color);
-  z-index: 100;
+  background-color: var(--text-lighter);
+  color: var(--text);
+  z-index: 98;
 `;
 
 export const StyledUserInfo = styled.div`
@@ -24,14 +24,15 @@ export const StyledInfo = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
-  img {
+  & img {
     width: 5rem;
     height: 5rem;
     object-fit: cover;
     border-radius: 50%;
+    border: 1px solid var(--text);
     cursor: pointer;
   }
-  h5 {
+  & h5 {
     font-size: 2rem;
   }
 `;

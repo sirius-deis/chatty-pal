@@ -35,7 +35,7 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState();
+  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
 
   return (
     <StyledMenu style={style}>
@@ -71,16 +71,18 @@ const Menu = ({ style }) => {
         })}
       </List>
 
-      <AnimateWrapper
-        isMounted={true}
-        mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
-        unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
-        delay={200}
-      >
-        <Modal withCloseBtn closeBtnTitle="Cancel">
-          <Profile />
-        </Modal>
-      </AnimateWrapper>
+      {iSSettingsOpen && (
+        <AnimateWrapper
+          isMounted={true}
+          mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+          unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
+          delay={200}
+        >
+          <Modal withCloseBtn closeBtnTitle="Cancel">
+            <Profile />
+          </Modal>
+        </AnimateWrapper>
+      )}
     </StyledMenu>
   );
 };

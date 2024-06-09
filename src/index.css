@@ -51,15 +51,9 @@ a {
 }
 
 .theme_dark {
-  --bg-color-lighter: #57534e;
-  --bg-color: #292524;
-  --bg-color-darker: #0c0a09;
-  --text-color-dark: #fafaf9;
-  --text-color: #e7e5e4;
-  --text-color-lighter: #57534e;
-  --main-color: #fecaca;
-  --main-color-lighter: #f87171;
-  --online-color: #bef264;
+  --text-darker: #fafaf9;
+  --text: #78716c;
+  --text-lighter: #0c0a09;
 }
 
 @keyframes fadeOut {

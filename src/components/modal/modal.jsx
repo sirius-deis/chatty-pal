@@ -58,7 +58,7 @@ const Modal = ({
           <StyledCloseButtonWrapper>
             <Button
               onClick={closeModal}
-              style={{ padding: "0.4rem" }}
+              style={{ padding: "0.5rem" }}
               backgroundColor="warning"
             >
               {closeBtnTitle}

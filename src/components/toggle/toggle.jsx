@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledSwitch = styled.label`
   position: relative;
@@ -55,6 +56,11 @@ const Toggle = ({ theme, changeTheme }) => {
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );
+};
+
+Toggle.propTypes = {
+  theme: PropTypes.string.isRequired,
+  changeTheme: PropTypes.func.isRequired,
 };
 
 export default Toggle;

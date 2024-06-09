@@ -49,3 +49,22 @@ export const resetPassword = (email) => async (dispatch) => {
     dispatch({ type: UserActionTypes.RESET_PASSWORD_FAILURE, payload: error });
   }
 };
+
+export const updateUserInfo = (updated) => async (dispatch) => {
+  dispatch({ type: UserActionTypes.UPDATE_USER_INFO_START });
+  try {
+    const data = await fetchData("users/update", {
+      method: "PUT",
+      body: JSON.stringify(updated),
+    });
+    dispatch({
+      type: UserActionTypes.UPDATE_USER_INFO_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UserActionTypes.UPDATE_USER_INFO_FAILURE,
+      payload: error,
+    });
+  }
+};
