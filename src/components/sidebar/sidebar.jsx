@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChats } from "../../store/chat/chat.actions";
@@ -12,22 +11,7 @@ import Conversation from "../conversation/conversation";
 import Loader from "../loader/loader";
 import Error from "../error/error";
 
-const StyledSidebar = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 15%;
-  height: 100vh;
-  padding: 1.2rem 0 0;
-  background-color: var(--bg-color-lighter);
-`;
-
-const StyledScroll = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  padding-top: 1.2rem;
-  overflow-y: scroll;
-`;
+import { StyledScroll, StyledSidebar } from "./sidebar.styles";
 
 const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   const dispatch = useDispatch();
@@ -50,10 +34,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
     <StyledSidebar>
       <Row style={{ gap: "2rem", padding: "0 1rem" }}>
         <Burger onClick={toggleMenuClickHandler} />
-        <Search
-          searchTerm={searchTerm}
-          onSearchTermChange={onSearchTermChange}
-        />
+        <Search value={searchTerm} onSearchTermChange={onSearchTermChange} />
       </Row>
       <StyledScroll>
         {isLoading && <Loader />}
