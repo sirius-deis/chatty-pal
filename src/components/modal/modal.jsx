@@ -72,7 +72,7 @@ const Modal = ({
 
 Modal.propTypes = {
   children: PropTypes.node,
-  closeModal: PropTypes.func,
+  closeModal: PropTypes.func.isRequired,
   withCloseBtn: PropTypes.bool,
   closeBtnTitle: PropTypes.string,
 };

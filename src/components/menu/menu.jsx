@@ -35,7 +35,7 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState(false);
+  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
 
   const themeChangeHandler = () => {
     changeTheme(theme === "light" ? "dark" : "light");
@@ -85,7 +85,11 @@ const Menu = ({ style }) => {
           unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
           delay={200}
         >
-          <Modal withCloseBtn closeBtnTitle="Cancel">
+          <Modal
+            withCloseBtn
+            closeBtnTitle="Cancel"
+            closeModal={() => setIsSettingOpen((currentState) => !currentState)}
+          >
             <Profile />
           </Modal>
         </AnimateWrapper>
