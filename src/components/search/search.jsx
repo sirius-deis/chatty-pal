@@ -1,4 +1,5 @@
 import { StyledCross, StyledSearch, StyledWrapper } from "./search.styles";
+import PropTypes from "prop-types";
 
 const Search = ({ onSearchTermChange, ...rest }) => {
   const onChangeHandler = (event) => {
@@ -18,11 +19,16 @@ const Search = ({ onSearchTermChange, ...rest }) => {
         onChange={onChangeHandler}
         {...rest}
       />
-      {searchTerm.length > 0 && (
+      {rest.value?.length > 0 && (
         <StyledCross onClick={onClearClickHandler}>&#x2715;</StyledCross>
       )}
     </StyledWrapper>
   );
+};
+
+Search.propTypes = {
+  value: PropTypes.string.isRequired,
+  onSearchTermChange: PropTypes.func.isRequired,
 };
 
 export default Search;
