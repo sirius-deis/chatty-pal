@@ -41,26 +41,17 @@ const StyledSlider = styled.span`
   }
 `;
 
-const Toggle = ({ theme, changeTheme }) => {
-  const onClickHandler = () => {
-    changeTheme(theme === "light" ? "dark" : "light");
-  };
-
+const Toggle = (props) => {
   return (
     <StyledSwitch>
-      <StyledCheckbox
-        type="checkbox"
-        checked={theme === "dark"}
-        onChange={onClickHandler}
-      />
+      <StyledCheckbox type="checkbox" {...props} />
       <StyledSlider></StyledSlider>
     </StyledSwitch>
   );
 };
 
 Toggle.propTypes = {
-  theme: PropTypes.string.isRequired,
-  changeTheme: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Toggle;

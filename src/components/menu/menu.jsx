@@ -35,7 +35,11 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
+  const [iSSettingsOpen, setIsSettingOpen] = useState(false);
+
+  const themeChangeHandler = () => {
+    changeTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
     <StyledMenu style={style}>
@@ -58,7 +62,10 @@ const Menu = ({ style }) => {
               <StyledMenuItem key={i}>
                 <StyledIconWrapper>{option[0]}</StyledIconWrapper>
                 <Link>{option[1]}</Link>
-                <Toggle theme={theme} changeTheme={changeTheme} />
+                <Toggle
+                  checked={theme === "dark"}
+                  onChange={themeChangeHandler}
+                />
               </StyledMenuItem>
             );
           }
