@@ -47,8 +47,8 @@ export const StyledMenuItem = styled.div`
   align-items: center;
   gap: 1rem;
   &:hover {
-    background-color: var(--text-color);
-    color: var(--text-color-lighter);
+    background-color: var(--text);
+    color: var(--text-lighter);
   }
 `;
 
@@ -59,4 +59,11 @@ export const StyledIconWrapper = styled.div`
   color: var(--text-color-lighter);
   background-color: var(--bg-color-darker);
   border-radius: 5px;
+`;
+
+export const StyledExit = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;

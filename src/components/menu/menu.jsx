@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaUserAlt, FaBookmark, FaMoon } from "react-icons/fa";
+import { FaUserAlt, FaBookmark, FaMoon, FaSignOutAlt } from "react-icons/fa";
 import { BsMegaphoneFill } from "react-icons/bs";
 import { MdGroups2, MdCall, MdSettings } from "react-icons/md";
 import Image from "../../assets/images/no-camera.png";
@@ -12,6 +12,7 @@ import {
   StyledStatus,
   StyledMenuItem,
   StyledIconWrapper,
+  StyledExit,
 } from "./menu.styles";
 import AnimateWrapper from "../../components/animateWrapper/animateWrapper";
 import Modal from "../modal/modal";
@@ -76,6 +77,14 @@ const Menu = ({ style }) => {
             </StyledMenuItem>
           );
         })}
+        <StyledExit>
+          <StyledMenuItem>
+            <StyledIconWrapper>
+              <FaSignOutAlt />
+            </StyledIconWrapper>
+            <Link>Logout</Link>
+          </StyledMenuItem>
+        </StyledExit>
       </List>
 
       {iSSettingsOpen && (
