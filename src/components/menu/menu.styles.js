@@ -41,7 +41,11 @@ export const StyledStatus = styled.div`
   cursor: pointer;
 `;
 
-export const StyledMenuItem = styled.div`
+export const StyledMenuItem = styled.button`
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
   padding: 1rem;
   display: flex;
   align-items: center;
