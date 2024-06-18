@@ -86,7 +86,7 @@ const Menu = ({ style }) => {
           );
         })}
         <StyledExit>
-          <StyledMenuItem>
+          <StyledMenuItem onClick={logout}>
             <StyledIconWrapper>
               <FaSignOutAlt />
             </StyledIconWrapper>
