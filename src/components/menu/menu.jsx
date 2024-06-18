@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUserAlt, FaBookmark, FaMoon, FaSignOutAlt } from "react-icons/fa";
@@ -16,12 +17,14 @@ import {
 } from "./menu.styles";
 import AnimateWrapper from "../../components/animateWrapper/animateWrapper";
 import Modal from "../modal/modal";
+import { signOut } from "../../store/user/user.actions";
 
 import Row from "../row/row";
 import List from "../list/list";
 import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
+import Button from "../button/button";
 
 const settingOptions = [
   [<MdGroups2 />, "New Group"],
@@ -36,10 +39,15 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
+  const [iSSettingsOpen, setIsSettingOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const themeChangeHandler = () => {
     changeTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const logout = () => {
+    dispatch(signOut());
   };
 
   return (
@@ -62,7 +70,7 @@ const Menu = ({ style }) => {
             return (
               <StyledMenuItem key={i}>
                 <StyledIconWrapper>{option[0]}</StyledIconWrapper>
-                <Link>{option[1]}</Link>
+                <div>{option[1]}</div>
                 <Toggle
                   checked={theme === "dark"}
                   onChange={themeChangeHandler}
@@ -73,7 +81,7 @@ const Menu = ({ style }) => {
           return (
             <StyledMenuItem key={i}>
               <StyledIconWrapper>{option[0]}</StyledIconWrapper>
-              <Link>{option[1]}</Link>
+              <div>{option[1]}</div>
             </StyledMenuItem>
           );
         })}
@@ -82,7 +90,7 @@ const Menu = ({ style }) => {
             <StyledIconWrapper>
               <FaSignOutAlt />
             </StyledIconWrapper>
-            <Link>Logout</Link>
+            <div>Logout</div>
           </StyledMenuItem>
         </StyledExit>
       </List>
