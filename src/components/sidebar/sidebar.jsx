@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChats } from "../../store/chat/chat.actions";
+import { signOut } from "../../store/user/user.actions";
 import useFetch from "../../hooks/useFetch";
 
 import Row from "../row/row";
@@ -23,6 +24,10 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
   };
 
   useEffect(() => {
+    if (error) {
+      dispatch(signOut());
+      return;
+    }
     if (chats) {
       dispatch(fetchChats(chats));
     }
