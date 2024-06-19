@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense, useContext } from "react";
 import Loader from "./components/loader/loader";
 import RootLayout from "./layouts/rootLayout/rootLayout";
@@ -14,6 +14,7 @@ const ResetPassword = lazy(() =>
   import("./pages/resetPasswordPage/resetPasswordPage")
 );
 const ChatPage = lazy(() => import("./pages/chatPage/chatPage"));
+const NotFoundPage = lazy(() => import("./pages/notFoundPage/notFoundPage"));
 
 function App() {
   const themeContext = useContext(ThemeContext);
@@ -61,7 +62,14 @@ function App() {
             }
           />
         </Route>
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <NotFoundPage />
+            </Suspense>
+          }
+        />
       </Routes>
     </div>
   );

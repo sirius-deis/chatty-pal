@@ -23,7 +23,7 @@ export const StyledSlider = styled.span`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: var(--text-color);
+  background-color: var(--text);
   transition: 0.3s;
   border-radius: 20px;
   cursor: pointer;
@@ -34,7 +34,7 @@ export const StyledSlider = styled.span`
     width: 3rem;
     top: -0.5rem;
     left: 0;
-    background-color: var(--bg-color);
+    background-color: var(--text-lighter);
     border-radius: 50%;
     transition: transform 0.2s ease;
   }

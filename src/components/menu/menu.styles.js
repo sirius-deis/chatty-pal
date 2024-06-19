@@ -62,8 +62,8 @@ export const StyledIconWrapper = styled.div`
   display: flex;
   font-size: 1.7rem;
   padding: 0.7rem;
-  color: var(--text-color-lighter);
-  background-color: var(--bg-color-darker);
+  color: var(--text-lighter);
+  background-color: var(--text-darker);
   border-radius: 5px;
 `;
 

@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUserAlt, FaBookmark, FaMoon, FaSignOutAlt } from "react-icons/fa";
 import { BsMegaphoneFill } from "react-icons/bs";
@@ -24,7 +23,6 @@ import List from "../list/list";
 import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
-import Button from "../button/button";
 
 const settingOptions = [
   [<MdGroups2 />, "New Group"],

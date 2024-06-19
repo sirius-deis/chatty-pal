@@ -1,8 +1,12 @@
 import PropsTypes from "prop-types";
 import { StyledPanel } from "./panel.styles";
 
-const Panel = ({ children, padding = 4 }) => {
-  return <StyledPanel padding={padding}>{children}</StyledPanel>;
+const Panel = ({ children, padding = 4, ...rest }) => {
+  return (
+    <StyledPanel padding={padding} {...rest}>
+      {children}
+    </StyledPanel>
+  );
 };
 
 Panel.propTypes = {
