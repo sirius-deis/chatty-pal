@@ -39,7 +39,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
     <StyledSidebar>
       <Row style={{ gap: "2rem", padding: "0 1rem" }}>
         <Burger onClick={toggleMenuClickHandler} />
-        <Search value={searchTerm} onSearchTermChange={onSearchTermChange} />
+        <Search value={searchTerm} onChange={onSearchTermChange} />
       </Row>
       <StyledScroll>
         {isLoading && <Loader />}

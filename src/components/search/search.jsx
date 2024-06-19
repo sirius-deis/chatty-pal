@@ -1,13 +1,13 @@
 import { StyledCross, StyledSearch, StyledWrapper } from "./search.styles";
 import PropTypes from "prop-types";
 
-const Search = ({ onSearchTermChange, ...rest }) => {
+const Search = ({ onChange, ...rest }) => {
   const onChangeHandler = (event) => {
-    onSearchTermChange(event.target.value);
+    onChange(event.target.value);
   };
 
   const onClearClickHandler = () => {
-    onSearchTermChange("");
+    onChange("");
   };
 
   return (
@@ -28,7 +28,7 @@ const Search = ({ onSearchTermChange, ...rest }) => {
 
 Search.propTypes = {
   value: PropTypes.string.isRequired,
-  onSearchTermChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Search;

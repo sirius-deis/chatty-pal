@@ -5,7 +5,8 @@ export const StyledWrapper = styled.div`
   position: relative;
   padding: 0.4rem;
   border-radius: 5px;
-  background-color: var(--bg-color);
+  border-color: var(--text-darker);
+  background-color: var(--text-lighter);
   &:has(input:focus) {
     box-shadow: var(--shadow);
   }
