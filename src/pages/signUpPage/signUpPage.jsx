@@ -1,17 +1,11 @@
-import styled from 'styled-components';
-import SignUp from '../../components/signUp/signUp';
-
-const StyledPage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import FullPageWrapper from "../../components/fullPageWrapper/fullPageWrapper";
+import SignUp from "../../components/signUp/signUp";
 
 const SignUpPage = () => {
   return (
-    <StyledPage>
+    <FullPageWrapper>
       <SignUp />
-    </StyledPage>
+    </FullPageWrapper>
   );
 };
 

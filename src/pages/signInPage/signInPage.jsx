@@ -1,17 +1,11 @@
-import styled from 'styled-components';
-import SignIn from '../../components/signIn/signIn';
-
-const StyledPage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import FullPageWrapper from "../../components/fullPageWrapper/fullPageWrapper";
+import SignIn from "../../components/signIn/signIn";
 
 const SignInPage = () => {
   return (
-    <StyledPage>
+    <FullPageWrapper>
       <SignIn />
-    </StyledPage>
+    </FullPageWrapper>
   );
 };
 
