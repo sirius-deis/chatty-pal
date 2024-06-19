@@ -2,10 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
-import { StyledSignUp } from "./signUp.styles";
 import Input from "../input/input";
 import Button from "../button/button";
-import H1 from "../h1/h1";
+import Heading from "../heading/heading";
 import { signUp } from "../../store/user/user.actions";
 import Modal from "../modal/modal";
 import Loader from "../loader/loader";
@@ -49,7 +48,7 @@ const SignUp = () => {
   };
 
   return (
-    <StyledSignUp>
+    <>
       {isLoading && <Loader />}
       {isSent && isModalOpen && error && (
         <AnimateWrapper
@@ -68,7 +67,7 @@ const SignUp = () => {
           <Link to="/">
             <img src={Logo} alt="logo" />
           </Link>
-          <H1>Sign up</H1>
+          <Heading>Sign up</Heading>
           <Input
             type="email"
             name="email"
@@ -99,7 +98,7 @@ const SignUp = () => {
           </div>
         </Panel>
       </form>
-    </StyledSignUp>
+    </>
   );
 };
 

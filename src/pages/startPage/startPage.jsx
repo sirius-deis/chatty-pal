@@ -6,7 +6,7 @@ import {
   StyledStartContent,
 } from "./startPage.styles";
 import Button from "../../components/button/button";
-import H1 from "../../components/h1/h1";
+import Heading from "../../components/heading/heading";
 
 const StartPage = () => {
   return (
@@ -15,7 +15,7 @@ const StartPage = () => {
         <img src={Logo} alt="logo" />
       </StyledStartBanner>
       <StyledStartContent>
-        <H1>Welcome to ChattyPal</H1>
+        <Heading>Welcome to ChattyPal</Heading>
         <Link to="/login">
           <Button size="sm">Start Messaging</Button>
         </Link>

@@ -42,6 +42,7 @@ body {
     var(--warning-300) 30%,
     var(--warning-200)
   );
+  color: var(--text-darker);
   font-size: 1.5rem;
 }
 
@@ -52,7 +53,6 @@ a {
 
 .theme_dark {
   --text-darker: #fafaf9;
-  --text: #78716c;
   --text-lighter: #0c0a09;
 }
 

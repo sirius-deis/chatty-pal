@@ -2,10 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
-import { StyledResetPassword } from "./resetPassword.styles";
 import Input from "../input/input";
 import Button from "../button/button";
-import H1 from "../h1/h1";
+import Heading from "../heading/heading";
 import Loader from "../loader/loader";
 import Modal from "../modal/modal";
 import { resetPassword } from "../../store/user/user.actions";
@@ -36,7 +35,7 @@ const ResetPassword = () => {
   }, [error]);
 
   return (
-    <StyledResetPassword>
+    <>
       {isSent && isLoading && <Loader />}
       {isSent && isModalOpen && error !== null && (
         <AnimateWrapper
@@ -56,7 +55,7 @@ const ResetPassword = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <H1>Reset password</H1>
+          <Heading>Reset password</Heading>
           <Input type="email" name="email" placeholder="Email *" />
           <Button>Submit</Button>
           <div>Take a different action.</div>
@@ -71,7 +70,7 @@ const ResetPassword = () => {
           </div>
         </Panel>
       </form>
-    </StyledResetPassword>
+    </>
   );
 };
 

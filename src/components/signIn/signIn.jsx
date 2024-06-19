@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/images/logo.png";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
-import { StyledSignIn } from "./signIn.styles";
 import Input from "../input/input";
 import Button from "../button/button";
-import H1 from "../h1/h1";
+import Heading from "../heading/heading";
 import Row from "../row/row";
 import LabelWithCheckbox from "../checkbox/checkbox";
 import { signIn } from "../../store/user/user.actions";
@@ -41,7 +40,7 @@ const SignIn = () => {
   };
 
   return (
-    <StyledSignIn>
+    <>
       {isLoading && <Loader />}
       {isSent && isModalOpen && error && (
         <AnimateWrapper
@@ -61,7 +60,7 @@ const SignIn = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <H1>Sign in</H1>
+          <Heading>Sign in</Heading>
           <Input
             type="email"
             name="email"
@@ -78,9 +77,7 @@ const SignIn = () => {
           />
           <Row>
             <LabelWithCheckbox label="Remember me" />
-            <Link to="/reset-password" style={{ color: "var(--main-color)" }}>
-              Reset password
-            </Link>
+            <Link to="/reset-password">Reset password</Link>
           </Row>
           <Button>Sign In</Button>
           <div>Login with your social media account.</div>
@@ -103,7 +100,7 @@ const SignIn = () => {
           </div>
         </Panel>
       </form>
-    </StyledSignIn>
+    </>
   );
 };
 
