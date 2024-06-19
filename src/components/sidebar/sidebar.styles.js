@@ -6,7 +6,7 @@ export const StyledSidebar = styled.div`
   width: 15%;
   height: 100vh;
   padding: 1.2rem 0 0;
-  background-color: var(--bg-color-lighter);
+  background-color: var(--text-lighter);
 `;
 
 export const StyledScroll = styled.div`

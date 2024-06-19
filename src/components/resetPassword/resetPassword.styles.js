@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledResetPassword = styled.div`
   width: 100%;
@@ -6,4 +6,5 @@ export const StyledResetPassword = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-darker);
 `;

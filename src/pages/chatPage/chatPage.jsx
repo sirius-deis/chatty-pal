@@ -1,38 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { useState, useEffect, useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { StyledChatPage, Greeting } from "./chatPage.styles";
 
-import Sidebar from '../../components/sidebar/sidebar';
-import Chat from '../../components/chat/chat';
-import Menu from '../../components/menu/menu';
-import AnimateWrapper from '../../components/animateWrapper/animateWrapper';
-import Backdrop from '../../components/backdrop/backdrop';
-import { SocketContext } from '../../store/socketContext';
-
-const StyledChatPage = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-`;
-
-const Greeting = styled.div`
-  width: 85%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  div {
-    padding: 1.3rem 5rem;
-    background-color: var(--bg-color-darker);
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: var(--text-color-lighter);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-  }
-`;
+import Sidebar from "../../components/sidebar/sidebar";
+import Chat from "../../components/chat/chat";
+import Menu from "../../components/menu/menu";
+import AnimateWrapper from "../../components/animateWrapper/animateWrapper";
+import Backdrop from "../../components/backdrop/backdrop";
+import { SocketContext } from "../../store/socketContext";
 
 const ChatPage = () => {
   const user = useSelector((state) => state.user.user);
@@ -54,7 +30,7 @@ const ChatPage = () => {
   }, [chatIdParam]);
 
   if (!user) {
-    return <Navigate to='/login' />;
+    return <Navigate to="/login" />;
   }
   const toggleClickHandler = () => {
     setIsMenuOpened((prevState) => !prevState);
@@ -69,8 +45,8 @@ const ChatPage = () => {
       {isMenuOpened && (
         <AnimateWrapper
           isMounted={isMenuOpened}
-          mountedStyle={{ animation: 'fadeOut 0.2s linear 1' }}
-          unmountedStyle={{ animation: 'fadeIn 0.2s linear 1' }}
+          mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+          unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
           delay={200}
         >
           <Backdrop onClickHandler={toggleClickHandler} />
@@ -78,13 +54,16 @@ const ChatPage = () => {
       )}
       <AnimateWrapper
         isMounted={isMenuOpened}
-        mountedStyle={{ animation: 'slideOut 0.2s linear 1 forwards' }}
-        unmountedStyle={{ animation: 'slideIn 0.2s linear 1 forwards' }}
+        mountedStyle={{ animation: "slideOut 0.2s linear 1 forwards" }}
+        unmountedStyle={{ animation: "slideIn 0.2s linear 1 forwards" }}
         delay={200}
       >
         <Menu />
       </AnimateWrapper>
-      <Sidebar chatClickHandler={chatClickHandler} toggleMenuClickHandler={toggleClickHandler} />
+      <Sidebar
+        chatClickHandler={chatClickHandler}
+        toggleMenuClickHandler={toggleClickHandler}
+      />
       {chatId ? (
         <Chat chatId={chatId} />
       ) : (

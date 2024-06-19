@@ -65,7 +65,7 @@ const ResetPassword = () => {
               Sign up
             </Link>{" "}
             or{" "}
-            <Link to="/register" style={{ color: "var(--main-color)" }}>
+            <Link to="/login" style={{ color: "var(--main-color)" }}>
               Sign in
             </Link>
           </div>
