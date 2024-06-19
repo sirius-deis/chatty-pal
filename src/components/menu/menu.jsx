@@ -42,7 +42,7 @@ const Menu = ({ style }) => {
   const [iSSettingsOpen, setIsSettingOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const themeChangeHandler = () => {
+  const themeChangeHandler = (e) => {
     changeTheme(theme === "light" ? "dark" : "light");
   };
 

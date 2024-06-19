@@ -1,29 +1,31 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense, useContext } from 'react';
-import Loader from './components/loader/loader';
-import RootLayout from './layouts/rootLayout/rootLayout';
-import AuthLayout from './layouts/authLayout/authLayout';
-import StartPage from './pages/startPage/startPage';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense, useContext } from "react";
+import Loader from "./components/loader/loader";
+import RootLayout from "./layouts/rootLayout/rootLayout";
+import AuthLayout from "./layouts/authLayout/authLayout";
+import StartPage from "./pages/startPage/startPage";
 
-import { SocketProvider } from './store/socketContext';
-import { ThemeContext } from './store/themeContext';
+import { SocketProvider } from "./store/socketContext";
+import { ThemeContext } from "./store/themeContext";
 
-const SignUp = lazy(() => import('./pages/signUpPage/signUpPage'));
-const SignIn = lazy(() => import('./pages/signInPage/signInPage'));
-const ResetPassword = lazy(() => import('./pages/resetPasswordPage/resetPasswordPage'));
-const ChatPage = lazy(() => import('./pages/chatPage/chatPage'));
+const SignUp = lazy(() => import("./pages/signUpPage/signUpPage"));
+const SignIn = lazy(() => import("./pages/signInPage/signInPage"));
+const ResetPassword = lazy(() =>
+  import("./pages/resetPasswordPage/resetPasswordPage")
+);
+const ChatPage = lazy(() => import("./pages/chatPage/chatPage"));
 
 function App() {
   const themeContext = useContext(ThemeContext);
 
   return (
-    <div className={themeContext.theme === 'dark' ? 'theme_dark' : ''}>
+    <div className={themeContext.theme === "dark" ? "theme_dark" : ""}>
       <Routes>
-        <Route path='/' element={<RootLayout />}>
-          <Route index element={<StartPage />} />
-          <Route path='/' element={<AuthLayout />}>
+        <Route path="/" element={<RootLayout />}>
+          <Route path="/" element={<AuthLayout />}>
+            <Route index element={<StartPage />} />
             <Route
-              path='login'
+              path="login"
               element={
                 <Suspense fallback={<Loader />}>
                   <SignIn />
@@ -31,7 +33,7 @@ function App() {
               }
             />
             <Route
-              path='register'
+              path="register"
               element={
                 <Suspense fallback={<Loader />}>
                   <SignUp />
@@ -39,7 +41,7 @@ function App() {
               }
             />
             <Route
-              path='reset-password'
+              path="reset-password"
               element={
                 <Suspense fallback={<Loader />}>
                   <ResetPassword />
@@ -49,7 +51,7 @@ function App() {
           </Route>
 
           <Route
-            path='chat/:chatIdParam?'
+            path="chat/:chatIdParam?"
             element={
               <Suspense fallback={<Loader />}>
                 <SocketProvider>
@@ -59,7 +61,7 @@ function App() {
             }
           />
         </Route>
-        <Route path='*' element={<Navigate to='/login' />} />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
   );

@@ -16,6 +16,7 @@ export const StyledUserInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  color: var(--text-darker);
 `;
 
 export const StyledInfo = styled.div`
@@ -50,6 +51,7 @@ export const StyledMenuItem = styled.button`
   display: flex;
   align-items: center;
   gap: 1rem;
+  color: var(--text-darker);
   &:hover {
     background-color: var(--text);
     color: var(--text-lighter);
