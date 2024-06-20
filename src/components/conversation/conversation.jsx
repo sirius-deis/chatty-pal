@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
   StyleConversation,
   StyledImageContainer,
@@ -8,9 +9,9 @@ import {
   StyledName,
   StyledTime,
   StyledAmount,
-} from './conversation.styles';
+} from "./conversation.styles";
 
-import Row from '../row/row';
+import Row from "../row/row";
 
 const Conversation = ({
   id,
@@ -20,12 +21,12 @@ const Conversation = ({
   time,
   unreadMessagesCount,
   isOnline = false,
-  onClickHandler,
+  onClick,
 }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    onClickHandler(id);
+    onClick(id);
     navigate(`/chat/${id}`);
   };
 
@@ -33,7 +34,7 @@ const Conversation = ({
     <StyleConversation onClick={handleClick}>
       <StyledImageContainer>
         {pictures ? (
-          <img src={pictures[0]} alt='chanel logo' />
+          <img src={pictures[0]} alt="chanel logo" />
         ) : (
           <div>{title.slice(0, 1).toUpperCase()}</div>
         )}
@@ -50,9 +51,22 @@ const Conversation = ({
           </StyledMessage>
         </Row>
       </StyledWrapper>
-      {unreadMessagesCount > 0 && <StyledAmount>{unreadMessagesCount}</StyledAmount>}
+      {unreadMessagesCount > 0 && (
+        <StyledAmount>{unreadMessagesCount}</StyledAmount>
+      )}
     </StyleConversation>
   );
+};
+
+Conversation.propTypes = {
+  id: PropTypes.string.isRequired,
+  pictures: PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object),
+  time: PropTypes.string.isRequired,
+  unreadMessagesCount: PropTypes.number,
+  isOnline: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Conversation;

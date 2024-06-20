@@ -9,6 +9,7 @@ Heading.propTypes = {
   size: PropTypes.number,
   weight: PropTypes.number,
   color: PropTypes.string,
+  mb: PropTypes.number,
 };
 
 export default Heading;

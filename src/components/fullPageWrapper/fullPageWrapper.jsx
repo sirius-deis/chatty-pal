@@ -1,7 +1,7 @@
 import { StyledFullPageWrapper } from "./fullPageWrapper.styles";
 
-const FullPageWrapper = ({ children }) => {
-  return <StyledFullPageWrapper>{children}</StyledFullPageWrapper>;
+const FullPageWrapper = ({ children, ...rest }) => {
+  return <StyledFullPageWrapper {...rest}>{children}</StyledFullPageWrapper>;
 };
 
 export default FullPageWrapper;

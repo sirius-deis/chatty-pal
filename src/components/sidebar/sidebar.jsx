@@ -55,7 +55,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
                 .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
                 .map((item) => (
                   <Conversation
-                    onClickHandler={chatClickHandler}
+                    onClick={chatClickHandler}
                     key={item.id}
                     {...item}
                   />
