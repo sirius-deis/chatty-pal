@@ -67,7 +67,7 @@ const SignUp = () => {
           <Link to="/">
             <img src={Logo} alt="logo" />
           </Link>
-          <Heading>Sign up</Heading>
+          <Heading weight={400}>Sign up</Heading>
           <Input
             type="email"
             name="email"

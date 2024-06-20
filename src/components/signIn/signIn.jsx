@@ -60,7 +60,7 @@ const SignIn = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <Heading>Sign in</Heading>
+          <Heading weight={400}>Sign in</Heading>
           <Input
             type="email"
             name="email"
@@ -80,6 +80,7 @@ const SignIn = () => {
             <Link to="/reset-password">Reset password</Link>
           </Row>
           <Button>Sign In</Button>
+          <div>or</div>
           <div>Login with your social media account.</div>
           <Row style={{ justifyContent: "center", gap: "2rem" }}>
             <Button type="rounded">

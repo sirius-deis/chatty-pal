@@ -10,6 +10,7 @@ import Modal from "../modal/modal";
 import { resetPassword } from "../../store/user/user.actions";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
 import Panel from "../panel/panel";
+import Row from "../row/row";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const ResetPassword = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <Heading>Reset password</Heading>
+          <Heading weight={400}>Reset password</Heading>
           <Input type="email" name="email" placeholder="Email *" />
           <Button>Submit</Button>
           <div>Take a different action.</div>
