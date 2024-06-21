@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaArrowLeft } from "react-icons/fa6";
 import { fetchChats } from "../../store/chat/chat.actions";
 import { signOut } from "../../store/user/user.actions";
 import useFetch from "../../hooks/useFetch";
@@ -19,6 +20,7 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [chats, isLoading, error] = useFetch("chats");
   const chatState = useSelector((state) => state.chat);
+  const [isSearchStarted, setIsSearchStarted] = useState(false);
   const onSearchTermChange = (value) => {
     setSearchTerm(value);
   };
@@ -38,8 +40,18 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
   return (
     <StyledSidebar>
       <Row style={{ gap: "2rem", padding: "0 1rem" }}>
-        <Burger onClick={toggleMenuClickHandler} />
-        <Search value={searchTerm} onChange={onSearchTermChange} />
+        {isSearchStarted ? (
+          <div>
+            <FaArrowLeft onClick={() => setIsSearchStarted(false)} />
+          </div>
+        ) : (
+          <Burger onClick={toggleMenuClickHandler} />
+        )}
+        <Search
+          value={searchTerm}
+          onChange={onSearchTermChange}
+          onFocus={() => setIsSearchStarted(true)}
+        />
       </Row>
       <StyledScroll>
         {isLoading && <Loader />}
