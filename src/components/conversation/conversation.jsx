@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   StyleConversation,
@@ -12,6 +12,7 @@ import {
 } from "./conversation.styles";
 
 import Row from "../row/row";
+import { useEffect, useState } from "react";
 
 const Conversation = ({
   id,
@@ -24,14 +25,23 @@ const Conversation = ({
   onClick,
 }) => {
   const navigate = useNavigate();
+  const { chatIdParam } = useParams();
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
     onClick(id);
     navigate(`/chat/${id}`);
   };
 
+  useEffect(() => {
+    setIsSelected(id.toString() === chatIdParam);
+  }, [chatIdParam]);
+
   return (
-    <StyleConversation onClick={handleClick}>
+    <StyleConversation
+      onClick={handleClick}
+      className={`${isSelected ? "selected" : ""}`}
+    >
       <StyledImageContainer>
         {pictures ? (
           <img src={pictures[0]} alt="chanel logo" />

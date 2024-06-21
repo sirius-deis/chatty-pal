@@ -12,7 +12,7 @@ export const StyleConversation = styled.div`
     background-color: var(--warning-200);
   }
   &.selected {
-    background-color: var(--warning);
+    background-color: var(--warning-200);
   }
 `;
 
