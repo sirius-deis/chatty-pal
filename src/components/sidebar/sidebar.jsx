@@ -14,7 +14,7 @@ import Error from "../error/error";
 
 import { StyledScroll, StyledSidebar } from "./sidebar.styles";
 
-const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
+const Sidebar = ({ toggleMenuClickHandler }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const [chats, isLoading, error] = useFetch("chats");
@@ -52,7 +52,7 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
               ?.filter((ch) => regexp.test(ch.title))
               .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
               .map((ch) => (
-                <Conversation onClick={chatClickHandler} key={ch.id} {...ch} />
+                <Conversation key={ch.id} {...ch} />
               ))}
           </List>
         )}

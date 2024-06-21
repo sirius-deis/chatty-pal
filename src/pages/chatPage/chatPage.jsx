@@ -36,10 +36,6 @@ const ChatPage = () => {
     setIsMenuOpened((prevState) => !prevState);
   };
 
-  const chatClickHandler = (id) => {
-    setChatId(id);
-  };
-
   return (
     <StyledChatPage>
       {isMenuOpened && (
@@ -60,10 +56,7 @@ const ChatPage = () => {
       >
         <Menu />
       </AnimateWrapper>
-      <Sidebar
-        chatClickHandler={chatClickHandler}
-        toggleMenuClickHandler={toggleClickHandler}
-      />
+      <Sidebar toggleMenuClickHandler={toggleClickHandler} />
       {chatId ? (
         <Chat chatId={chatId} />
       ) : (

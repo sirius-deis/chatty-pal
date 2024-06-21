@@ -22,14 +22,12 @@ const Conversation = ({
   time,
   unreadMessagesCount,
   isOnline = false,
-  onClick,
 }) => {
   const navigate = useNavigate();
   const { chatIdParam } = useParams();
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
-    onClick(id);
     navigate(`/chat/${id}`);
   };
 
@@ -76,7 +74,6 @@ Conversation.propTypes = {
   time: PropTypes.string.isRequired,
   unreadMessagesCount: PropTypes.number,
   isOnline: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default Conversation;
