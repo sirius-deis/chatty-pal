@@ -4,21 +4,19 @@ export const StyledWrapper = styled.div`
   flex-grow: 6;
   position: relative;
   padding: 0.4rem;
-  border-radius: 5px;
-  border-color: var(--text-darker);
-  background-color: var(--text-lighter);
+  border: 1px solid var(--text);
+  border-radius: 3px;
+  background-color: transparent;
   &:has(input:focus) {
-    box-shadow: var(--shadow);
+    border: 1px solid var(--text-darker);
   }
 `;
 
 export const StyledSearch = styled.input`
   width: 95%;
   padding: 0.5rem 1rem;
-  caret-color: var(--default);
+  caret-color: var(--text-darker);
   border: 0;
-  background-color: transparent;
-  color: var(--text-darker);
   &:focus {
     outline: none;
   }

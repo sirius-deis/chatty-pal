@@ -62,7 +62,7 @@ const Menu = ({ style }) => {
         </Row>
       </StyledUserInfo>
       <hr />
-      <List dir="column">
+      <List>
         {settingOptions.map((option, i) => {
           if (i === settingOptions.length - 1) {
             return (

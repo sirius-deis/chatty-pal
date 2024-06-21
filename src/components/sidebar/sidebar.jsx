@@ -48,18 +48,12 @@ const Sidebar = ({ toggleMenuClickHandler, chatClickHandler }) => {
         )}
         {!isLoading && !error && (
           <List>
-            {chatState &&
-              chatState.chats &&
-              chatState.chats
-                .filter((item) => regexp.test(item.title))
-                .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
-                .map((item) => (
-                  <Conversation
-                    onClick={chatClickHandler}
-                    key={item.id}
-                    {...item}
-                  />
-                ))}
+            {chatState?.chats
+              ?.filter((ch) => regexp.test(ch.title))
+              .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
+              .map((ch) => (
+                <Conversation onClick={chatClickHandler} key={ch.id} {...ch} />
+              ))}
           </List>
         )}
       </StyledScroll>
