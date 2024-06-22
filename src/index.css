@@ -6,18 +6,6 @@
 
 :root {
   font-size: 62.5%;
-  --bg-color-lighter: #fafaf9;
-  --bg-color: #d6d3d1;
-  --bg-color-darker: #78716c;
-  --text-color-dark: #0c0a09;
-  --text-color: #78716c;
-  --text-color-lighter: #fafaf9;
-  --main-color: #ef4444;
-  --main-color-lighter: #fca5a5;
-  --online-color: #a3e635;
-
-  --bg-color-transparent: rgba(214, 211, 209, 0.3);
-  --bg-color-transparent-darker: rgba(214, 211, 209, 0.9);
 
   --primary: #0ea5e9;
   --warning: #ef4444;
@@ -29,6 +17,9 @@
   --text: #78716c;
   --text-lighter: #fafaf9;
   --shadow: 2px 2px 6px 3px rgba(12, 10, 9, 0.2);
+
+  --bg-color: #fafaf9;
+  --bg-color-additional: var(--warning-200);
 }
 
 body {
@@ -39,8 +30,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(
     to left top,
-    var(--warning-300) 30%,
-    var(--warning-200)
+    var(--bg-color) 20%,
+    var(--bg-color-additional) 25%,
+    var(--bg-color) 40%,
+    var(--bg-color-additional) 45%,
+    var(--bg-color) 60%,
+    var(--bg-color-additional) 65%,
+    var(--bg-color) 80%,
+    var(--bg-color-additional) 85%,
+    var(--bg-color)
   );
   color: var(--text-darker);
   font-size: 1.5rem;
@@ -55,6 +53,19 @@ a {
   --text-darker: #fafaf9;
   --text-lighter: #0c0a09;
   --shadow: 2px 2px 6px 3px rgba(250, 250, 249, 0.2);
+  --bg-color: var(--text-lighter);
+  background: linear-gradient(
+    to left top,
+    var(--bg-color) 20%,
+    var(--bg-color-additional) 25%,
+    var(--bg-color) 40%,
+    var(--bg-color-additional) 45%,
+    var(--bg-color) 60%,
+    var(--bg-color-additional) 65%,
+    var(--bg-color) 80%,
+    var(--bg-color-additional) 85%,
+    var(--bg-color)
+  );
 }
 
 @keyframes fadeOut {
@@ -99,4 +110,16 @@ a {
     opacity: 0;
     transform: translateX(-100%);
   }
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
 }
