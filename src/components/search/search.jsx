@@ -1,3 +1,4 @@
+import Button from "../button/button";
 import { StyledCross, StyledSearch, StyledWrapper } from "./search.styles";
 import PropTypes from "prop-types";
 
@@ -20,7 +21,15 @@ const Search = ({ onChange, ...rest }) => {
         {...rest}
       />
       {rest.value?.length > 0 && (
-        <StyledCross onClick={onClearClickHandler}>&#x2715;</StyledCross>
+        <StyledCross onClick={onClearClickHandler}>
+          <Button
+            type="empty"
+            backgroundColor="transparent"
+            style={{ fontSize: "1rem" }}
+          >
+            &#x2715;
+          </Button>
+        </StyledCross>
       )}
     </StyledWrapper>
   );

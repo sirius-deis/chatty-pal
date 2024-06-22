@@ -13,10 +13,12 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledSearch = styled.input`
-  width: 95%;
-  padding: 0.5rem 1rem;
-  caret-color: var(--text-darker);
+  width: 100%;
+  padding: 0.5rem 2rem 0.5rem 1rem;
   border: 0;
+  background-color: transparent;
+  color: var(--text-darker);
+  caret-color: var(--text-darker);
   &:focus {
     outline: none;
   }
@@ -25,13 +27,9 @@ export const StyledSearch = styled.input`
   }
 `;
 
-export const StyledCross = styled.button`
+export const StyledCross = styled.div`
   position: absolute;
   top: 50%;
   right: 1rem;
-  border: 0;
-  background-color: transparent;
-  color: var(--text-darker);
   transform: translateY(-50%);
-  cursor: pointer;
 `;

@@ -10,6 +10,7 @@ import {
   StyledTime,
   StyledAmount,
 } from "./conversation.styles";
+import { getTime } from "../../utils/helpers";
 
 import Row from "../row/row";
 import { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ const Conversation = ({
   pictures,
   title,
   messages,
-  time,
+  createdAt,
   unreadMessagesCount,
   isOnline = false,
 }) => {
@@ -35,6 +36,8 @@ const Conversation = ({
     setIsSelected(id.toString() === chatIdParam);
   }, [chatIdParam]);
 
+  console.log(title, messages);
+
   return (
     <StyleConversation
       onClick={handleClick}
@@ -49,9 +52,11 @@ const Conversation = ({
         {isOnline && <StyledStatus />}
       </StyledImageContainer>
       <StyledWrapper>
-        <Row>
+        <Row space="start">
           <StyledName>{title}</StyledName>
-          <StyledTime>{time}</StyledTime>
+          <StyledTime>
+            {messages[0] && getTime(messages[0].createdAt)}
+          </StyledTime>
         </Row>
         <Row>
           <StyledMessage unread={unreadMessagesCount}>
@@ -71,7 +76,7 @@ Conversation.propTypes = {
   pictures: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   messages: PropTypes.arrayOf(PropTypes.object),
-  time: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
   unreadMessagesCount: PropTypes.number,
   isOnline: PropTypes.bool,
 };
