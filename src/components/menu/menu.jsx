@@ -37,7 +37,7 @@ const settingOptions = [
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState(false);
+  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
   const dispatch = useDispatch();
 
   const themeChangeHandler = (e) => {

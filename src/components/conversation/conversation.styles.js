@@ -52,7 +52,6 @@ export const StyledWrapper = styled.div`
   width: calc(100% - 6rem);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 1rem;
 `;
 

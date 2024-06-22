@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 import { StyledHeading } from "./heading.styles";
 
-const Heading = ({ children, ...rest }) => {
-  return <StyledHeading {...rest}>{children}</StyledHeading>;
+const Heading = ({ children, size, weight, color, mb, ...rest }) => {
+  return (
+    <StyledHeading size={size} weight={weight} color={color} mb={mb} {...rest}>
+      {children}
+    </StyledHeading>
+  );
 };
 
 Heading.propTypes = {

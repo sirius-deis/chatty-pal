@@ -52,7 +52,7 @@ const Conversation = ({
         {isOnline && <StyledStatus />}
       </StyledImageContainer>
       <StyledWrapper>
-        <Row space="start">
+        <Row space="between">
           <StyledName>{title}</StyledName>
           <StyledTime>
             {messages[0] && getTime(messages[0].createdAt)}

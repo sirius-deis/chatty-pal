@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const bgColors = {
+const colors = {
   primary: "var(--primary)",
   warning: "var(--warning)",
   default: "var(--default)",
@@ -15,8 +15,8 @@ const size = {
 };
 
 export const StyledButton = styled.button`
-  background-color: ${(props) => bgColors[props.bgColor] || bgColors.default};
-  color: var(--text-darker);
+  background-color: ${(props) => colors[props.bgColor] || colors.default};
+  color: ${(props) => colors[props.color] || `var(--text-lighter)`};
   border: none;
   cursor: pointer;
   &:hover {
@@ -42,6 +42,5 @@ export const StyledRoundedButton = styled(StyledButton)`
 export const StyledOutlinedButton = styled(StyledButton)`
   background-color: transparent;
   color: var("text-darker");
-  border: ${(props) =>
-    `1px solid ${bgColors[props.bgColor] || bgColors.default}`};
+  border: ${(props) => `1px solid ${colors[props.bgColor] || colors.default}`};
 `;

@@ -1,14 +1,12 @@
-import styled from "styled-components";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Panel from "../panel/panel";
 import Input from "../input/input";
 import Button from "../button/button";
 import Row from "../row/row";
-import { useDispatch, useSelector } from "react-redux";
+import Heading from "../heading/heading";
 import Image from "../../assets/images/no-camera.png";
-import { useState } from "react";
 import { updateUserInfo } from "../../store/user/user.actions";
-
-export const StyledProfile = styled.div``;
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
@@ -28,13 +26,17 @@ const Profile = () => {
   };
 
   return (
-    <Panel>
-      <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} style={{ width: "40rem" }}>
+      <Panel>
         <Row>
-          <h2>Profile</h2>
+          <Heading size={2.5} weight={500}>
+            Profile
+          </Heading>
         </Row>
-        <img src={photo ? photo : Image} alt="avatar" />
-        <h2>Change profile picture</h2>
+        <Row>
+          <img src={photo ? photo : Image} alt="avatar" />
+        </Row>
+        <Heading mb={1}>Change profile picture</Heading>
         <Input
           type="text"
           name="name"
@@ -56,10 +58,9 @@ const Profile = () => {
           value={bio}
           onChange={(e) => onChange(setBio, e.target.Value)}
         />
-
-        <Button>Save changes</Button>
-      </form>
-    </Panel>
+        <Button size="sm">Save changes</Button>
+      </Panel>
+    </form>
   );
 };
 
