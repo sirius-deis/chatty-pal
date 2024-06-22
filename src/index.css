@@ -30,15 +30,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(
     to left top,
-    var(--bg-color) 20%,
-    var(--bg-color-additional) 25%,
-    var(--bg-color) 40%,
-    var(--bg-color-additional) 45%,
-    var(--bg-color) 60%,
-    var(--bg-color-additional) 65%,
-    var(--bg-color) 80%,
-    var(--bg-color-additional) 85%,
-    var(--bg-color)
+    var(--bg-color) 15%,
+    var(--bg-color-additional) 20%,
+    var(--bg-color) 25% 35%,
+    var(--bg-color-additional) 40%,
+    var(--bg-color) 45% 55%,
+    var(--bg-color-additional) 60%,
+    var(--bg-color) 65% 75%,
+    var(--bg-color-additional) 80%,
+    var(--bg-color) 85%
   );
   color: var(--text-darker);
   font-size: 1.5rem;
@@ -56,15 +56,15 @@ a {
   --bg-color: var(--text-lighter);
   background: linear-gradient(
     to left top,
-    var(--bg-color) 20%,
-    var(--bg-color-additional) 25%,
-    var(--bg-color) 40%,
-    var(--bg-color-additional) 45%,
-    var(--bg-color) 60%,
-    var(--bg-color-additional) 65%,
-    var(--bg-color) 80%,
-    var(--bg-color-additional) 85%,
-    var(--bg-color)
+    var(--bg-color) 15%,
+    var(--bg-color-additional) 20%,
+    var(--bg-color) 25% 35%,
+    var(--bg-color-additional) 40%,
+    var(--bg-color) 45% 55%,
+    var(--bg-color-additional) 60%,
+    var(--bg-color) 65% 75%,
+    var(--bg-color-additional) 80%,
+    var(--bg-color) 85%
   );
 }
 

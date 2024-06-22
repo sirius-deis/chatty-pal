@@ -12,6 +12,7 @@ import List from "../list/list";
 import Conversation from "../conversation/conversation";
 import Loader from "../loader/loader";
 import Error from "../error/error";
+import Button from "../button/button";
 
 import { StyledScroll, StyledSidebar } from "./sidebar.styles";
 
@@ -41,11 +42,17 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
     <StyledSidebar>
       <Row style={{ gap: "2rem", padding: "0 1rem" }}>
         {isSearchStarted ? (
-          <div>
+          <Button
+            type="empty"
+            backgroundColor="transparent"
+            style={{ width: "2.5rem" }}
+          >
             <FaArrowLeft onClick={() => setIsSearchStarted(false)} />
-          </div>
+          </Button>
         ) : (
-          <Burger onClick={toggleMenuClickHandler} />
+          <Button type="empty" backgroundColor="transparent">
+            <Burger onClick={toggleMenuClickHandler} />
+          </Button>
         )}
         <Search
           value={searchTerm}

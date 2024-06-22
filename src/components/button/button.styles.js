@@ -5,6 +5,7 @@ const bgColors = {
   warning: "var(--warning)",
   default: "var(--default)",
   success: "var(--success)",
+  transparent: "transparent",
 };
 
 const size = {
@@ -13,9 +14,9 @@ const size = {
   lg: "2",
 };
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   background-color: ${(props) => bgColors[props.bgColor] || bgColors.default};
-  color: var(--text-lighter);
+  color: var(--text-darker);
   border: none;
   cursor: pointer;
   &:hover {

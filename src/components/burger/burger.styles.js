@@ -17,5 +17,5 @@ export const StyledMenu = styled.button`
 export const StyledMenuItem = styled.div`
   width: 100%;
   height: 0.3rem;
-  background-color: var(--text);
+  background-color: var(--text-darker);
 `;

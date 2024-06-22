@@ -3,6 +3,7 @@ import {
   StyledPlainButton,
   StyledRoundedButton,
   StyledOutlinedButton,
+  StyledButton,
 } from "./button.styles";
 
 const getButtonByType = (type) => {
@@ -11,6 +12,8 @@ const getButtonByType = (type) => {
       return StyledRoundedButton;
     case "outlined":
       return StyledOutlinedButton;
+    case "empty":
+      return StyledButton;
     default:
       return StyledPlainButton;
   }
