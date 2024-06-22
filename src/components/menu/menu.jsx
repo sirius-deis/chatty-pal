@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { FaUserAlt, FaBookmark, FaMoon, FaSignOutAlt } from "react-icons/fa";
@@ -24,23 +24,23 @@ import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
 
-const settingOptions = [
-  [<MdGroups2 />, "New Group"],
-  [<BsMegaphoneFill />, "New Channel"],
-  [<FaUserAlt />, "Contacts"],
-  [<MdCall />, "Calls"],
-  [<FaBookmark />, "Saved Messages"],
-  [<MdSettings />, "Settings"],
-  [<FaMoon />, "Night Mode"],
-];
-
 const Menu = ({ style }) => {
   const user = useSelector((state) => state.user.user);
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [iSSettingsOpen, setIsSettingOpen] = useState(true);
+  const [iSSettingsOpen, setIsSettingOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const themeChangeHandler = (e) => {
+  const settingOptions = [
+    [<MdGroups2 />, "New Group", () => {}],
+    [<BsMegaphoneFill />, "New Channel", () => {}],
+    [<FaUserAlt />, "Contacts", () => {}],
+    [<MdCall />, "Calls", () => {}],
+    [<FaBookmark />, "Saved Messages", () => {}],
+    [<MdSettings />, "Settings", () => setIsSettingOpen(true)],
+    [<FaMoon />, "Night Mode"],
+  ];
+
+  const themeChangeHandler = () => {
     changeTheme(theme === "light" ? "dark" : "light");
   };
 
@@ -77,7 +77,7 @@ const Menu = ({ style }) => {
             );
           }
           return (
-            <StyledMenuItem key={i}>
+            <StyledMenuItem key={i} onClick={option[2]}>
               <StyledIconWrapper>{option[0]}</StyledIconWrapper>
               <div>{option[1]}</div>
             </StyledMenuItem>

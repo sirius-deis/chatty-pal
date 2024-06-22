@@ -8,12 +8,7 @@ import {
   StyledModal,
 } from "./modal.styles";
 
-const Modal = ({
-  children,
-  closeModal,
-  withCloseBtn,
-  closeBtnTitle = "&#x2715;",
-}) => {
+const Modal = ({ children, closeModal, withCloseBtn, closeBtnTitle }) => {
   const onBackdropClickHandler = (event) => {
     event.stopPropagation();
     closeModal();
@@ -26,13 +21,23 @@ const Modal = ({
         {children}
         {withCloseBtn && (
           <StyledCloseButtonWrapper>
-            <Button
-              onClick={closeModal}
-              style={{ padding: "0.5rem" }}
-              backgroundColor="warning"
-            >
-              {closeBtnTitle}
-            </Button>
+            {closeBtnTitle ? (
+              <Button
+                onClick={closeModal}
+                style={{ padding: "0.5rem" }}
+                backgroundColor="warning"
+              >
+                {closeBtnTitle}
+              </Button>
+            ) : (
+              <Button
+                onClick={closeModal}
+                style={{ padding: "0.5rem" }}
+                backgroundColor="warning"
+              >
+                &#x2715;
+              </Button>
+            )}
           </StyledCloseButtonWrapper>
         )}
       </StyledModal>
