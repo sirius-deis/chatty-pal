@@ -27,10 +27,6 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
   };
 
   useEffect(() => {
-    if (error) {
-      dispatch(signOut());
-      return;
-    }
     if (chats) {
       dispatch(fetchChats(chats));
     }

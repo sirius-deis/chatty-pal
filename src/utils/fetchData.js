@@ -4,13 +4,26 @@ const fetchData = async (url, options) => {
   const response = await fetch(`${baseURL}${url}`, {
     credentials: "include",
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     ...options,
   });
-  const data = await response.json();
+
+  let data;
+
+  if (response.body) {
+    try {
+      data = await response.json();
+    } catch (err) {
+      return;
+    }
+  }
+
   if (!response.ok) {
     throw new Error(data.message);
   }
+
   return data;
 };
 

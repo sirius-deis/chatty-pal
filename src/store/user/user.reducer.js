@@ -26,7 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         token: action.payload.token,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
-      return { ...state, user: null };
+      return { ...state, user: null, token: null };
     case UserActionTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
@@ -50,8 +50,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
-        user: null,
-        token: null,
       };
     default:
       return state;

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const baseURL = 'http://localhost:3000/api/v1/';
+const baseURL = "http://localhost:3000/api/v1/";
 
 const useFetch = (url, options) => {
   const [data, setData] = useState(null);
@@ -15,15 +15,16 @@ const useFetch = (url, options) => {
       setIsLoading(true);
       try {
         const response = await fetch(`${baseURL}${url}`, {
-          credentials: 'include',
-          method: 'GET',
+          credentials: "include",
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           signal: abortController.signal,
           ...options,
         });
+        console.log(response);
         if (!response.ok) {
           throw new Error(response.statusText);
         }

@@ -27,7 +27,7 @@ export const getTime = (time) => {
   const now = new Date();
   const date = new Date(time);
   if (now.getTime() - date.getTime() < 24 * 60 * 60 * 1000) {
-    return `${date.getMinutes}:${date.getSeconds()}`;
+    return `${date.getHours()}:${date.getMinutes()}`;
   }
   if (now.getTime() - date.getTime() < 7 * 24 * 60 * 60 * 1000) {
     return `${days[date.getDay()]}`;

@@ -25,7 +25,7 @@ import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
 
 const Menu = ({ style }) => {
-  const user = useSelector((state) => state.user.user);
+  const { user, token } = useSelector((state) => state.user);
   const { theme, changeTheme } = useContext(ThemeContext);
   const [iSSettingsOpen, setIsSettingOpen] = useState(false);
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Menu = ({ style }) => {
   };
 
   const logout = () => {
-    dispatch(signOut());
+    dispatch(signOut(token));
   };
 
   return (

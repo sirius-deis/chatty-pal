@@ -20,7 +20,6 @@ const Conversation = ({
   pictures,
   title,
   messages,
-  createdAt,
   unreadMessagesCount,
   isOnline = false,
 }) => {
@@ -35,8 +34,6 @@ const Conversation = ({
   useEffect(() => {
     setIsSelected(id.toString() === chatIdParam);
   }, [chatIdParam]);
-
-  console.log(title, messages);
 
   return (
     <StyleConversation
@@ -72,7 +69,7 @@ const Conversation = ({
 };
 
 Conversation.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   messages: PropTypes.arrayOf(PropTypes.object),

@@ -25,14 +25,19 @@ export const signIn = (dataForServer) => async (dispatch) => {
   }
 };
 
-export const signOut = () => async (dispatch) => {
+export const signOut = (token) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_OUT_START });
   try {
     await fetchData("users/logout", {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
     dispatch({ type: UserActionTypes.SIGN_OUT_SUCCESS });
   } catch (error) {
+    console.log(error);
     dispatch({ type: UserActionTypes.SIGN_OUT_FAILURE, payload: error });
   }
 };
@@ -50,12 +55,17 @@ export const resetPassword = (email) => async (dispatch) => {
   }
 };
 
-export const updateUserInfo = (updated) => async (dispatch) => {
+export const updateUserInfo = (updated, token) => async (dispatch) => {
   dispatch({ type: UserActionTypes.UPDATE_USER_INFO_START });
+  console.log(JSON.stringify(updated));
   try {
     const data = await fetchData("users/update", {
-      method: "PUT",
+      method: "PATCH",
       body: JSON.stringify(updated),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
     dispatch({
       type: UserActionTypes.UPDATE_USER_INFO_SUCCESS,
