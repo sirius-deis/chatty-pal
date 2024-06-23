@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledBackdrop = styled.div`
   position: fixed;
@@ -6,7 +6,7 @@ const StyledBackdrop = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: var(--bg-color-transparent);
+  background-color: var(--shadow-color);
   z-index: 10;
 `;
 

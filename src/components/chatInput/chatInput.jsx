@@ -1,38 +1,16 @@
-import { useState, useContext } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { HiOutlinePaperClip, HiOutlineMicrophone } from 'react-icons/hi';
-import { BsEmojiSmile, BsSend } from 'react-icons/bs';
-import Input from '../input/input';
-import EmojiPickerWrapper from '../emojiPickerWrapper/emojiPickerWrapper';
-import { SocketContext } from '../../store/socketContext';
-
-const StyledChatInput = styled.form`
-  width: 100%;
-  display: flex;
-  background-color: var(--bg-color-lighter);
-`;
-
-const StyledLabel = styled.label`
-  position: relative;
-  padding: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  svg {
-    font-size: 2.5rem;
-    color: var(--text-color);
-  }
-  input {
-    display: none;
-  }
-`;
+import { useState, useContext } from "react";
+import PropTypes from "prop-types";
+import { HiOutlinePaperClip, HiOutlineMicrophone } from "react-icons/hi";
+import { BsEmojiSmile, BsSend } from "react-icons/bs";
+import Input from "../input/input";
+import EmojiPickerWrapper from "../emojiPickerWrapper/emojiPickerWrapper";
+import { SocketContext } from "../../store/socketContext";
+import { StyledChatInput, StyledLabel } from "./chatInput.styles";
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
-  const [mode, setMode] = useState('text');
-  const [message, setMessage] = useState('');
+  const [mode, setMode] = useState("text");
+  const [message, setMessage] = useState("");
   const { socket } = useContext(SocketContext);
 
   const onFormSubmit = (event) => {
@@ -42,13 +20,13 @@ const ChatInput = ({ chatId }) => {
       return;
     }
 
-    socket.emit('send_message', {
+    socket.emit("send_message", {
       message,
       isNew: false,
       chatId,
     });
 
-    setMessage('');
+    setMessage("");
   };
 
   const onEmojiClickHandler = (emoji) => {
@@ -58,12 +36,12 @@ const ChatInput = ({ chatId }) => {
   const onInputChangeHandler = (text) => {
     setMessage(text);
     if (text.length < 1) {
-      if (mode !== 'audio') {
-        setMode('audio');
+      if (mode !== "audio") {
+        setMode("audio");
       }
     } else {
-      if (mode !== 'text') {
-        setMode('text');
+      if (mode !== "text") {
+        setMode("text");
       }
     }
   };
@@ -72,21 +50,27 @@ const ChatInput = ({ chatId }) => {
     <StyledChatInput onSubmit={onFormSubmit}>
       <StyledLabel>
         <HiOutlinePaperClip />
-        <input type='file' />
+        <input type="file" />
       </StyledLabel>
       <Input
-        type='text'
-        placeholder='Write a message'
+        type="text"
+        placeholder="Write a message"
         borderRounded={false}
         shadow={false}
         onChangeHandler={onInputChangeHandler}
         value={message}
       />
       <StyledLabel>
-        <BsEmojiSmile onClick={() => setIsEmojiPickerOpened((prevState) => !prevState)} />
-        {isEmojiPickerOpened && <EmojiPickerWrapper onEmojiClickHandler={onEmojiClickHandler} />}
+        <BsEmojiSmile
+          onClick={() => setIsEmojiPickerOpened((prevState) => !prevState)}
+        />
+        {isEmojiPickerOpened && (
+          <EmojiPickerWrapper onEmojiClickHandler={onEmojiClickHandler} />
+        )}
       </StyledLabel>
-      <StyledLabel>{mode === 'text' ? <BsSend /> : <HiOutlineMicrophone />}</StyledLabel>
+      <StyledLabel>
+        {mode === "text" ? <BsSend /> : <HiOutlineMicrophone />}
+      </StyledLabel>
     </StyledChatInput>
   );
 };

@@ -1,54 +1,27 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import MessageGroup from '../messageGroup/messageGroup';
-import ChatInput from '../chatInput/chatInput';
-import Loader from '../loader/loader';
-import AnimateWrapper from '../animateWrapper/animateWrapper';
-import ChatInfo from '../chatInfo/chatInfo';
-import Error from '../error/error';
-import { fetchMessages } from '../../store/message/message.actions';
-import useFetch from '../../hooks/useFetch';
-
-const StyledChat = styled.div`
-  position: relative;
-  width: 85%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledMessageContainerWrapper = styled.div`
-  width: 100%;
-  min-height: calc(100% - 5rem);
-`;
-
-const StyledMessageContainer = styled.div`
-  padding: 0.9rem 1.5rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
-  gap: 1.2rem;
-  overflow-y: scroll;
-`;
-
-const StyledDate = styled.div`
-  margin: 0 auto;
-  padding: 0.3rem 10rem;
-  border-radius: 15px;
-  background-color: var(--bg-color-darker);
-  color: var(--bg-color-lighter);
-`;
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import MessageGroup from "../messageGroup/messageGroup";
+import ChatInput from "../chatInput/chatInput";
+import Loader from "../loader/loader";
+import AnimateWrapper from "../animateWrapper/animateWrapper";
+import ChatInfo from "../chatInfo/chatInfo";
+import Error from "../error/error";
+import { fetchMessages } from "../../store/message/message.actions";
+import useFetch from "../../hooks/useFetch";
+import {
+  StyledChat,
+  StyledDate,
+  StyledMessageContainer,
+  StyledMessageContainerWrapper,
+} from "./chat.styles";
 
 const formatDateFromString = (date) => {
   const regexp = /^(\d{4}-\d{1,2}-\d{1,2})/;
   return date.match(regexp)[1];
 };
 
-const areDatesTheSame = (d1 = '', d2 = '') => {
+const areDatesTheSame = (d1 = "", d2 = "") => {
   const match1 = formatDateFromString(d1);
   const match2 = formatDateFromString(d2);
   return Date.parse(match1) === Date.parse(match2);
@@ -64,7 +37,11 @@ const divideMessagesInGroups = (messages = []) => {
     }
     let curArrLength = messagesObj[currDate].length - 1;
     const currArrLink = messagesObj[currDate][curArrLength];
-    if (i === 0 || !currArrLink || currArrLink[0].senderId !== messages[i].senderId) {
+    if (
+      i === 0 ||
+      !currArrLink ||
+      currArrLink[0].senderId !== messages[i].senderId
+    ) {
       messagesObj[currDate].push([]);
       curArrLength++;
     }
@@ -78,7 +55,9 @@ const Chat = ({ chatId }) => {
   const [isHovered, setIsHovered] = useState(false);
   const user = useSelector((state) => state.user.user);
   const messagesState = useSelector((state) => state.message);
-  const [fetchedMessages, isLoading, error] = useFetch(`chats/${chatId}/messages`);
+  const [fetchedMessages, isLoading, error] = useFetch(
+    `chats/${chatId}/messages`
+  );
   const sortedMessages = divideMessagesInGroups(messagesState.messages);
 
   const messagesToRender = [];
@@ -105,15 +84,17 @@ const Chat = ({ chatId }) => {
     <StyledChat>
       <AnimateWrapper
         isMounted={isHovered}
-        mountedStyle={{ animation: 'slideOut 0.2s linear 1 forwards' }}
-        unmountedStyle={{ animation: 'slideIn 0.2s linear 1 forwards' }}
+        mountedStyle={{ animation: "slideOut 0.2s linear 1 forwards" }}
+        unmountedStyle={{ animation: "slideIn 0.2s linear 1 forwards" }}
         delay={200}
       >
         <ChatInfo />
       </AnimateWrapper>
       <StyledMessageContainerWrapper>
         {isLoading && <Loader />}
-        {!isLoading && error && <Error>Something went wrong. Please reload the page</Error>}
+        {!isLoading && error && (
+          <Error>Something went wrong. Please reload the page</Error>
+        )}
         {!isLoading && !error && (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>
         )}
