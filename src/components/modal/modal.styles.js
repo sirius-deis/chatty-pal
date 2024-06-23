@@ -6,7 +6,7 @@ export const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
-  background-color: var(--bg-color-lighter);
+  background-color: var(--bg-color);
   box-shadow: var(--shadow);
   font-size: 1.5rem;
   z-index: 100;

@@ -25,16 +25,19 @@ export const signIn = (dataForServer) => async (dispatch) => {
   }
 };
 
-export const signOut = (token) => async (dispatch) => {
+export const signOut = (token, silent) => async (dispatch) => {
   dispatch({ type: UserActionTypes.SIGN_OUT_START });
+
   try {
-    await fetchData("users/logout", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    if (!silent) {
+      await fetchData("users/logout", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+    }
     dispatch({ type: UserActionTypes.SIGN_OUT_SUCCESS });
   } catch (error) {
     console.log(error);

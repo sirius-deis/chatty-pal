@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { signOut } from "../store/user/user.actions";
 
 const baseURL = "http://localhost:3000/api/v1/";
 
 const useFetch = (url, options) => {
   const [data, setData] = useState(null);
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.user.token);
@@ -24,10 +26,14 @@ const useFetch = (url, options) => {
           signal: abortController.signal,
           ...options,
         });
-        console.log(response);
+        if (response.status) {
+          dispatch(signOut(null, true));
+          return;
+        }
         if (!response.ok) {
           throw new Error(response.statusText);
         }
+
         const data = await response.json();
 
         setData(data.data);
