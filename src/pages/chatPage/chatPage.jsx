@@ -11,7 +11,6 @@ import Backdrop from "../../components/backdrop/backdrop";
 import { SocketContext } from "../../store/socketContext";
 
 const ChatPage = () => {
-  const user = useSelector((state) => state.user.user);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [chatId, setChatId] = useState(null);
   const { chatIdParam } = useParams();
@@ -28,10 +27,6 @@ const ChatPage = () => {
       setChatId(chatIdParam);
     }
   }, [chatIdParam]);
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
   const toggleClickHandler = () => {
     setIsMenuOpened((prevState) => !prevState);
   };

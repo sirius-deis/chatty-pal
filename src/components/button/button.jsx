@@ -37,6 +37,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node,
   backgroundColor: PropTypes.string,
+  color: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(["sm", "md", "lg"]),

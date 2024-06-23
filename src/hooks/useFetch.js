@@ -26,7 +26,8 @@ const useFetch = (url, options) => {
           signal: abortController.signal,
           ...options,
         });
-        if (response.status) {
+        if (response.status === 401) {
+          console.log("!!!TEST!!!", response.status);
           dispatch(signOut(null, true));
           return;
         }

@@ -23,44 +23,43 @@ function App() {
     <div className={themeContext.theme === "dark" ? "theme_dark" : ""}>
       <Routes>
         <Route path="/" element={<RootLayout />}>
+          <Route index element={<StartPage />} />
+          <Route
+            path="login"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SignIn />
+              </Suspense>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SignUp />
+              </Suspense>
+            }
+          />
+          <Route
+            path="reset-password"
+            element={
+              <Suspense fallback={<Loader />}>
+                <ResetPassword />
+              </Suspense>
+            }
+          />
           <Route path="/" element={<AuthLayout />}>
-            <Route index element={<StartPage />} />
             <Route
-              path="login"
+              path="chat/:chatIdParam?"
               element={
                 <Suspense fallback={<Loader />}>
-                  <SignIn />
-                </Suspense>
-              }
-            />
-            <Route
-              path="register"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <SignUp />
-                </Suspense>
-              }
-            />
-            <Route
-              path="reset-password"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <ResetPassword />
+                  <SocketProvider>
+                    <ChatPage />
+                  </SocketProvider>
                 </Suspense>
               }
             />
           </Route>
-
-          <Route
-            path="chat/:chatIdParam?"
-            element={
-              <Suspense fallback={<Loader />}>
-                <SocketProvider>
-                  <ChatPage />
-                </SocketProvider>
-              </Suspense>
-            }
-          />
         </Route>
         <Route
           path="*"

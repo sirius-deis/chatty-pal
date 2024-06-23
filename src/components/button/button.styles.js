@@ -16,7 +16,7 @@ const size = {
 
 export const StyledButton = styled.button`
   background-color: ${(props) => colors[props.bgColor] || colors.default};
-  color: ${(props) => colors[props.color] || `var(--text-lighter)`};
+  color: ${(props) => colors[props.color] || `var(--text-darker)`};
   border: none;
   cursor: pointer;
   &:hover {

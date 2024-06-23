@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeft } from "react-icons/fa6";
 import { fetchChats } from "../../store/chat/chat.actions";
-import { signOut } from "../../store/user/user.actions";
 import useFetch from "../../hooks/useFetch";
 
 import Row from "../row/row";
