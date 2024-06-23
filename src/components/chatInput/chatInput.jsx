@@ -33,7 +33,8 @@ const ChatInput = ({ chatId }) => {
     setMessage((prevState) => prevState + emoji);
   };
 
-  const onInputChangeHandler = (text) => {
+  const onInputChangeHandler = (e) => {
+    const text = e.target.value;
     setMessage(text);
     if (text.length < 1) {
       if (mode !== "audio") {
@@ -57,7 +58,7 @@ const ChatInput = ({ chatId }) => {
         placeholder="Write a message"
         borderRounded={false}
         shadow={false}
-        onChangeHandler={onInputChangeHandler}
+        onChange={onInputChangeHandler}
         value={message}
       />
       <StyledLabel>
