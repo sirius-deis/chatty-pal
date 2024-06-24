@@ -45,9 +45,7 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
             <FaArrowLeft onClick={() => setIsSearchStarted(false)} />
           </Button>
         ) : (
-          <Button type="empty" backgroundColor="transparent">
-            <Burger onClick={toggleMenuClickHandler} />
-          </Button>
+          <Burger onClick={toggleMenuClickHandler} />
         )}
         <Search
           value={searchTerm}

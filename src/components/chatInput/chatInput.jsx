@@ -6,10 +6,11 @@ import Input from "../input/input";
 import EmojiPickerWrapper from "../emojiPickerWrapper/emojiPickerWrapper";
 import { SocketContext } from "../../store/socketContext";
 import { StyledChatInput, StyledLabel } from "./chatInput.styles";
+import Button from "../button/button";
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
-  const [mode, setMode] = useState("text");
+  const [mode, setMode] = useState("audio");
   const [message, setMessage] = useState("");
   const { socket } = useContext(SocketContext);
 
@@ -69,9 +70,13 @@ const ChatInput = ({ chatId }) => {
           <EmojiPickerWrapper onEmojiClickHandler={onEmojiClickHandler} />
         )}
       </StyledLabel>
-      <StyledLabel>
+      <Button
+        type="empty"
+        backgroundColor="transparent"
+        style={{ padding: "1.2rem" }}
+      >
         {mode === "text" ? <BsSend /> : <HiOutlineMicrophone />}
-      </StyledLabel>
+      </Button>
     </StyledChatInput>
   );
 };

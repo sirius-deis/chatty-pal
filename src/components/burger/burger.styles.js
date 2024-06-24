@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledMenu = styled.div`
+export const StyledMenu = styled.button`
   flex-grow: 1;
   width: 2.5rem;
   max-width: 2.5rem;
