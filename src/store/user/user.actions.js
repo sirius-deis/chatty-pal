@@ -40,7 +40,6 @@ export const signOut = (token, silent) => async (dispatch) => {
     }
     dispatch({ type: UserActionTypes.SIGN_OUT_SUCCESS });
   } catch (error) {
-    console.log(error);
     dispatch({ type: UserActionTypes.SIGN_OUT_FAILURE, payload: error });
   }
 };
@@ -60,7 +59,6 @@ export const resetPassword = (email) => async (dispatch) => {
 
 export const updateUserInfo = (updated, token) => async (dispatch) => {
   dispatch({ type: UserActionTypes.UPDATE_USER_INFO_START });
-  console.log(JSON.stringify(updated));
   try {
     const data = await fetchData("users/update", {
       method: "PATCH",

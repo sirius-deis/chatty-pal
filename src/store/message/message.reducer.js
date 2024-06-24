@@ -1,8 +1,7 @@
-import MessageActionTypes from './message.types';
+import MessageActionTypes from "./message.types";
 
 const INITIAL_STATE = {
   messages: [],
-  chosenChatId: '',
 };
 
 const messageReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +9,6 @@ const messageReducer = (state = INITIAL_STATE, action) => {
     case MessageActionTypes.FETCH_MESSAGES:
       return {
         ...state,
-        chosenChatId: action.payload.chatId,
         messages: action.payload.messages,
       };
     case MessageActionTypes.ADD_MESSAGE:
@@ -20,7 +18,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       };
     case MessageActionTypes.DELETE_MESSAGE_START:
       const messageToDeleteIndex = state.messages.findIndex(
-        (message) => message.id === action.payload,
+        (message) => message.id === action.payload
       );
       return {
         ...state,
@@ -32,20 +30,24 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       };
     case MessageActionTypes.DELETE_MESSAGE_FAILURE:
       const failureIndex = state.messages.findIndex(
-        (message) => message.id === action.payload.messageId,
+        (message) => message.id === action.payload.messageId
       );
       return {
         ...state,
         messages: [
           ...state.messages.slice(0, failureIndex),
-          { ...state.messages[failureIndex], isOperating: false, error: action.payload.error },
+          {
+            ...state.messages[failureIndex],
+            isOperating: false,
+            error: action.payload.error,
+          },
           ...state.messages.slice(failureIndex),
         ],
       };
     case MessageActionTypes.DELETE_MESSAGE_SUCCESS:
     case MessageActionTypes.DELETE_MESSAGE_FROM_SOCKET:
       const deletedMessageIndex = state.messages.findIndex(
-        (message) => message.id === action.payload,
+        (message) => message.id === action.payload
       );
       return {
         ...state,
@@ -56,7 +58,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       };
     case MessageActionTypes.EDIT_MESSAGE:
       const foundMessageIndex = state.messages.findIndex(
-        (message) => message.id === action.payload.messageId,
+        (message) => message.id === action.payload.messageId
       );
 
       return {
@@ -74,7 +76,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       };
     case MessageActionTypes.MARK_MESSAGE_AS_READ:
       const foundMessageIndexToMark = state.messages.findIndex(
-        (message) => message.id === action.payload.messageId,
+        (message) => message.id === action.payload.messageId
       );
       return {
         ...state,

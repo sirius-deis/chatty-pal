@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
 import Input from "../input/input";
 import Button from "../button/button";
-import Heading from "../heading/heading";
+import Header from "../header/header";
 import { signUp } from "../../store/user/user.actions";
 import Modal from "../modal/modal";
 import Loader from "../loader/loader";
@@ -67,7 +67,9 @@ const SignUp = () => {
           <Link to="/">
             <img src={Logo} alt="logo" />
           </Link>
-          <Heading weight={400}>Sign up</Heading>
+          <Header>
+            <h2>Sign up</h2>
+          </Header>
           <Input
             type="email"
             name="email"

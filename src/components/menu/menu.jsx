@@ -54,7 +54,7 @@ const Menu = ({ style }) => {
         <Row>
           <StyledInfo>
             <img src={user.photos[0] ? user.photos[0] : Image} alt="avatar" />
-            <h5>{user.userName}</h5>
+            <div className="name">{user.userName}</div>
           </StyledInfo>
         </Row>
         <Row>

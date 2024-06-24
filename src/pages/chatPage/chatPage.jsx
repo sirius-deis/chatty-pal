@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { StyledChatPage, Greeting } from "./chatPage.styles";
 
 import Sidebar from "../../components/sidebar/sidebar";

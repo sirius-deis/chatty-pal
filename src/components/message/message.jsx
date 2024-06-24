@@ -2,7 +2,6 @@ import { BsCheck2All, BsCheck } from "react-icons/bs";
 import { StyledInfo, StyledMessage } from "./message.styles";
 
 const Message = ({ children, isLast, isOwn }) => {
-  console.log(children.createdAt);
   const time = children.createdAt.match(/T(\d{1,2}:\d{1,2}:\d{1,2})\./)[1];
 
   const onMessageClickHandler = () => {};

@@ -3,7 +3,7 @@ import FullPageWrapper from "../../components/fullPageWrapper/fullPageWrapper";
 import Logo from "../../assets/images/logo.png";
 import { StyledStartBanner, StyledStartContent } from "./startPage.styles";
 import Button from "../../components/button/button";
-import Heading from "../../components/heading/heading";
+import Header from "../../components/header/header";
 
 const StartPage = () => {
   return (
@@ -12,9 +12,9 @@ const StartPage = () => {
         <img src={Logo} alt="logo" />
       </StyledStartBanner>
       <StyledStartContent>
-        <Heading size={3.5} weight={500}>
-          Welcome to ChattyPal
-        </Heading>
+        <Header>
+          <h1>Welcome to ChattyPal</h1>
+        </Header>
         <Link to="/login">
           <Button size="sm">Start Messaging</Button>
         </Link>

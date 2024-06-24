@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import Button from "../button/button";
 import Portal from "../portal/portal";

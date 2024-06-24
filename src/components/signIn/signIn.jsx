@@ -5,7 +5,7 @@ import Logo from "../../assets/images/logo.png";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import Input from "../input/input";
 import Button from "../button/button";
-import Heading from "../heading/heading";
+import Header from "../header/header";
 import Row from "../row/row";
 import LabelWithCheckbox from "../checkbox/checkbox";
 import { signIn } from "../../store/user/user.actions";
@@ -60,7 +60,9 @@ const SignIn = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <Heading weight={400}>Sign in</Heading>
+          <Header>
+            <h2>Sign in</h2>
+          </Header>
           <Input
             type="email"
             name="email"

@@ -4,16 +4,16 @@ import Panel from "../panel/panel";
 import Input from "../input/input";
 import Button from "../button/button";
 import Row from "../row/row";
-import Heading from "../heading/heading";
+import Header from "../header/header";
 import Image from "../../assets/images/no-camera.png";
 import { updateUserInfo } from "../../store/user/user.actions";
 
 const Profile = () => {
   const { user, token } = useSelector((state) => state.user);
   const [photo, setPhoto] = useState(user.photo && user.photo[0]);
-  const [name, setName] = useState(user.userName);
-  const [email, setEmail] = useState(user.email);
-  const [bio, setBio] = useState(user.bio);
+  const [name, setName] = useState(user.userName || "");
+  const [email, setEmail] = useState(user.email || "");
+  const [bio, setBio] = useState(user.bio || "");
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -31,14 +31,16 @@ const Profile = () => {
     <form onSubmit={onSubmit} style={{ width: "40rem" }}>
       <Panel>
         <Row>
-          <Heading size={2.5} weight={500}>
-            Profile
-          </Heading>
+          <Header>
+            <h2>Profile</h2>
+          </Header>
         </Row>
         <Row>
           <img src={photo ? photo : Image} alt="avatar" />
         </Row>
-        <Heading mb={1}>Change profile picture</Heading>
+        <Header mb={1}>
+          <h3>Change profile picture</h3>
+        </Header>
         <Input
           type="text"
           name="name"

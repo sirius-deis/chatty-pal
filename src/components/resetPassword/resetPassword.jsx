@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
 import Input from "../input/input";
 import Button from "../button/button";
-import Heading from "../heading/heading";
+import Header from "../header/header";
 import Loader from "../loader/loader";
 import Modal from "../modal/modal";
 import { resetPassword } from "../../store/user/user.actions";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
 import Panel from "../panel/panel";
-import Row from "../row/row";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -56,7 +55,9 @@ const ResetPassword = () => {
             <img src={Logo} alt="logo" />
           </Link>
 
-          <Heading weight={400}>Reset password</Heading>
+          <Header>
+            <h2>Reset password</h2>
+          </Header>
           <Input type="email" name="email" placeholder="Email *" />
           <Button>Submit</Button>
           <div>Take a different action.</div>
