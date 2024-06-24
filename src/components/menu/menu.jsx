@@ -53,12 +53,12 @@ const Menu = ({ style }) => {
       <StyledUserInfo>
         <Row>
           <StyledInfo>
-            <img src={user.photos[0] ? user.photos[0] : Image} alt="avatar" />
-            <div className="name">{user.userName}</div>
+            <img src={user?.photos[0] ? user.photos[0] : Image} alt="avatar" />
+            <div className="name">{user?.userName}</div>
           </StyledInfo>
         </Row>
         <Row>
-          <StyledStatus>{user.bio || "Add bio"}</StyledStatus>
+          <StyledStatus>{user?.bio || "Add bio"}</StyledStatus>
         </Row>
       </StyledUserInfo>
       <hr />

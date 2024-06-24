@@ -13,9 +13,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_IN_START:
     case UserActionTypes.RESET_PASSWORD_START:
     case UserActionTypes.UPDATE_USER_INFO_START:
-      return { ...state, isLoading: true, error: null };
     case UserActionTypes.SIGN_OUT_START:
-      return { ...state, error: null };
+      return { ...state, isLoading: true, error: null };
     case UserActionTypes.SIGN_UP_SUCCESS:
       return { ...state, isLoading: false, error: null };
     case UserActionTypes.SIGN_IN_SUCCESS:
@@ -27,7 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         token: action.payload.token,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
-      return { ...state, user: null, token: null };
+      return { ...state, user: null, isLoading: false, token: null };
     case UserActionTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,

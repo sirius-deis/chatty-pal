@@ -61,6 +61,7 @@ export const StyledMenuItem = styled.button`
 
 export const StyledIconWrapper = styled.div`
   display: flex;
+  position: relative;
   font-size: 1.7rem;
   padding: 0.7rem;
   color: var(--text-lighter);
