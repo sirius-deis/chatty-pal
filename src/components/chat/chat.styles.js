@@ -29,6 +29,5 @@ export const StyledDate = styled.div`
   margin: 0 auto;
   padding: 0.3rem 10rem;
   border-radius: 15px;
-  background-color: var(--bg-color);
-  color: var(--text);
+  background-color: var(--warning-300);
 `;

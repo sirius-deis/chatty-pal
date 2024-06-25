@@ -1,24 +1,13 @@
-import styled from 'styled-components';
-import Message from '../message/message';
-import React from 'react';
+import Message from "../message/message";
+import React from "react";
+import { StyledMessageGroup } from "./messageGroup.styles";
 
-const StyledMessageGroup = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  gap: 0.4rem;
-  &.own {
-    align-items: flex-end;
-  }
-`;
-
-const MessageGroup = ({ children, userId }) => {
-  const isOwn = children[0].senderId === userId;
+const MessageGroup = ({ messages, userId }) => {
+  const isOwn = messages[0].senderId === userId;
   return (
-    <StyledMessageGroup className={isOwn ? 'own' : ''}>
-      {children.map((child, i) => (
-        <Message isLast={i === children.length - 1} isOwn={isOwn}>
+    <StyledMessageGroup className={isOwn ? "own" : ""}>
+      {messages.map((child, i) => (
+        <Message isLast={i === messages.length - 1} isOwn={isOwn}>
           {child}
         </Message>
       ))}

@@ -8,7 +8,7 @@ import Row from "../row/row";
 import Burger from "../burger/burger";
 import Search from "../search/search";
 import List from "../list/list";
-import Conversation from "../conversation/conversation";
+import ChatBox from "../chatBox/chatBox";
 import Loader from "../loader/loader";
 import Error from "../error/error";
 import Button from "../button/button";
@@ -64,7 +64,7 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
               ?.filter((ch) => regexp.test(ch.title))
               .sort((ch1, ch2) => Date.parse(ch1.time) - Date.parse(ch2.time))
               .map((ch) => (
-                <Conversation key={ch.id} {...ch} />
+                <ChatBox key={ch.id} {...ch} />
               ))}
           </List>
         )}

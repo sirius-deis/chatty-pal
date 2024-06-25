@@ -27,7 +27,6 @@ const useFetch = (url, options) => {
           ...options,
         });
         if (response.status === 401) {
-          console.log("!!!TEST!!!", response.status);
           dispatch(signOut(null, true));
           return;
         }

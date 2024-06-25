@@ -8,6 +8,7 @@ import Header from "../header/header";
 import Image from "../../assets/images/no-camera.png";
 import { updateUserInfo } from "../../store/user/user.actions";
 
+//TODO: add an input component for choosing a picture
 const Profile = () => {
   const { user, token } = useSelector((state) => state.user);
   const [photo, setPhoto] = useState(user.photo && user.photo[0]);
@@ -36,11 +37,12 @@ const Profile = () => {
           </Header>
         </Row>
         <Row>
-          <img src={photo ? photo : Image} alt="avatar" />
+          <img
+            src={photo ? photo : Image}
+            alt="avatar"
+            title="Change a profile picture"
+          />
         </Row>
-        <Header mb={1}>
-          <h3>Change profile picture</h3>
-        </Header>
         <Input
           type="text"
           name="name"

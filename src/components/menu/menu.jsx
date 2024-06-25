@@ -28,6 +28,7 @@ const Menu = ({ style }) => {
   const { user, token } = useSelector((state) => state.user);
   const { theme, changeTheme } = useContext(ThemeContext);
   const [iSSettingsOpen, setIsSettingOpen] = useState(false);
+  const [isGroupCreatorOpen, setIsGroupCreatorOpen] = useState(false);
   const dispatch = useDispatch();
 
   const settingOptions = [

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
-  StyleConversation,
+  StyleChatBox,
   StyledImageContainer,
   StyledStatus,
   StyledWrapper,
@@ -9,13 +9,14 @@ import {
   StyledName,
   StyledTime,
   StyledAmount,
-} from "./conversation.styles";
+} from "./chatBox.styles";
 import { getTime } from "../../utils/helpers";
 
 import Row from "../row/row";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const Conversation = ({
+const ChatBox = ({
   id,
   pictures,
   title,
@@ -23,6 +24,7 @@ const Conversation = ({
   unreadMessagesCount,
   isOnline = false,
 }) => {
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const { chatIdParam } = useParams();
   const [isSelected, setIsSelected] = useState(false);
@@ -36,7 +38,7 @@ const Conversation = ({
   }, [chatIdParam]);
 
   return (
-    <StyleConversation
+    <StyleChatBox
       onClick={handleClick}
       className={`${isSelected ? "selected" : ""}`}
     >
@@ -56,7 +58,7 @@ const Conversation = ({
           </StyledTime>
         </Row>
         <Row>
-          <StyledMessage unread={unreadMessagesCount}>
+          <StyledMessage unread={messages[0]?.senderId !== user.id}>
             {messages && messages[0]?.message}
           </StyledMessage>
         </Row>
@@ -64,11 +66,11 @@ const Conversation = ({
       {unreadMessagesCount > 0 && (
         <StyledAmount>{unreadMessagesCount}</StyledAmount>
       )}
-    </StyleConversation>
+    </StyleChatBox>
   );
 };
 
-Conversation.propTypes = {
+ChatBox.propTypes = {
   id: PropTypes.number.isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
@@ -78,4 +80,4 @@ Conversation.propTypes = {
   isOnline: PropTypes.bool,
 };
 
-export default Conversation;
+export default ChatBox;

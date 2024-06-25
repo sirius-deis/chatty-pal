@@ -64,11 +64,7 @@ const Chat = ({ chatId }) => {
 
   for (let key in sortedMessages) {
     const messageGroupArr = sortedMessages[key].map((messageGroup, i) => {
-      return (
-        <MessageGroup key={i} userId={user.id}>
-          {messageGroup}
-        </MessageGroup>
-      );
+      return <MessageGroup key={i} userId={user.id} messages={messageGroup} />;
     });
     messagesToRender.push(...messageGroupArr);
     messagesToRender.push(<StyledDate>{key}</StyledDate>);

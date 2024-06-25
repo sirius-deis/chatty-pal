@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyleConversation = styled.div`
+export const StyleChatBox = styled.div`
   position: relative;
   width: 100%;
   min-height: 7rem;
@@ -62,7 +62,7 @@ export const StyledMessage = styled.div`
   text-overflow: ellipsis;
   font-size: 1.3rem;
   color: var(--text);
-  font-weight: ${(props) => (props.unread ? 600 : 400)};
+  font-weight: ${(props) => (props.unread ? 800 : 400)};
 `;
 
 export const StyledName = styled.h6`
