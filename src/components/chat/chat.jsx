@@ -64,7 +64,13 @@ const Chat = ({ chatId }) => {
 
   for (let key in sortedMessages) {
     const messageGroupArr = sortedMessages[key].map((messageGroup, i) => {
-      return <MessageGroup key={i} userId={user.id} messages={messageGroup} />;
+      return (
+        <MessageGroup
+          key={`${key}-${i}`}
+          userId={user.id}
+          messages={messageGroup}
+        />
+      );
     });
     messagesToRender.push(...messageGroupArr);
     messagesToRender.push(<StyledDate>{key}</StyledDate>);
@@ -89,7 +95,7 @@ const Chat = ({ chatId }) => {
       <StyledMessageContainerWrapper>
         {isLoading && <Loader />}
         {!isLoading && error && (
-          <Error>Something went wrong. Please reload the page</Error>
+          <Error fSize={3}>Something went wrong. Please reload the page</Error>
         )}
         {!isLoading && !error && (
           <StyledMessageContainer>{messagesToRender}</StyledMessageContainer>

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const StyledError = styled.div`
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
   padding: 0.3rem 10rem;
   border-radius: 15px;
   color: var(--warning);
+  font-size: ${(props) => `${props.fSize}rem` || "1.8rem"};
 `;

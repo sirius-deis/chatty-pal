@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledChatInfo = styled.div`
   width: 100%;
@@ -6,7 +6,7 @@ const StyledChatInfo = styled.div`
 `;
 
 const ChatInfo = ({ name, photo }) => {
-  return <StyledChatInfo>Name</StyledChatInfo>;
+  return <StyledChatInfo>{name}</StyledChatInfo>;
 };
 
 export default ChatInfo;
