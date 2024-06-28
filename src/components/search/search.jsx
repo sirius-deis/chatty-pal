@@ -15,7 +15,7 @@ const Search = ({ onChange, ...rest }) => {
     <StyledWrapper>
       <StyledSearch
         type="search"
-        placeholder="Search"
+        placeholder="Search..."
         name="search"
         onChange={onChangeHandler}
         {...rest}
@@ -26,6 +26,7 @@ const Search = ({ onChange, ...rest }) => {
             type="empty"
             backgroundColor="transparent"
             style={{ fontSize: "1rem" }}
+            data-testid="clear"
           >
             &#x2715;
           </Button>
