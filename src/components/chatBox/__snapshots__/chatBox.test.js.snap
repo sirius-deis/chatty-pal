@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatBox component should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-aXZVg kDvmMR"
+  >
+    <div
+      class="sc-gEvEer cxDxNl"
+    >
+      <div>
+        S
+      </div>
+    </div>
+    <div
+      class="sc-fqkvVR dPxtmS"
+    >
+      <div
+        class="sc-imWYAI kbLuvu"
+      >
+        <h6
+          class="sc-iGgWBj jWoWlb"
+        >
+          Some chat
+        </h6>
+        <div
+          class="sc-gsFSXq cHstVC"
+        >
+          NaNNaNNaN
+        </div>
+      </div>
+      <div
+        class="sc-imWYAI eqgqaX"
+      >
+        <div
+          class="sc-dcJsrY edasem"
+        >
+          Hello
+        </div>
+      </div>
+    </div>
+    <span
+      class="sc-kAyceB cXddJt"
+    >
+      2
+    </span>
+  </div>
+</div>
+`;

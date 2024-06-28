@@ -1,8 +1,11 @@
 import MessageActionTypes from "./message.types";
 
 const INITIAL_STATE = {
-  messages: [],
+  chats: [{ chatId: null, messages: [] }],
 };
+
+//chatId,
+//messages: messagesWithoutDeleted,
 
 const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

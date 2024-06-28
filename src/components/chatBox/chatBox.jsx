@@ -41,6 +41,7 @@ const ChatBox = ({
     <StyleChatBox
       onClick={handleClick}
       className={`${isSelected ? "selected" : ""}`}
+      data-testid="chat-box"
     >
       <StyledImageContainer>
         {pictures ? (
@@ -75,7 +76,6 @@ ChatBox.propTypes = {
   pictures: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   messages: PropTypes.arrayOf(PropTypes.object),
-  createdAt: PropTypes.string.isRequired,
   unreadMessagesCount: PropTypes.number,
   isOnline: PropTypes.bool,
 };

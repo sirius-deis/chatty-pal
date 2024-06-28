@@ -3,10 +3,10 @@
 exports[`ChatInput component should match snapshot 1`] = `
 <div>
   <form
-    class="sc-ewnqHT kYMQuB"
+    class="sc-eqUAAy kBaOhr"
   >
     <label
-      class="sc-fFGjHI ipqsFv"
+      class="sc-fqkvVR enKpic"
     >
       <svg
         aria-hidden="true"
@@ -29,13 +29,13 @@ exports[`ChatInput component should match snapshot 1`] = `
       />
     </label>
     <input
-      class="sc-bgqQcB egMsGF"
+      class="sc-aXZVg bfdQmh"
       placeholder="Write a message"
       type="text"
       value=""
     />
     <label
-      class="sc-fFGjHI ipqsFv"
+      class="sc-fqkvVR enKpic"
     >
       <svg
         fill="currentColor"
@@ -54,8 +54,9 @@ exports[`ChatInput component should match snapshot 1`] = `
         />
       </svg>
     </label>
-    <label
-      class="sc-fFGjHI ipqsFv"
+    <button
+      class="sc-dcJsrY eOIJqp"
+      style="padding: 1.2rem;"
     >
       <svg
         aria-hidden="true"
@@ -73,7 +74,7 @@ exports[`ChatInput component should match snapshot 1`] = `
           stroke-linejoin="round"
         />
       </svg>
-    </label>
+    </button>
   </form>
 </div>
 `;
