@@ -41,7 +41,6 @@ const ChatBox = ({
     <StyleChatBox
       onClick={handleClick}
       className={`${isSelected ? "selected" : ""}`}
-      data-testid="chat-box"
     >
       <StyledImageContainer>
         {pictures ? (
@@ -49,7 +48,7 @@ const ChatBox = ({
         ) : (
           <div>{title.slice(0, 1).toUpperCase()}</div>
         )}
-        {isOnline && <StyledStatus />}
+        {isOnline && <StyledStatus data-testid="status" />}
       </StyledImageContainer>
       <StyledWrapper>
         <Row space="between">

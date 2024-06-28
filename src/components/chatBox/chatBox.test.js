@@ -65,4 +65,24 @@ describe("ChatBox component", () => {
     );
     expect(screen.getByText("S")).toBeInTheDocument();
   });
+  it("should render without online sign", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <ChatBox {...props} />
+        </Provider>
+      </BrowserRouter>
+    );
+    expect(screen.queryByTestId("status")).not.toBeInTheDocument();
+  });
+  it("should render with online sign", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <ChatBox {...props} isOnline />
+        </Provider>
+      </BrowserRouter>
+    );
+    expect(screen.getByTestId("status")).toBeInTheDocument();
+  });
 });
