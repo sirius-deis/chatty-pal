@@ -6,7 +6,7 @@ import {
 } from "./filePicker.styles";
 import { useState } from "react";
 
-const FilePicker = ({ icon, size = 2, onChange, singleFile, ...rest }) => {
+const FilePicker = ({ children, size = 2, onChange, singleFile, ...rest }) => {
   const [isError, setIsError] = useState(false);
   const onChangeHandler = (event) => {
     if (singleFile && event.target.files.length > 1) {
@@ -25,7 +25,7 @@ const FilePicker = ({ icon, size = 2, onChange, singleFile, ...rest }) => {
         onChange={onChangeHandler}
       />
       <StyledIconWrapper size={size} data-testid="file-icon">
-        {icon}
+        {children}
       </StyledIconWrapper>
     </StyledFilePicker>
   );

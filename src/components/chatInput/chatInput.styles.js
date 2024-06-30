@@ -14,11 +14,4 @@ export const StyledLabel = styled.label`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  svg {
-    font-size: 2.5rem;
-    color: var(--text);
-  }
-  input {
-    display: none;
-  }
 `;

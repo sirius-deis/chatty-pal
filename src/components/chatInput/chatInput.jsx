@@ -7,6 +7,7 @@ import EmojiPickerWrapper from "../emojiPickerWrapper/emojiPickerWrapper";
 import { SocketContext } from "../../store/socketContext";
 import { StyledChatInput, StyledLabel } from "./chatInput.styles";
 import Button from "../button/button";
+import FilePicker from "../filePicker/filePicker";
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
@@ -50,10 +51,9 @@ const ChatInput = ({ chatId }) => {
 
   return (
     <StyledChatInput onSubmit={onFormSubmit}>
-      <StyledLabel>
+      <FilePicker>
         <HiOutlinePaperClip />
-        <input type="file" />
-      </StyledLabel>
+      </FilePicker>
       <Input
         type="text"
         placeholder="Write a message"

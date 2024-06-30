@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 const StyledFilePicker = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   cursor: pointer;
-  border: 1px solid var(--text);
-  border-radius: 5px;
+  font-size: 2.5rem;
+  padding: ${(props) => `${props.padding | 1.2}rem`};
 `;
 
 const StyledInput = styled.input`
@@ -15,7 +18,9 @@ const StyledInput = styled.input`
 `;
 
 const StyledIconWrapper = styled.div`
-  max-width: ${(props) => `${props.size}rem`};
+  img {
+    max-width: 100%;
+  }
 `;
 
 export { StyledFilePicker, StyledInput, StyledIconWrapper };
