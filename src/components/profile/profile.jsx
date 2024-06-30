@@ -7,6 +7,7 @@ import Row from "../row/row";
 import Header from "../header/header";
 import Image from "../../assets/images/no-camera.png";
 import { updateUserInfo } from "../../store/user/user.actions";
+import FilePicker from "../filePicker/filePicker";
 
 //TODO: add an input component for choosing a picture
 const Profile = () => {
@@ -37,11 +38,13 @@ const Profile = () => {
           </Header>
         </Row>
         <Row>
-          <img
-            src={photo ? photo : Image}
-            alt="avatar"
-            title="Change a profile picture"
-          />
+          <FilePicker>
+            <img
+              src={photo ? photo : Image}
+              alt="avatar"
+              title="Change a profile picture"
+            />
+          </FilePicker>
         </Row>
         <Input
           type="text"
