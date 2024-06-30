@@ -30,10 +30,10 @@ const Profile = () => {
     fn(val);
   };
 
-  const onFileUpload = (files) => {
+  const onFileUpload = async (files) => {
     const formData = new FormData();
     formData.append("file", files[0]);
-    fetchData("add-photo", { body: formData });
+    await fetchData("add-photo", { body: formData });
   };
 
   return (
