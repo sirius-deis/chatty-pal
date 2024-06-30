@@ -8,6 +8,7 @@ import Header from "../header/header";
 import Image from "../../assets/images/no-camera.png";
 import { updateUserInfo } from "../../store/user/user.actions";
 import FilePicker from "../filePicker/filePicker";
+import fetchData from "../../utils/fetchData";
 
 //TODO: add an input component for choosing a picture
 const Profile = () => {
@@ -29,6 +30,12 @@ const Profile = () => {
     fn(val);
   };
 
+  const onFileUpload = (files) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    fetchData("add-photo", { body: formData });
+  };
+
   return (
     <form onSubmit={onSubmit} style={{ width: "40rem" }}>
       <Panel>
@@ -38,7 +45,7 @@ const Profile = () => {
           </Header>
         </Row>
         <Row>
-          <FilePicker>
+          <FilePicker singleFile onChange={onFileUpload}>
             <img
               src={photo ? photo : Image}
               alt="avatar"
