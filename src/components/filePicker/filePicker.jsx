@@ -5,11 +5,13 @@ import {
   StyledIconWrapper,
 } from "./filePicker.styles";
 
-const FilePicker = ({ icon, size }) => {
+const FilePicker = ({ icon, size = 2, ...rest }) => {
   return (
     <StyledFilePicker>
-      <StyledInput type="file" />
-      <StyledIconWrapper size={size}>{icon}</StyledIconWrapper>
+      <StyledInput type="file" {...rest} data-testid="file" />
+      <StyledIconWrapper size={size} data-testid="file-icon">
+        {icon}
+      </StyledIconWrapper>
     </StyledFilePicker>
   );
 };
@@ -17,6 +19,7 @@ const FilePicker = ({ icon, size }) => {
 FilePicker.propTypes = {
   icon: PropTypes.node,
   size: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 export default FilePicker;

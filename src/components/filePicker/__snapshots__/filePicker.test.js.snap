@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilePicker component should match snapshot 1`] = `
+<div>
+  <label
+    class="sc-aXZVg dhWhfl"
+  >
+    <input
+      class="sc-gEvEer iuhuvm"
+      data-testid="file"
+      type="file"
+    />
+    <div
+      class="sc-eqUAAy gCcMHU"
+      data-testid="file-icon"
+      size="3"
+    />
+  </label>
+</div>
+`;
