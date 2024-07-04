@@ -8,6 +8,7 @@ const INITIAL_STATE = {
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
+  console.log("TEST", action.type);
   switch (action.type) {
     case UserActionTypes.SIGN_UP_START:
     case UserActionTypes.SIGN_IN_START:
