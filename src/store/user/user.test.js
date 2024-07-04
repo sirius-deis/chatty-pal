@@ -152,4 +152,84 @@ describe("User reducer", () => {
       token,
     });
   });
+  it("should failure sign up user", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.SIGN_UP_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
+  it("should failure sign in user", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.SIGN_IN_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
+  it("should failure sign out user", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.SIGN_OUT_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
+  it("should failure reset user password", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.RESET_PASSWORD_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
+  it("should failure update user info", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.UPDATE_USER_INFO_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
 });
