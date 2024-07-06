@@ -1,5 +1,6 @@
 import userReducer from "./user.reducer";
 import UserActionTypes from "./user.types";
+import Image from "../../assets/images/logo.png";
 
 const INITIAL_STATE = {
   user: null,
@@ -56,6 +57,17 @@ describe("User reducer", () => {
   it("should start user sign out", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.SIGN_OUT_START,
+    });
+    expect(newState).toEqual({
+      user: null,
+      isLoading: true,
+      error: null,
+      token: null,
+    });
+  });
+  it("should start user photo upload", () => {
+    const newState = userReducer(INITIAL_STATE, {
+      type: UserActionTypes.UPLOAD_USER_PHOTO_START,
     });
     expect(newState).toEqual({
       user: null,
@@ -152,7 +164,28 @@ describe("User reducer", () => {
       token,
     });
   });
-  it("should failure sign up user", () => {
+  it("should successfully upload user photo", () => {
+    const token = "gsjho4oigs4";
+    const newState = userReducer(
+      {
+        ...INITIAL_STATE,
+        isLoading: true,
+        token,
+        user: { id: 1, name: "name" },
+      },
+      {
+        type: UserActionTypes.UPLOAD_USER_PHOTO_SUCCESS,
+        payload: Image,
+      }
+    );
+    expect(newState).toEqual({
+      user: { id: 1, name: "name", photos: [Image] },
+      isLoading: false,
+      error: null,
+      token,
+    });
+  });
+  it("should fail sign up user", () => {
     const error = new Error("Something went wrong");
     const newState = userReducer(
       { ...INITIAL_STATE, isLoading: true },
@@ -168,7 +201,7 @@ describe("User reducer", () => {
       token: null,
     });
   });
-  it("should failure sign in user", () => {
+  it("should fail sign in user", () => {
     const error = new Error("Something went wrong");
     const newState = userReducer(
       { ...INITIAL_STATE, isLoading: true },
@@ -184,7 +217,7 @@ describe("User reducer", () => {
       token: null,
     });
   });
-  it("should failure sign out user", () => {
+  it("should fail sign out user", () => {
     const error = new Error("Something went wrong");
     const newState = userReducer(
       { ...INITIAL_STATE, isLoading: true },
@@ -200,7 +233,7 @@ describe("User reducer", () => {
       token: null,
     });
   });
-  it("should failure reset user password", () => {
+  it("should fail reset user password", () => {
     const error = new Error("Something went wrong");
     const newState = userReducer(
       { ...INITIAL_STATE, isLoading: true },
@@ -216,12 +249,28 @@ describe("User reducer", () => {
       token: null,
     });
   });
-  it("should failure update user info", () => {
+  it("should fail update user info", () => {
     const error = new Error("Something went wrong");
     const newState = userReducer(
       { ...INITIAL_STATE, isLoading: true },
       {
         type: UserActionTypes.UPDATE_USER_INFO_FAILURE,
+        payload: error,
+      }
+    );
+    expect(newState).toEqual({
+      user: null,
+      isLoading: false,
+      error: error,
+      token: null,
+    });
+  });
+  it("should fail upload user photo", () => {
+    const error = new Error("Something went wrong");
+    const newState = userReducer(
+      { ...INITIAL_STATE, isLoading: true },
+      {
+        type: UserActionTypes.UPLOAD_USER_PHOTO_FAILURE,
         payload: error,
       }
     );

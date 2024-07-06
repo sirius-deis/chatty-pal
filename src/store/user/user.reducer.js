@@ -42,12 +42,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
         error: null,
         user: { ...state.user, ...action.payload.data },
       };
-    case UserActionTypes.UPLOAD_USER_PHOTO_START:
+    case UserActionTypes.UPLOAD_USER_PHOTO_SUCCESS:
+      const photos = state.user.photos || [];
       return {
         ...state,
         isLoading: false,
         error: null,
-        user: { ...state.user, photos: [...state.user.photos, action.payload] },
+        user: {
+          ...state.user,
+          photos: [...photos, action.payload],
+        },
       };
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.SIGN_IN_FAILURE:
