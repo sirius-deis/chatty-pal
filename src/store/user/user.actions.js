@@ -80,4 +80,27 @@ export const updateUserInfo = (updated, token) => async (dispatch) => {
   }
 };
 
-
+export const uploadUserPhoto = (photo, token) => async (dispatch) => {
+  dispatch({ type: UserActionTypes.UPLOAD_USER_PHOTO_START });
+  const formData = new FormData();
+  formData.append("photo", photo);
+  try {
+    fetchData({
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch({
+      type: UserActionTypes.UPLOAD_USER_PHOTO_SUCCESS,
+      payload: photo,
+    });
+  } catch (error) {
+    dispatch({
+      type: UserActionTypes.UPLOAD_USER_PHOTO_FAILURE,
+      payload: error,
+    });
+  }
+};
