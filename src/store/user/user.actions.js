@@ -85,7 +85,7 @@ export const uploadUserPhoto = (photo, token) => async (dispatch) => {
   const formData = new FormData();
   formData.append("photo", photo);
   try {
-    fetchData({
+    fetchData("users/add-photo", {
       method: "POST",
       body: formData,
       headers: {

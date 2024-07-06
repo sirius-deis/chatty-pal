@@ -14,6 +14,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.RESET_PASSWORD_START:
     case UserActionTypes.UPDATE_USER_INFO_START:
     case UserActionTypes.SIGN_OUT_START:
+    case UserActionTypes.UPLOAD_USER_PHOTO_START:
       return { ...state, isLoading: true, error: null };
     case UserActionTypes.SIGN_UP_SUCCESS:
       return { ...state, isLoading: false, error: null };
@@ -41,11 +42,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
         error: null,
         user: { ...state.user, ...action.payload.data },
       };
+    case UserActionTypes.UPLOAD_USER_PHOTO_START:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        user: { ...state.user, photos: [...state.user.photos, action.payload] },
+      };
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
     case UserActionTypes.RESET_PASSWORD_FAILURE:
     case UserActionTypes.UPDATE_USER_INFO_FAILURE:
+    case UserActionTypes.UPLOAD_USER_PHOTO_FAILURE:
       return {
         ...state,
         isLoading: false,
