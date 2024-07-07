@@ -31,7 +31,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       };
     case ChatActionTypes.DELETE_CHAT_FAILURE:
       const chatIndex = state.chats.findIndex(
-        (chat) => chat.id === action.payload
+        (chat) => chat.id === action.payload.id
       );
       return {
         ...state,
@@ -40,7 +40,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           {
             ...state.chats[chatIndex],
             isOperating: false,
-            error: action.payload,
+            error: action.payload.error,
           },
           ...state.chats.slice(chatIndex),
         ],

@@ -80,4 +80,22 @@ describe("chatReducer", () => {
     const result = chatReducer(INITIAL_STATE, action);
     expect(result.error).toBe(error);
   });
+  it("should handle DELETE_CHAT_START", () => {
+    const action = {
+      type: ChatActionTypes.DELETE_CHAT_START,
+      payload: "2",
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[1].isOperating).toBe(true);
+  });
+  it("should handle DELETE_CHAT_FAILURE", () => {
+    const error = new Error("Error deleting chat");
+    const action = {
+      type: ChatActionTypes.DELETE_CHAT_FAILURE,
+      payload: { id: 2, error },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[1].isOperating).toBe(false);
+    expect(result.chats[1].error).toBe(error);
+  });
 });
