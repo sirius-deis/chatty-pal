@@ -106,4 +106,12 @@ describe("chatReducer", () => {
     const result = chatReducer(INITIAL_STATE, action);
     expect(result.chats.length).toBe(1);
   });
+  it("should handle ONLINE", () => {
+    const action = {
+      type: ChatActionTypes.ONLINE,
+      payload: "1",
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].isOnline).toBe(true);
+  });
 });
