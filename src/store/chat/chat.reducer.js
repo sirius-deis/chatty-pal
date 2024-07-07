@@ -64,7 +64,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload,
         state.chats
       );
-      if (!foundChatIndex_Online) {
+      if (foundChatIndex_Online === null) {
         return state;
       }
       return {
@@ -80,14 +80,14 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload,
         state.chats
       );
-      if (!foundChatIndex_Offline) {
+      if (foundChatIndex_Offline === null) {
         return state;
       }
       return {
         ...state,
         chats: [
           ...state.chats.slice(0, foundChatIndex_Offline),
-          { ...state.chats[foundChatIndex_Offline], isOnline: undefined },
+          { ...state.chats[foundChatIndex_Offline], isOnline: false },
           ...state.chats.slice(foundChatIndex_Offline + 1),
         ],
       };

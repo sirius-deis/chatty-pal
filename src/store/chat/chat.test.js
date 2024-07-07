@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     {
       id: "1",
       name: "John Doe",
-      isOnline: true,
+      isOnline: false,
       isOperating: false,
       error: null,
       messages: [
@@ -27,7 +27,7 @@ const INITIAL_STATE = {
     {
       id: "2",
       name: "John Doe",
-      isOnline: true,
+      isOnline: false,
       isOperating: false,
       error: null,
       messages: [
@@ -113,5 +113,21 @@ describe("chatReducer", () => {
     };
     const result = chatReducer(INITIAL_STATE, action);
     expect(result.chats[0].isOnline).toBe(true);
+  });
+  it("should handle OFFLINE", () => {
+    const action = {
+      type: ChatActionTypes.OFFLINE,
+      payload: "1",
+    };
+    const result = chatReducer(
+      {
+        chats: [
+          ...INITIAL_STATE.chats.splice(0, 1),
+          { ...INITIAL_STATE.chats[0], isOnline: true },
+        ],
+      },
+      action
+    );
+    expect(result.chats[0].isOnline).toBe(false);
   });
 });
