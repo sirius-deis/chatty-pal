@@ -14,67 +14,37 @@ describe("User reducer", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.SIGN_UP_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
   it("should start user signin", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.SIGN_IN_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
   it("should start user reset password", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.RESET_PASSWORD_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
   it("should start user update info", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.UPDATE_USER_INFO_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
   it("should start user sign out", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.SIGN_OUT_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
   it("should start user photo upload", () => {
     const newState = userReducer(INITIAL_STATE, {
       type: UserActionTypes.UPLOAD_USER_PHOTO_START,
     });
-    expect(newState).toEqual({
-      user: null,
-      isLoading: true,
-      error: null,
-      token: null,
-    });
+    expect(newState).toEqual({ ...INITIAL_STATE, isLoading: true });
   });
 
   it("should successfully sign up user", () => {
@@ -85,10 +55,8 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
-      error: null,
-      token: null,
     });
   });
   it("should successfully sign in user", () => {
@@ -102,34 +70,34 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
+      ...INITIAL_STATE,
       user: user,
       isLoading: false,
-      error: null,
       token: token,
     });
   });
   it("should successfully sign out user", () => {
     const newState = userReducer(
-      { ...INITIAL_STATE, isLoading: true },
+      { ...INITIAL_STATE, isLoading: true, user: { id: 1 } },
       {
         type: UserActionTypes.SIGN_OUT_SUCCESS,
       }
     );
     expect(newState).toEqual({
+      ...INITIAL_STATE,
       user: null,
       isLoading: false,
-      error: null,
-      token: null,
     });
   });
   it("should successfully reset user password", () => {
     const newToken = "fj1hto4dg42";
+    const userState = { user: { id: 1, name: "name" }, token: newToken };
     const newState = userReducer(
       {
         ...INITIAL_STATE,
         isLoading: true,
+        ...userState,
         token: "gsjho4oigs4",
-        user: { id: 1 },
       },
       {
         type: UserActionTypes.RESET_PASSWORD_SUCCESS,
@@ -137,20 +105,19 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: { id: 1 },
+      ...INITIAL_STATE,
       isLoading: false,
-      error: null,
-      token: newToken,
+      ...userState,
     });
   });
   it("should successfully update user info", () => {
     const token = "gsjho4oigs4";
+    const userState = { user: { id: 1, name: "name" }, token };
     const newState = userReducer(
       {
         ...INITIAL_STATE,
         isLoading: true,
-        token,
-        user: { id: 1, name: "name" },
+        ...userState,
       },
       {
         type: UserActionTypes.UPDATE_USER_INFO_SUCCESS,
@@ -158,20 +125,20 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: { id: 1, name: "newName" },
+      ...INITIAL_STATE,
+      user: { ...userState.user, name: "newName" },
       isLoading: false,
-      error: null,
       token,
     });
   });
   it("should successfully upload user photo", () => {
     const token = "gsjho4oigs4";
+    const userState = { user: { id: 1, name: "name" }, token };
     const newState = userReducer(
       {
         ...INITIAL_STATE,
         isLoading: true,
-        token,
-        user: { id: 1, name: "name" },
+        ...userState,
       },
       {
         type: UserActionTypes.UPLOAD_USER_PHOTO_SUCCESS,
@@ -179,9 +146,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: { id: 1, name: "name", photos: [Image] },
+      ...INITIAL_STATE,
+      user: { ...userState.user, photos: [Image] },
       isLoading: false,
-      error: null,
       token,
     });
   });
@@ -195,10 +162,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
   it("should fail sign in user", () => {
@@ -211,10 +177,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
   it("should fail sign out user", () => {
@@ -227,10 +192,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
   it("should fail reset user password", () => {
@@ -243,10 +207,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
   it("should fail update user info", () => {
@@ -259,10 +222,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
   it("should fail upload user photo", () => {
@@ -275,10 +237,9 @@ describe("User reducer", () => {
       }
     );
     expect(newState).toEqual({
-      user: null,
+      ...INITIAL_STATE,
       isLoading: false,
       error: error,
-      token: null,
     });
   });
 });
