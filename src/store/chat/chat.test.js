@@ -98,4 +98,12 @@ describe("chatReducer", () => {
     expect(result.chats[1].isOperating).toBe(false);
     expect(result.chats[1].error).toBe(error);
   });
+  it("should handle DELETE_CHAT_SUCCESS", () => {
+    const action = {
+      type: ChatActionTypes.DELETE_CHAT_SUCCESS,
+      payload: 2,
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats.length).toBe(1);
+  });
 });

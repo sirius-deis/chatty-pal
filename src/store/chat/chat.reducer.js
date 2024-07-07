@@ -17,6 +17,14 @@ const findChatIndexById = (id, chats) => {
 
 const chatReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case ChatActionTypes.FETCH_CHATS:
+      return { ...state, chats: action.payload.chats };
+
+    case ChatActionTypes.ADD_CHAT_SUCCESS:
+      return { ...state, chats: [...state.chats, action.payload] };
+    case ChatActionTypes.ADD_CHAT_FAILURE:
+      return { ...state, error: action.payload };
+
     case ChatActionTypes.DELETE_CHAT_START:
       const chatToDeleteIndex = state.chats.findIndex(
         (chat) => chat.id === action.payload
@@ -45,13 +53,12 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           ...state.chats.slice(chatIndex),
         ],
       };
-    case ChatActionTypes.FETCH_CHATS:
-      return { ...state, chats: action.payload.chats };
     case ChatActionTypes.DELETE_CHAT_SUCCESS:
       const chatsWithoutDeleted = state.chats.filter(
-        (chat) => chat.id === action.payload
+        (chat) => chat.id !== action.payload.toString()
       );
       return { ...state, chats: chatsWithoutDeleted };
+
     case ChatActionTypes.ONLINE:
       const foundChatIndex_Online = findChatIndexById(
         action.payload,
@@ -84,10 +91,6 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           ...state.chats.slice(foundChatIndex_Offline + 1),
         ],
       };
-    case ChatActionTypes.ADD_CHAT_SUCCESS:
-      return { ...state, chats: [...state.chats, action.payload] };
-    case ChatActionTypes.ADD_CHAT_FAILURE:
-      return { ...state, error: action.payload };
     default:
       return state;
   }
