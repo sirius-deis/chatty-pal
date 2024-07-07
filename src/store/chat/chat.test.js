@@ -24,6 +24,27 @@ const INITIAL_STATE = {
         },
       ],
     },
+    {
+      id: "2",
+      name: "John Doe",
+      isOnline: true,
+      isOperating: false,
+      error: null,
+      messages: [
+        {
+          id: "1",
+          content: "Hello!",
+          senderId: 1,
+          createdAt: "2022-01-01T12:00:00",
+        },
+        {
+          id: "2",
+          content: "Hi!",
+          senderId: 2,
+          createdAt: "2022-01-01T12:05:00",
+        },
+      ],
+    },
   ],
 };
 
@@ -35,5 +56,28 @@ describe("chatReducer", () => {
     };
     const result = chatReducer(INITIAL_STATE, action);
     expect(result.chats).toEqual([{ id: "2", name: "Jane Doe" }]);
+  });
+  it("should handle ADD_CHAT_SUCCESS", () => {
+    const action = {
+      type: ChatActionTypes.ADD_CHAT_SUCCESS,
+      payload: { id: "3", name: "Alice Doe" },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats).toEqual([
+      ...INITIAL_STATE.chats,
+      {
+        id: "3",
+        name: "Alice Doe",
+      },
+    ]);
+  });
+  it("should handle ADD_CHAT_FAILURE", () => {
+    const error = new Error("Error adding chat");
+    const action = {
+      type: ChatActionTypes.ADD_CHAT_FAILURE,
+      payload: error,
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.error).toBe(error);
   });
 });
