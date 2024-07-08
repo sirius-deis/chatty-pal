@@ -144,7 +144,6 @@ describe("chatReducer", () => {
       },
     };
     const result = chatReducer(INITIAL_STATE, action);
-    console.log("TEST", result.chats[0].messages);
     expect(result.chats[0].messages).toEqual([
       ...INITIAL_STATE.chats[0].messages,
       {
