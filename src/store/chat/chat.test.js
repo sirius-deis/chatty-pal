@@ -154,4 +154,12 @@ describe("chatReducer", () => {
       },
     ]);
   });
+  it("should handle DELETE_MESSAGE_START", () => {
+    const action = {
+      type: ChatActionTypes.DELETE_MESSAGE_START,
+      payload: { chatId: "1", messageId: "2" },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].messages[1].isOperating).toBe(true);
+  });
 });

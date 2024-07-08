@@ -115,6 +115,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload.chatId,
         state.chats
       );
+      const index_d = findChatIndexById(action.payload.chatId, state.chats);
       const messageToDeleteIndex = foundChatForDeleting.messages.findIndex(
         (message) => message.id === action.payload.messageId
       );
@@ -122,19 +123,19 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chats: [
-          ...state.chats.slice(0, index),
+          ...state.chats.slice(0, index_d),
           {
-            ...foundChat,
+            ...foundChatForDeleting,
             messages: [
-              ...foundChat.messages.slice(0, messageToDeleteIndex),
+              ...foundChatForDeleting.messages.slice(0, messageToDeleteIndex),
               {
-                ...foundChat.messages[messageToDeleteIndex],
+                ...foundChatForDeleting.messages[messageToDeleteIndex],
                 isOperating: true,
               },
-              ...foundChat.messages.slice(messageToDeleteIndex),
+              ...foundChatForDeleting.messages.slice(messageToDeleteIndex),
             ],
           },
-          ...state.chats.slice(index),
+          ...state.chats.slice(index_d),
         ],
       };
     default:
