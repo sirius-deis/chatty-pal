@@ -46,7 +46,28 @@ export const offline = (chatId) => ({
 
 export const addMessage = (chatId, message) => {
   return {
-    type: MessageActionTypes.ADD_MESSAGE,
+    type: ChatActionTypes.ADD_MESSAGE,
     payload: { message, chatId },
   };
+};
+
+export const deleteMessage = (chatId, messageId) => async (dispatch) => {
+  dispatch({
+    type: ChatActionTypes.DELETE_MESSAGE_START,
+    payload: { messageId, chatId },
+  });
+  try {
+    await fetchData(`chats/${chatId}/messages/${messageId}`, {
+      method: "DELETE",
+    });
+    dispatch({
+      type: ChatActionTypes.DELETE_MESSAGE_SUCCESS,
+      payload: { messageId, chatId },
+    });
+  } catch (error) {
+    dispatch({
+      type: ChatActionTypes.DELETE_MESSAGE_FAILURE,
+      payload: { error, messageId, chatId },
+    });
+  }
 };
