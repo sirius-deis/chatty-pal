@@ -8,11 +8,12 @@ const INITIAL_STATE = {
 
 const findChatIndexById = (id, chats) => {
   const foundChatIndex = chats.findIndex((chat) => chat.id === id);
-  if (foundChatIndex === -1) {
-    return null;
-  }
 
   return foundChatIndex;
+};
+
+const findChatById = (id, chats) => {
+  return chats.find((chat) => chat.id === id);
 };
 
 const chatReducer = (state = INITIAL_STATE, action) => {
@@ -64,7 +65,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload,
         state.chats
       );
-      if (foundChatIndex_Online === null) {
+      if (foundChatIndex_Online === -1) {
         return state;
       }
       return {
@@ -80,7 +81,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         action.payload,
         state.chats
       );
-      if (foundChatIndex_Offline === null) {
+      if (foundChatIndex_Offline === -1) {
         return state;
       }
       return {
@@ -89,6 +90,19 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           ...state.chats.slice(0, foundChatIndex_Offline),
           { ...state.chats[foundChatIndex_Offline], isOnline: false },
           ...state.chats.slice(foundChatIndex_Offline + 1),
+        ],
+      };
+    case ChatActionTypes.ADD_MESSAGE:
+      const foundChat = findChatById(action.payload.chatId, state.chats);
+      return {
+        ...state,
+        chats: [
+          ...state.chats.slice(0, action.payload.chatId),
+          {
+            ...foundChat,
+            messages: [...foundChat.messages, action.payload.message],
+          },
+          ...state.chats.slice(action.payload.chatId),
         ],
       };
     default:

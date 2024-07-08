@@ -34,6 +34,19 @@ export const deleteChat = (idOfChatToDelete) => async (dispatch) => {
   }
 };
 
-export const online = (id) => ({ type: ChatActionTypes.ONLINE, payload: id });
+export const online = (chatId) => ({
+  type: ChatActionTypes.ONLINE,
+  payload: id,
+});
 
-export const offline = (id) => ({ type: ChatActionTypes.OFFLINE, payload: id });
+export const offline = (chatId) => ({
+  type: ChatActionTypes.OFFLINE,
+  payload: id,
+});
+
+export const addMessage = (chatId, message) => {
+  return {
+    type: MessageActionTypes.ADD_MESSAGE,
+    payload: { message, chatId },
+  };
+};
