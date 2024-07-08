@@ -122,12 +122,37 @@ describe("chatReducer", () => {
     const result = chatReducer(
       {
         chats: [
-          ...INITIAL_STATE.chats.splice(0, 1),
+          ...INITIAL_STATE.chats.filter((_, i) => i !== 0),
           { ...INITIAL_STATE.chats[0], isOnline: true },
         ],
       },
       action
     );
     expect(result.chats[0].isOnline).toBe(false);
+  });
+  it("should handle ADD_MESSAGE", () => {
+    const action = {
+      type: ChatActionTypes.ADD_MESSAGE,
+      payload: {
+        chatId: "1",
+        message: {
+          id: "3",
+          content: "Hello again!",
+          senderId: 1,
+          createdAt: "2022-01-01T15:05:00",
+        },
+      },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    console.log("TEST", result.chats[0].messages);
+    expect(result.chats[0].messages).toEqual([
+      ...INITIAL_STATE.chats[0].messages,
+      {
+        id: "3",
+        content: "Hello again!",
+        senderId: 1,
+        createdAt: "2022-01-01T15:05:00",
+      },
+    ]);
   });
 });

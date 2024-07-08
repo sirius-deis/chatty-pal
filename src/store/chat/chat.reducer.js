@@ -8,11 +8,13 @@ const INITIAL_STATE = {
 
 const findChatIndexById = (id, chats) => {
   const foundChatIndex = chats.findIndex((chat) => chat.id === id);
-
   return foundChatIndex;
 };
 
 const findChatById = (id, chats) => {
+  chats.find((chat) => {
+    return chat.id === id;
+  });
   return chats.find((chat) => chat.id === id);
 };
 
@@ -94,15 +96,16 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       };
     case ChatActionTypes.ADD_MESSAGE:
       const foundChat = findChatById(action.payload.chatId, state.chats);
+      const index = findChatIndexById(action.payload.chatId, state.chats);
       return {
         ...state,
         chats: [
-          ...state.chats.slice(0, action.payload.chatId),
+          ...state.chats.slice(0, index),
           {
             ...foundChat,
-            messages: [...foundChat.messages, action.payload.message],
+            messages: [...(foundChat?.messages || []), action.payload.message],
           },
-          ...state.chats.slice(action.payload.chatId),
+          ...state.chats.slice(index),
         ],
       };
     default:
