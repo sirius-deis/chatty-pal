@@ -18,6 +18,10 @@ const findChatById = (id, chats) => {
   return chats.find((chat) => chat.id === id);
 };
 
+const findMessageIndexById = (id, messages) => {
+  return messages.findIndex((message) => message.id === id);
+};
+
 const chatReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ChatActionTypes.FETCH_CHATS:
@@ -111,31 +115,66 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case ChatActionTypes.DELETE_MESSAGE_START:
-      const foundChatForDeleting = findChatById(
+      const foundChatForDeleting_s = findChatById(
         action.payload.chatId,
         state.chats
       );
-      const index_d = findChatIndexById(action.payload.chatId, state.chats);
-      const messageToDeleteIndex = foundChatForDeleting.messages.findIndex(
-        (message) => message.id === action.payload.messageId
+      const index_ds = findChatIndexById(action.payload.chatId, state.chats);
+      const messageToDeleteIndex_s = findMessageIndexById(
+        foundChatForDeleting_s.messages,
+        action.payload.messageId
       );
 
       return {
         ...state,
         chats: [
-          ...state.chats.slice(0, index_d),
+          ...state.chats.slice(0, index_ds),
           {
-            ...foundChatForDeleting,
+            ...foundChatForDeleting_s,
             messages: [
-              ...foundChatForDeleting.messages.slice(0, messageToDeleteIndex),
+              ...foundChatForDeleting_s.messages.slice(
+                0,
+                messageToDeleteIndex_s
+              ),
               {
-                ...foundChatForDeleting.messages[messageToDeleteIndex],
+                ...foundChatForDeleting_s.messages[messageToDeleteIndex_s],
                 isOperating: true,
               },
-              ...foundChatForDeleting.messages.slice(messageToDeleteIndex),
+              ...foundChatForDeleting_s.messages.slice(messageToDeleteIndex_s),
             ],
           },
-          ...state.chats.slice(index_d),
+          ...state.chats.slice(index_ds),
+        ],
+      };
+    case ChatActionTypes.DELETE_MESSAGE_FAILURE:
+      const foundChatForDeleting_f = findChatById(
+        action.payload.chatId,
+        state.chats
+      );
+      const index_df = findChatIndexById(action.payload.chatId, state.chats);
+      const messageToDeleteIndex_f = findMessageIndexById(
+        foundChatForDeleting_f.messages,
+        action.payload.messageId
+      );
+      return {
+        ...state,
+        chats: [
+          ...state.chats.slice(0, index_df),
+          {
+            ...foundChatForDeleting_f,
+            messages: [
+              ...foundChatForDeleting_f.messages.slice(
+                0,
+                messageToDeleteIndex_f
+              ),
+              {
+                ...foundChatForDeleting_f.messages[messageToDeleteIndex_f],
+                isOperating: true,
+              },
+              ...foundChatForDeleting_f.messages.slice(messageToDeleteIndex_f),
+            ],
+          },
+          ...state.chats.slice(index_df),
         ],
       };
     default:
