@@ -24,9 +24,12 @@ const findMessageIndexById = (id, messages) => {
 
 const chatReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ChatActionTypes.FETCH_CHATS:
+    case ChatActionTypes.FETCH_CHATS_START:
+      return { ...state, isLoading: true, error: null };
+    case ChatActionTypes.FETCH_CHATS_SUCCESS:
       return { ...state, chats: action.payload.chats };
-
+    case ChatActionTypes.FETCH_CHATS_FAILURE:
+      return { ...state, isLoading: false, error: action.payload };
     case ChatActionTypes.ADD_CHAT_SUCCESS:
       return { ...state, chats: [...state.chats, action.payload] };
     case ChatActionTypes.ADD_CHAT_FAILURE:
