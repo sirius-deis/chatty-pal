@@ -178,6 +178,35 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           ...state.chats.slice(index_df),
         ],
       };
+    case ChatActionTypes.DELETE_MESSAGE_SUCCESS:
+      const foundChatForDeleting_ss = findChatById(
+        action.payload.chatId,
+        state.chats
+      );
+      const index_dss = findChatIndexById(action.payload.chatId, state.chats);
+      const messageToDeleteIndex_ss = findMessageIndexById(
+        action.payload.messageId,
+        foundChatForDeleting_ss.messages
+      );
+      return {
+        ...state,
+        chats: [
+          ...state.chats.slice(0, index_dss),
+          {
+            ...foundChatForDeleting_ss,
+            messages: [
+              ...foundChatForDeleting_ss.messages.slice(
+                0,
+                messageToDeleteIndex_ss
+              ),
+              ...foundChatForDeleting_ss.messages.slice(
+                messageToDeleteIndex_ss
+              ),
+            ],
+          },
+          ...state.chats.slice(index_dss),
+        ],
+      };
     default:
       return state;
   }

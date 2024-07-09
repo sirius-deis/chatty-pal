@@ -1,10 +1,15 @@
 import ChatActionTypes from "./chat.types";
 import fetchData from "../../utils/fetchData";
 
-export const fetchChats = (chats) => ({
-  type: ChatActionTypes.FETCH_CHATS,
-  payload: chats,
-});
+export const fetchChats = () => async (dispatch) => {
+  dispatch({ type: ChatActionTypes.FETCH_CHATS_START });
+  try {
+    const data = await fetchData("chats");
+    dispatch({ type: ChatActionTypes.FETCH_CHATS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: ChatActionTypes.FETCH_CHATS_FAILURE, payload: error });
+  }
+};
 
 export const addChat = (chatId) => async (dispatch) => {
   try {
