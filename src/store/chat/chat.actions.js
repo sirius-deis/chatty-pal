@@ -83,7 +83,7 @@ export const fetchSingleChat = (chatId) => async (dispatch) => {
     const data = await fetchData(`chats/${chatId}`);
     dispatch({
       type: ChatActionTypes.FETCH_SINGLE_CHAT_SUCCESS,
-      payload: data,
+      payload: { chat: data, chatId },
     });
   } catch (error) {
     dispatch({

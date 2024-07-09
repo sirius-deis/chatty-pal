@@ -31,10 +31,46 @@ const chatReducer = (state = INITIAL_STATE, action) => {
       return { ...state, chats: action.payload.chats };
     case ChatActionTypes.FETCH_CHATS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+
     case ChatActionTypes.ADD_CHAT_SUCCESS:
       return { ...state, chats: [...state.chats, action.payload] };
     case ChatActionTypes.ADD_CHAT_FAILURE:
       return { ...state, error: action.payload };
+
+    case ChatActionTypes.FETCH_SINGLE_CHAT_START:
+      return {
+        ...state,
+        isSingleLoading: true,
+        error: null,
+      };
+    case ChatActionTypes.FETCH_SINGLE_CHAT_SUCCESS:
+      const foundSingleChat = findChatById(action.payload.chatId, state.chats);
+      if (foundSingleChat) {
+        return {
+          ...state,
+          chats: state.chats.map((chat) => {
+            if (chat.id === action.payload.chatId) {
+              return { ...chat, ...action.payload.chat };
+            } else {
+              return chat;
+            }
+          }),
+          isSingleLoading: false,
+          error: null,
+        };
+      } else {
+        return {
+          ...state,
+          chats: [...state.chats, action.payload.chat],
+          isSingleLoading: false,
+        };
+      }
+    case ChatActionTypes.FETCH_SINGLE_CHAT_FAILURE:
+      return {
+        ...state,
+        isSingleLoading: false,
+        error: action.payload,
+      };
 
     case ChatActionTypes.DELETE_CHAT_START:
       const foundChatIndex_delete_chat_s = findChatIndexById(
