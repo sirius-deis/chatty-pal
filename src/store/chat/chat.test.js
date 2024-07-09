@@ -194,4 +194,34 @@ describe("chatReducer", () => {
     expect(result.chats[0].messages[1].isOperating).toBe(false);
     expect(result.chats[0].messages[1].error).toBe(error);
   });
+  it("should handle FETCH_SINGLE_CHAT_START", () => {
+    const action = {
+      type: ChatActionTypes.FETCH_SINGLE_CHAT_START,
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.isSingleLoading).toBe(true);
+  });
+  it("should handle FETCH_SINGLE_CHAT_SUCCESS", () => {
+    const action = {
+      type: ChatActionTypes.FETCH_SINGLE_CHAT_SUCCESS,
+      payload: { id: "3", name: "Some name" },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats).toEqual([
+      ...INITIAL_STATE.chats,
+      { id: "3", name: "Some name" },
+    ]);
+    expect(result.isSingleLoading).toBe(false);
+    expect(result.error).toBe(null);
+  });
+  it("should handle FETCH_SINGLE_CHAT_FAILURE", () => {
+    const error = new Error("Error fetching single chat");
+    const action = {
+      type: ChatActionTypes.FETCH_SINGLE_CHAT_FAILURE,
+      payload: error,
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.error).toBe(error);
+    expect(result.isSingleLoading).toBe(false);
+  });
 });

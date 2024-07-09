@@ -44,27 +44,12 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         error: null,
       };
     case ChatActionTypes.FETCH_SINGLE_CHAT_SUCCESS:
-      const foundSingleChat = findChatById(action.payload.chatId, state.chats);
-      if (foundSingleChat) {
-        return {
-          ...state,
-          chats: state.chats.map((chat) => {
-            if (chat.id === action.payload.chatId) {
-              return { ...chat, ...action.payload.chat };
-            } else {
-              return chat;
-            }
-          }),
-          isSingleLoading: false,
-          error: null,
-        };
-      } else {
-        return {
-          ...state,
-          chats: [...state.chats, action.payload.chat],
-          isSingleLoading: false,
-        };
-      }
+      return {
+        ...state,
+        chats: [...state.chats, action.payload],
+        isSingleLoading: false,
+        error: null,
+      };
     case ChatActionTypes.FETCH_SINGLE_CHAT_FAILURE:
       return {
         ...state,
