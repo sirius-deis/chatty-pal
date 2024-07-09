@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   chats: [],
   error: null,
   isLoading: false,
+  isSingleLoading: false,
 };
 
 const findChatIndexById = (id, chats) => {

@@ -76,3 +76,19 @@ export const deleteMessage = (chatId, messageId) => async (dispatch) => {
     });
   }
 };
+
+export const fetchSingleChat = (chatId) => async (dispatch) => {
+  dispatch({ type: ChatActionTypes.FETCH_SINGLE_CHAT_START });
+  try {
+    const data = await fetchData(`chats/${chatId}`);
+    dispatch({
+      type: ChatActionTypes.FETCH_SINGLE_CHAT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ChatActionTypes.FETCH_SINGLE_CHAT_FAILURE,
+      payload: error,
+    });
+  }
+};
