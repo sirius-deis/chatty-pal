@@ -49,14 +49,36 @@ const INITIAL_STATE = {
 };
 
 describe("chatReducer", () => {
-  it("should handle FETCH_CHATS", () => {
+  it("should handle FETCH_CHATS_START", () => {
     const action = {
-      type: ChatActionTypes.FETCH_CHATS,
+      type: ChatActionTypes.FETCH_CHATS_START,
+    };
+    const result = chatReducer(
+      { ...INITIAL_STATE, error: "Some error", isLoading: false },
+      action
+    );
+    expect(result.isLoading).toEqual(true);
+    expect(result.error).toEqual(null);
+  });
+  it("should handle FETCH_CHATS_SUCCESS", () => {
+    const action = {
+      type: ChatActionTypes.FETCH_CHATS_SUCCESS,
       payload: { chats: [{ id: "2", name: "Jane Doe" }] },
     };
     const result = chatReducer(INITIAL_STATE, action);
     expect(result.chats).toEqual([{ id: "2", name: "Jane Doe" }]);
   });
+  it("should handle FETCH_CHATS_FAILURE", () => {
+    const error = new Error("Error fetching chats");
+    const action = {
+      type: ChatActionTypes.FETCH_CHATS_FAILURE,
+      payload: error,
+    };
+    const result = chatReducer({ ...INITIAL_STATE, isLoading: true }, action);
+    expect(result.isLoading).toEqual(false);
+    expect(result.error).toEqual(error);
+  });
+
   it("should handle ADD_CHAT_SUCCESS", () => {
     const action = {
       type: ChatActionTypes.ADD_CHAT_SUCCESS,
