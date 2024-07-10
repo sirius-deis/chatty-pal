@@ -92,3 +92,28 @@ export const fetchSingleChat = (chatId) => async (dispatch) => {
     });
   }
 };
+
+export const editMessage = (chatId, message) => async (dispatch) => {
+  dispatch({
+    type: ChatActionTypes.EDIT_MESSAGE_START,
+    payload: { chatId },
+  });
+  try {
+    const data = await fetchData(`chats/${chatId}/messages`, {
+      method: "PUT",
+      body: JSON.stringify(message),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch({
+      type: ChatActionTypes.EDIT_MESSAGE_SUCCESS,
+      payload: { chatId, message: data },
+    });
+  } catch (error) {
+    dispatch({
+      type: ChatActionTypes.EDIT_MESSAGE_FAILURE,
+      payload: { error },
+    });
+  }
+};
