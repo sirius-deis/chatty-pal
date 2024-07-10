@@ -93,10 +93,10 @@ export const fetchSingleChat = (chatId) => async (dispatch) => {
   }
 };
 
-export const editMessage = (chatId, message) => async (dispatch) => {
+export const editMessage = (chatId, messageId, message) => async (dispatch) => {
   dispatch({
     type: ChatActionTypes.EDIT_MESSAGE_START,
-    payload: { chatId },
+    payload: { chatId, messageId },
   });
   try {
     const data = await fetchData(`chats/${chatId}/messages`, {
@@ -108,12 +108,12 @@ export const editMessage = (chatId, message) => async (dispatch) => {
     });
     dispatch({
       type: ChatActionTypes.EDIT_MESSAGE_SUCCESS,
-      payload: { chatId, message: data },
+      payload: { chatId, messageId, message: data },
     });
   } catch (error) {
     dispatch({
       type: ChatActionTypes.EDIT_MESSAGE_FAILURE,
-      payload: { error },
+      payload: { chatId, messageId, error },
     });
   }
 };

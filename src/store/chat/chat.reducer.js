@@ -195,9 +195,9 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           chats: state.chats,
           ...action.payload,
           valuesToInsert: {
+            ...action.payload.message,
             isOperating: false,
             error: null,
-            message: action.payload.message,
           },
         }),
       };

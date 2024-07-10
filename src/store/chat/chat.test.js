@@ -224,4 +224,45 @@ describe("chatReducer", () => {
     expect(result.error).toBe(error);
     expect(result.isSingleLoading).toBe(false);
   });
+  it("should handle EDIT_MESSAGE_START", () => {
+    const action = {
+      type: ChatActionTypes.EDIT_MESSAGE_START,
+      payload: { chatId: "1", messageId: "2" },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].messages[1].isOperating).toBe(true);
+  });
+  it("should handle EDIT_MESSAGE_FAILURE", () => {
+    const error = new Error("Error editing message");
+    const action = {
+      type: ChatActionTypes.EDIT_MESSAGE_FAILURE,
+      payload: { chatId: "1", messageId: "2", error },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].messages[1].isOperating).toBe(false);
+    expect(result.chats[0].messages[1].error).toEqual(error);
+  });
+  it("should handle EDIT_MESSAGE_SUCCESS", () => {
+    const message = {
+      id: "1",
+      content: "Hello!",
+      senderId: 1,
+      createdAt: "2022-01-01T12:00:00",
+      editedAt: "2022-03-01T12:00:00",
+    };
+    const action = {
+      type: ChatActionTypes.EDIT_MESSAGE_SUCCESS,
+      payload: {
+        chatId: "1",
+        messageId: "2",
+        message,
+      },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].messages[1]).toEqual({
+      ...message,
+      error: null,
+      isOperating: false,
+    });
+  });
 });
