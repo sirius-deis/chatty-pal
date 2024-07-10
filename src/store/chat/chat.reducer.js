@@ -140,6 +140,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case ChatActionTypes.DELETE_MESSAGE_START:
+    case ChatActionTypes.EDIT_MESSAGE_START:
       const foundChatForDeleting_s = findChatById(
         action.payload.chatId,
         state.chats
@@ -172,6 +173,7 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case ChatActionTypes.DELETE_MESSAGE_FAILURE:
+    case ChatActionTypes.EDIT_MESSAGE_FAILURE:
       const foundChatForDeleting_f = findChatById(
         action.payload.chatId,
         state.chats
@@ -230,6 +232,36 @@ const chatReducer = (state = INITIAL_STATE, action) => {
             ],
           },
           ...state.chats.slice(index_dss),
+        ],
+      };
+    case ChatActionTypes.EDIT_MESSAGE_SUCCESS:
+      const foundChatForEditing_s = findChatById(
+        action.payload.chatId,
+        state.chats
+      );
+      const index_es = findChatIndexById(action.payload.chatId, state.chats);
+      const messageToEditIndex_s = findMessageIndexById(
+        action.payload.messageId,
+        foundChatForEditing_s.messages
+      );
+      return {
+        ...state,
+        chats: [
+          ...state.chats.slice(0, index_es),
+          {
+            ...foundChatForEditing_s,
+            messages: [
+              ...foundChatForEditing_s.messages.slice(0, messageToEditIndex_s),
+              {
+                ...foundChatForEditing_s.messages[messageToEditIndex_s],
+                isOperating: false,
+                error: null,
+                message: action.payload.message,
+              },
+              ...foundChatForEditing_s.messages.slice(messageToEditIndex_s),
+            ],
+          },
+          ...state.chats.slice(index_es),
         ],
       };
     default:
