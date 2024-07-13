@@ -211,6 +211,17 @@ const chatReducer = (state = INITIAL_STATE, action) => {
           },
         }),
       };
+    case ChatActionTypes.MARK_MESSAGE_AS_READ:
+      return {
+        ...state,
+        chats: changeMessageProps({
+          chats: state.chats,
+          ...action.payload,
+          valuesToInsert: {
+            isRead: true,
+          },
+        }),
+      };
     default:
       return state;
   }

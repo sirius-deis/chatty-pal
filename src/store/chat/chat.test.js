@@ -265,4 +265,12 @@ describe("chatReducer", () => {
       isOperating: false,
     });
   });
+  it("should handle MARK_MESSAGE_AS_READ", () => {
+    const action = {
+      type: ChatActionTypes.MARK_MESSAGE_AS_READ,
+      payload: { chatId: "1", messageId: "2" },
+    };
+    const result = chatReducer(INITIAL_STATE, action);
+    expect(result.chats[0].messages[1].isRead).toBe(true);
+  });
 });
