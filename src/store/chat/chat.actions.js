@@ -117,3 +117,8 @@ export const editMessage = (chatId, messageId, message) => async (dispatch) => {
     });
   }
 };
+
+export const markMessageAsRead = (chatId, messageId) => ({
+  type: ChatActionTypes.MARK_MESSAGE_AS_READ,
+  payload: { chatId, messageId },
+});
