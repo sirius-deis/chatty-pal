@@ -23,6 +23,37 @@ const findMessageIndexById = (id, messages) => {
   return messages.findIndex((message) => message.id === id);
 };
 
+const changeMessageProps = ({
+  chats,
+  chatId,
+  messageId,
+  valuesToInsert,
+  del,
+}) => {
+  const foundChat = findChatById(chatId, chats);
+  const chatIndex = findChatIndexById(chatId, chats);
+  const messageIndex = findMessageIndexById(messageId, foundChat.messages);
+  const messagesToInsertArr = [...foundChat.messages.slice(0, messageIndex)];
+  if (!del) {
+    messagesToInsertArr.push({
+      ...foundChat.messages[messageIndex],
+      ...valuesToInsert,
+    });
+  }
+  messagesToInsertArr.push(...foundChat.messages.slice(messageIndex));
+
+  return [
+    ...chats.slice(0, chatIndex),
+    {
+      ...foundChat,
+      messages: messagesToInsertArr,
+    },
+    ...chats.slice(chatIndex),
+  ];
+};
+
+const deleteMessage = (props) => changeMessageProps({ ...props, del: true });
+
 const chatReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ChatActionTypes.FETCH_CHATS_START:
@@ -160,33 +191,12 @@ const chatReducer = (state = INITIAL_STATE, action) => {
         }),
       };
     case ChatActionTypes.DELETE_MESSAGE_SUCCESS:
-      const foundChatForDeleting_ss = findChatById(
-        action.payload.chatId,
-        state.chats
-      );
-      const index_dss = findChatIndexById(action.payload.chatId, state.chats);
-      const messageToDeleteIndex_ss = findMessageIndexById(
-        action.payload.messageId,
-        foundChatForDeleting_ss.messages
-      );
       return {
         ...state,
-        chats: [
-          ...state.chats.slice(0, index_dss),
-          {
-            ...foundChatForDeleting_ss,
-            messages: [
-              ...foundChatForDeleting_ss.messages.slice(
-                0,
-                messageToDeleteIndex_ss
-              ),
-              ...foundChatForDeleting_ss.messages.slice(
-                messageToDeleteIndex_ss
-              ),
-            ],
-          },
-          ...state.chats.slice(index_dss),
-        ],
+        chats: deleteMessage({
+          chats: state.chats,
+          ...action.payload,
+        }),
       };
     case ChatActionTypes.EDIT_MESSAGE_SUCCESS:
       return {
@@ -204,27 +214,6 @@ const chatReducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-};
-
-const changeMessageProps = ({ chats, chatId, messageId, valuesToInsert }) => {
-  const foundChat = findChatById(chatId, chats);
-  const chatIndex = findChatIndexById(chatId, chats);
-  const messageIndex = findMessageIndexById(messageId, foundChat.messages);
-  return [
-    ...chats.slice(0, chatIndex),
-    {
-      ...foundChat,
-      messages: [
-        ...foundChat.messages.slice(0, messageIndex),
-        {
-          ...foundChat.messages[messageIndex],
-          ...valuesToInsert,
-        },
-        ...foundChat.messages.slice(messageIndex),
-      ],
-    },
-    ...chats.slice(chatIndex),
-  ];
 };
 
 export default chatReducer;
