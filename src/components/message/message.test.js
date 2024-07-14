@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Message from "./message";
 
 const time = new Date("2024-07-17T21:08:30").toISOString();
 
 const message = {
+  id: 1,
   message: "Test Message",
   createdAt: time,
 };
@@ -20,5 +21,13 @@ describe("Message component", () => {
   it("should have a timestamp", () => {
     render(<Message>{message}</Message>);
     expect(screen.getByText(/[0-9]{2}:[0-9]{2}:[0-9]{2}/)).toBeInTheDocument();
+  });
+  it("should fire a click event", () => {
+    const fn = jest.fn();
+    render(<Message clickHandler={fn}>{message}</Message>);
+    fireEvent.doubleClick(screen.getByText(/Test Message/));
+    expect(fn).toHaveBeenCalled();
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith(1);
   });
 });
