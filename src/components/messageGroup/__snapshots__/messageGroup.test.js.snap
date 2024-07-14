@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageGroup component should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-eqUAAy hkHHhd"
+    data-testid="message_group"
+  >
+    <div
+      class="sc-aXZVg cZkKqC  "
+    >
+      Message 1
+      <div
+        class="sc-gEvEer jozdBC"
+      >
+        19:08:30
+      </div>
+    </div>
+    <div
+      class="sc-aXZVg cZkKqC last "
+    >
+      Message 2
+      <div
+        class="sc-gEvEer jozdBC"
+      >
+        19:09:50
+      </div>
+    </div>
+  </div>
+</div>
+`;
