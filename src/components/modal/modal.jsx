@@ -7,10 +7,10 @@ import {
   StyledModal,
 } from "./modal.styles";
 
-const Modal = ({ children, closeModal, withCloseBtn, closeBtnTitle }) => {
+const Modal = ({ children, clickHandler, withCloseBtn, closeBtnTitle }) => {
   const onBackdropClickHandler = (event) => {
     event.stopPropagation();
-    closeModal();
+    clickHandler();
   };
 
   return (
@@ -22,7 +22,7 @@ const Modal = ({ children, closeModal, withCloseBtn, closeBtnTitle }) => {
           <StyledCloseButtonWrapper>
             {closeBtnTitle ? (
               <Button
-                onClick={closeModal}
+                onClick={clickHandler}
                 style={{ padding: "0.5rem" }}
                 backgroundColor="warning"
               >
@@ -46,7 +46,7 @@ const Modal = ({ children, closeModal, withCloseBtn, closeBtnTitle }) => {
 
 Modal.propTypes = {
   children: PropTypes.node,
-  closeModal: PropTypes.func.isRequired,
+  clickHandler: PropTypes.func.isRequired,
   withCloseBtn: PropTypes.bool,
   closeBtnTitle: PropTypes.string,
 };
