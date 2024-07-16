@@ -1,11 +1,5 @@
-import styled from 'styled-components';
-import EmojiPicker from 'emoji-picker-react';
-
-const StyledEmojiPickerWrapper = styled.div`
-  position: absolute;
-  bottom: 5.5rem;
-  right: 0.5rem;
-`;
+import EmojiPicker from "emoji-picker-react";
+import StyledEmojiPickerWrapper from "./emojiPickerWrapper.styles";
 
 const EmojiPickerWrapper = ({ onEmojiClickHandler }) => {
   const onEmojiClick = (emojiData) => {

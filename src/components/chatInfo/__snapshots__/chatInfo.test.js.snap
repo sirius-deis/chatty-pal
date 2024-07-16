@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatInfo component should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-aXZVg euuOOg"
+  >
+    some name
+  </div>
+</div>
+`;
