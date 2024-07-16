@@ -7,9 +7,7 @@ import Loader from "../loader/loader";
 import AnimateWrapper from "../animateWrapper/animateWrapper";
 import ChatInfo from "../chatInfo/chatInfo";
 import Error from "../error/error";
-import { fetchMessages } from "../../store/message/message.actions";
 import { fetchSingleChat } from "../../store/chat/chat.actions";
-import useFetch from "../../hooks/useFetch";
 import {
   StyledChat,
   StyledDate,
