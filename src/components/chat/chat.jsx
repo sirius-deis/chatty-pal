@@ -8,6 +8,7 @@ import AnimateWrapper from "../animateWrapper/animateWrapper";
 import ChatInfo from "../chatInfo/chatInfo";
 import Error from "../error/error";
 import { fetchMessages } from "../../store/message/message.actions";
+import { fetchSingleChat } from "../../store/chat/chat.actions";
 import useFetch from "../../hooks/useFetch";
 import {
   StyledChat,
@@ -54,11 +55,10 @@ const Chat = ({ chatId }) => {
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
   const user = useSelector((state) => state.user.user);
-  const messagesState = useSelector((state) => state.message);
-  const [fetchedMessages, isLoading, error] = useFetch(
-    `chats/${chatId}/messages`
-  );
-  const sortedMessages = divideMessagesInGroups(messagesState.messages);
+  const { chats, isLoading, error } = useSelector((state) => state.chat);
+
+  const chat = chats.find((chat) => chat.id === chatId);
+  const sortedMessages = divideMessagesInGroups(chat?.messages);
 
   const messagesToRender = [];
 
@@ -77,10 +77,10 @@ const Chat = ({ chatId }) => {
   }
 
   useEffect(() => {
-    if (fetchedMessages) {
-      dispatch(fetchMessages(chatId, fetchedMessages.messages));
+    if (!chat) {
+      dispatch(fetchSingleChat(chatId));
     }
-  }, [dispatch, chatId, fetchedMessages]);
+  }, [dispatch, chatId]);
 
   return (
     <StyledChat>
