@@ -102,13 +102,11 @@ const Menu = ({ style }) => {
           unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
           delay={200}
         >
-          <Modal
-            withCloseBtn
-            closeBtnTitle="Cancel"
-            closeModal={() => setIsSettingOpen((currentState) => !currentState)}
-          >
-            <Profile />
-          </Modal>
+          <Profile
+            clickHandler={() =>
+              setIsSettingOpen((currentState) => !currentState)
+            }
+          />
         </AnimateWrapper>
       )}
       {isGroupCreatorOpen && (
