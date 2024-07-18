@@ -6,14 +6,14 @@ import Modal from "../modal/modal";
 import Row from "../row/row";
 import Header from "../header/header";
 
-const CreateChat = ({ children, title }) => {
+const CreateChat = ({ children, title, clickHandler }) => {
   return (
-    <Modal withCloseBtn closeBtnTitle="Cancel">
+    <Modal withCloseBtn closeBtnTitle="Cancel" clickHandler={clickHandler}>
       <Row>
         <FilePicker singleFile>
           <FaPlus />
         </FilePicker>
-        <Header>Create {title}</Header>
+        <Header>Create a {title}</Header>
       </Row>
       <Input type="text" placeholder="Enter a chat name" />
       <div>{children}</div>
@@ -25,6 +25,7 @@ const CreateChat = ({ children, title }) => {
 CreateChat.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  clickHandler: PropTypes.func,
 };
 
 export default CreateChat;

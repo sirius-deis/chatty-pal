@@ -23,6 +23,7 @@ import List from "../list/list";
 import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
+import CreateChat from "../createChat/createChat";
 
 const Menu = ({ style }) => {
   const { user, token } = useSelector((state) => state.user);
@@ -32,7 +33,7 @@ const Menu = ({ style }) => {
   const dispatch = useDispatch();
 
   const settingOptions = [
-    [<MdGroups2 />, "New Group", () => {}],
+    [<MdGroups2 />, "New Group", () => setIsGroupCreatorOpen(true)],
     [<BsMegaphoneFill />, "New Channel", () => {}],
     [<FaUserAlt />, "Contacts", () => {}],
     [<MdCall />, "Calls", () => {}],
@@ -108,6 +109,21 @@ const Menu = ({ style }) => {
           >
             <Profile />
           </Modal>
+        </AnimateWrapper>
+      )}
+      {isGroupCreatorOpen && (
+        <AnimateWrapper
+          isMounted={true}
+          mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+          unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
+          delay={200}
+        >
+          <CreateChat
+            clickHandler={() =>
+              setIsGroupCreatorOpen((currentState) => !currentState)
+            }
+            title="group chat"
+          />
         </AnimateWrapper>
       )}
     </StyledMenu>
