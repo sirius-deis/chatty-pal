@@ -11,7 +11,6 @@ import FilePicker from "../filePicker/filePicker";
 import fetchData from "../../utils/fetchData";
 import Modal from "../modal/modal";
 
-//TODO: add an input component for choosing a picture
 const Profile = ({ clickHandler }) => {
   const { user, token } = useSelector((state) => state.user);
   const [photo, setPhoto] = useState(user.photo && user.photo[0]);
@@ -32,6 +31,7 @@ const Profile = ({ clickHandler }) => {
   };
 
   const onFileUpload = async (files) => {
+    setPhoto(files[0]);
     const formData = new FormData();
     formData.append("file", files[0]);
     await fetchData("add-photo", { body: formData });
@@ -47,7 +47,7 @@ const Profile = ({ clickHandler }) => {
             </Header>
           </Row>
           <Row>
-            <FilePicker singleFile onChange={onFileUpload}>
+            <FilePicker singleFile onChange={onFileUpload} value={photo}>
               <img
                 src={photo ? photo : Image}
                 alt="avatar"
