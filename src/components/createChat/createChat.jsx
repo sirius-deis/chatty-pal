@@ -13,6 +13,7 @@ const CreateChat = ({ children, title, clickHandler }) => {
   const onSubmitHandler = async () => {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("title", chatTitle);
     await fetchData("chats/", { body: formData });
   };
 

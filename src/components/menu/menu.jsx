@@ -23,6 +23,7 @@ import Toggle from "../toggle/toggle";
 import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
 import CreateChat from "../createChat/createChat";
+import { useNavigate } from "react-router-dom";
 
 const Menu = ({ style }) => {
   const { user, token } = useSelector((state) => state.user);
@@ -31,13 +32,14 @@ const Menu = ({ style }) => {
   const [isGroupCreatorOpen, setIsGroupCreatorOpen] = useState(false);
   const [isChannelCreatorOpen, setIsChannelCreatorOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const settingOptions = [
     [<MdGroups2 />, "New Group", () => setIsGroupCreatorOpen(true)],
     [<BsMegaphoneFill />, "New Channel", () => setIsChannelCreatorOpen(true)],
     [<FaUserAlt />, "Contacts", () => {}],
     [<MdCall />, "Calls", () => {}],
-    [<FaBookmark />, "Saved Messages", () => {}],
+    [<FaBookmark />, "Saved Messages", () => navigate(`/chat/${user.id}`)],
     [<MdSettings />, "Settings", () => setIsSettingOpen(true)],
     [<FaMoon />, "Night Mode"],
   ];
