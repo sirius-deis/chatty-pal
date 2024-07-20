@@ -15,7 +15,6 @@ import {
   StyledExit,
 } from "./menu.styles";
 import AnimateWrapper from "../../components/animateWrapper/animateWrapper";
-import Modal from "../modal/modal";
 import { signOut } from "../../store/user/user.actions";
 
 import Row from "../row/row";
@@ -30,11 +29,12 @@ const Menu = ({ style }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
   const [iSSettingsOpen, setIsSettingOpen] = useState(false);
   const [isGroupCreatorOpen, setIsGroupCreatorOpen] = useState(false);
+  const [isChannelCreatorOpen, setIsChannelCreatorOpen] = useState(false);
   const dispatch = useDispatch();
 
   const settingOptions = [
     [<MdGroups2 />, "New Group", () => setIsGroupCreatorOpen(true)],
-    [<BsMegaphoneFill />, "New Channel", () => {}],
+    [<BsMegaphoneFill />, "New Channel", () => setIsChannelCreatorOpen(true)],
     [<FaUserAlt />, "Contacts", () => {}],
     [<MdCall />, "Calls", () => {}],
     [<FaBookmark />, "Saved Messages", () => {}],
@@ -121,6 +121,21 @@ const Menu = ({ style }) => {
               setIsGroupCreatorOpen((currentState) => !currentState)
             }
             title="group chat"
+          />
+        </AnimateWrapper>
+      )}
+      {isChannelCreatorOpen && (
+        <AnimateWrapper
+          isMounted={true}
+          mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+          unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
+          delay={200}
+        >
+          <CreateChat
+            clickHandler={() =>
+              isChannelCreatorOpen((currentState) => !currentState)
+            }
+            title="channel"
           />
         </AnimateWrapper>
       )}
