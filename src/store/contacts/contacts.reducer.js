@@ -22,6 +22,13 @@ const contactsReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         error: action.payload
       }
+      case ContactsActionTypes.FETCH_CONTACTS_SUCCESS:
+        return {
+         ...state,
+          isLoading: false,
+          error: null,
+          contacts: action.payload
+        }
     default:
       return state;
   }
