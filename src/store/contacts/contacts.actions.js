@@ -23,3 +23,12 @@ export const addContact = (contact) => async (dispatch) => {
   }
 }
 
+export const deleteContact = (contactId) => async (dispatch) => {
+  dispatch({ type: ContactsActionTypes.DELETE_CONTACT_START });
+  try {
+    await fetchData(`contacts/${contactId}`, { method: "DELETE" });
+    dispatch({ type: ContactsActionTypes.DELETE_CONTACT_SUCCESS, payload: contactId });
+  } catch(error) {
+    dispatch({ type: ContactsActionTypes.DELETE_CONTACT_FAILURE, payload: error });
+  }
+}
