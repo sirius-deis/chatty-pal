@@ -27,7 +27,14 @@ const contactsReducer = (state = INITIAL_STATE, action) => {
          ...state,
           isLoading: false,
           error: null,
-          contacts: action.payload
+          contacts: action.payload.contacts
+        }
+      case ContactsActionTypes.ADD_CONTACT_SUCCESS:
+        return {
+         ...state,
+          isLoading: false,
+          error: null,
+          contacts: [...state.contacts, action.payload.contact]
         }
     default:
       return state;
