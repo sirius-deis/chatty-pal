@@ -9,3 +9,5 @@ const ContactsActionTypes = {
   DELETE_CONTACT_SUCCESS: "DELETE_CONTACT_SUCCESS",
   DELETE_CONTACT_FAILURE: "DELETE_CONTACT_FAILURE",
 };
+
+export default ContactsActionTypes;

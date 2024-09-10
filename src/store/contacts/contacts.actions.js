@@ -1,4 +1,5 @@
 import fetchData from "../../utils/fetchData"
+import ContactsActionTypes from './contacts.types'
 
 export const fetchContacts = () => async (dispatch) => {
   dispatch({ type: ContactsActionTypes.FETCH_CONTACTS_START });

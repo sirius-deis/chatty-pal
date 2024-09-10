@@ -1,3 +1,5 @@
+import ContactsActionTypes from './contacts.types'
+
 const INITIAL_STATE = {
   contacts: [],
   isLoading: false,
