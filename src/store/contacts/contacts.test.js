@@ -72,4 +72,15 @@ describe("contactsReducer", () => {
     expect(result.error).toEqual(null)
     expect(result.contacts).toEqual(contacts)
   })
+  it('should handle ADD_CONTACTS_SUCCESS', () => {
+    const contact = { id: 3, name: 'Bob' };
+    const action = { type: ContactsActionTypes.ADD_CONTACT_SUCCESS, payload: { contact } }
+    const result = contactsReducer(
+      { isLoading: true, error: null, contacts: [] },
+      action
+    )
+    expect(result.isLoading).toEqual(false)
+    expect(result.error).toEqual(null)
+    expect(result.contacts).toEqual([contact])
+  })
 })
