@@ -62,7 +62,7 @@ describe("contactsReducer", () => {
   })
 
   it('should handle FETCH_CONTACTS_SUCCESS', () => {
-    const contacts = [{ id: 1, name: 'John' }, { id: 2, name: 'Alice' }];
+    const contacts = [{ _id: 1, name: 'John' }, { _id: 2, name: 'Alice' }];
     const action = { type: ContactsActionTypes.FETCH_CONTACTS_SUCCESS, payload: { contacts } }
     const result = contactsReducer(
       { isLoading: true, error: null, contacts: [] },
@@ -73,7 +73,7 @@ describe("contactsReducer", () => {
     expect(result.contacts).toEqual(contacts)
   })
   it('should handle ADD_CONTACTS_SUCCESS', () => {
-    const contact = { id: 3, name: 'Bob' };
+    const contact = { _id: 3, name: 'Bob' };
     const action = { type: ContactsActionTypes.ADD_CONTACT_SUCCESS, payload: { contact } }
     const result = contactsReducer(
       { isLoading: true, error: null, contacts: [] },
@@ -82,5 +82,16 @@ describe("contactsReducer", () => {
     expect(result.isLoading).toEqual(false)
     expect(result.error).toEqual(null)
     expect(result.contacts).toEqual([contact])
+  })
+  it('should handle DELETE_CONTACTS_SUCCESS', () => {
+    const contactId = 2;
+    const action = { type: ContactsActionTypes.DELETE_CONTACT_SUCCESS, payload: { contactId } }
+    const result = contactsReducer(
+      { isLoading: true, error: null, contacts: [{ _id: 1, name: 'John' }, { _id: 2, name: 'Alice' }] },
+      action
+    )
+    expect(result.isLoading).toEqual(false)
+    expect(result.error).toEqual(null)
+    expect(result.contacts).toEqual([{ _id: 1, name: 'John' }])
   })
 })
