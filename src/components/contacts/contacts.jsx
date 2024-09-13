@@ -6,10 +6,12 @@ import { useEffect } from "react";
 import { fetchContacts } from "../../store/contacts/contacts.actions";
 import {StyledContactContainer, StyledContactInfo, StyledContactPhoto} from './contacts.styles';
 import Button from "../button/button";
+import { useNavigate } from "react-router-dom";
 
 const Contacts = () => {
   const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
       dispatch(fetchContacts())
@@ -29,6 +31,7 @@ const Contacts = () => {
             type="empty"
             backgroundColor="transparent"
             style={{ padding: "1.2rem" }}
+            onClick={() => navigate(`/chat/${contact._id}`)}
           >
             <BsSend />
           </Button>
