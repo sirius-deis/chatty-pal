@@ -24,6 +24,7 @@ import { ThemeContext } from "../../store/themeContext";
 import Profile from "../profile/profile";
 import CreateChat from "../createChat/createChat";
 import { useNavigate } from "react-router-dom";
+import Contacts from "../contacts/contacts";
 
 const Menu = ({ style }) => {
   const { user, token } = useSelector((state) => state.user);
@@ -31,13 +32,14 @@ const Menu = ({ style }) => {
   const [iSSettingsOpen, setIsSettingOpen] = useState(false);
   const [isGroupCreatorOpen, setIsGroupCreatorOpen] = useState(false);
   const [isChannelCreatorOpen, setIsChannelCreatorOpen] = useState(false);
+  const [isContactsOpen, setIsContactsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const settingOptions = [
     [<MdGroups2 />, "New Group", () => setIsGroupCreatorOpen(true)],
     [<BsMegaphoneFill />, "New Channel", () => setIsChannelCreatorOpen(true)],
-    [<FaUserAlt />, "Contacts", () => {}],
+    [<FaUserAlt />, "Contacts", () => setIsContactsOpen(true)],
     [<MdCall />, "Calls", () => {}],
     [<FaBookmark />, "Saved Messages", () => navigate(`/chat/${user.id}`)],
     [<MdSettings />, "Settings", () => setIsSettingOpen(true)],
@@ -139,6 +141,16 @@ const Menu = ({ style }) => {
             }
             title="channel"
           />
+        </AnimateWrapper>
+      )}
+      {isContactsOpen && (
+        <AnimateWrapper
+          isMounted={true}
+          mountedStyle={{ animation: "fadeOut 0.2s linear 1" }}
+          unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
+          delay={200}
+        >
+          <Contacts/>
         </AnimateWrapper>
       )}
     </StyledMenu>
