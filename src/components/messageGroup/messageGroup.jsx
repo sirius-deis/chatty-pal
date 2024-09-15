@@ -9,13 +9,13 @@ const MessageGroup = ({ messages, userId }) => {
       className={isOwn ? "own" : ""}
       data-testid="message_group"
     >
-      {messages.map((child, i) => (
+      {messages.map((message, i) => (
         <Message
-          key={child.id}
+          message={message}
+          key={message.id}
           isLast={i === messages.length - 1}
           isOwn={isOwn}
         >
-          {child}
         </Message>
       ))}
     </StyledMessageGroup>
