@@ -1,10 +1,11 @@
+import PropTypes from "propTypes";
 import MessageInfo from "../messageInfo/messageInfo";
 import { StyledMessage } from "./message.styles";
 
-const Message = ({ children, isLast, isOwn, clickHandler = () => {} }) => {
+const Message = ({ message, isLast, isOwn, clickHandler = () => {} }) => {
 
   const onMessageClickHandler = () => {
-    clickHandler(children.id);
+    clickHandler(message.id);
   };
 
   return (
@@ -12,10 +13,16 @@ const Message = ({ children, isLast, isOwn, clickHandler = () => {} }) => {
       className={`${isLast ? "last" : ""} ${isOwn ? "own" : ""}`}
       onDoubleClick={onMessageClickHandler}
     >
-      {children.message}
-      <MessageInfo createdAt={children.createdAt} isOwn={isOwn} isRead={children.isRead}/>
+      {message.message}
+      <MessageInfo createdAt={message.createdAt} isOwn={isOwn} isRead={message.isRead}/>
     </StyledMessage>
   );
 };
+
+Message.propTypes = {
+  message: PropTypes.object.isRequired,
+  isLast: PropTypes.bool,
+  isOwn: PropTypes.bool,
+}
 
 export default Message;

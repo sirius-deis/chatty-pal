@@ -11,7 +11,7 @@ const ImageMessage = ({message, isOwn}) => {
 
 ImageMessage.propTypes = {
   message: PropTypes.object.isRequired,
-  isOwn: PropTypes.bool.isRequired,
+  isOwn: PropTypes.bool,
 }
 
 export default ImageMessage;
