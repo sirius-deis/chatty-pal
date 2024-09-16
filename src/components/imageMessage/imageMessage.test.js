@@ -3,7 +3,8 @@ import ImageMessage from "./imageMessage";
 
 const message = {
   src: "image.jpg",
-  message: "image message"
+  message: "image message",
+  createAt: new Date("2024-07-17T21:08:30.").toISOString()
 }
 
 describe("ImageMessage component", () => {
@@ -11,6 +12,4 @@ describe("ImageMessage component", () => {
     const { container } = render(<ImageMessage message={message} />);
     expect(container).toMatchSnapshot();
   });
-
-  
 })

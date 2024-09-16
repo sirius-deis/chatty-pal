@@ -3,7 +3,7 @@
 exports[`FilePicker component should match snapshot 1`] = `
 <div>
   <label
-    class="sc-aXZVg dhWhfl"
+    class="sc-aXZVg fEYpTD"
   >
     <input
       class="sc-gEvEer iuhuvm"
@@ -11,7 +11,7 @@ exports[`FilePicker component should match snapshot 1`] = `
       type="file"
     />
     <div
-      class="sc-eqUAAy gCcMHU"
+      class="sc-eqUAAy gcxOnv"
       data-testid="file-icon"
       size="3"
     />

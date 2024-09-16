@@ -3,14 +3,9 @@
 exports[`Message component should match snapshot 1`] = `
 <div>
   <div
-    class="sc-aXZVg cZkKqC  "
+    class="sc-gEvEer eJajcW  "
   >
     Test Message
-    <div
-      class="sc-gEvEer jozdBC"
-    >
-      19:08:30
-    </div>
   </div>
 </div>
 `;

@@ -3,8 +3,8 @@
 exports[`Button component should match snapshot 1`] = `
 <div>
   <button
-    class="sc-bgqQcB sc-ewnqHT coimH gsIsIn"
-    style="font-size: 2rem;"
+    class="sc-aXZVg sc-gEvEer eafaH geLIwz"
+    kind="rounded"
   >
     Click me
   </button>

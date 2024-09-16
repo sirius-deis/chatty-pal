@@ -1,4 +1,4 @@
-import PropTypes from "propTypes";
+import PropTypes from "prop-types";
 import MessageInfo from "../messageInfo/messageInfo";
 import {StyledImageMessage, StyledTextMessage} from './imageMessage.styles'
 
