@@ -12,4 +12,9 @@ describe("ImageMessage component", () => {
     const { container } = render(<ImageMessage message={message} />);
     expect(container).toMatchSnapshot();
   });
+
+  it("renders an image", () => {
+    render(<ImageMessage message={message} />);
+    expect(screen.getByAltText(/image/i)).toBeInTheDocument();
+  });
 })
