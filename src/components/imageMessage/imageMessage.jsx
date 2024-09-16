@@ -1,12 +1,13 @@
 import PropTypes from "propTypes";
 import MessageInfo from "../messageInfo/messageInfo";
+import {StyledImageMessage, StyledTextMessage} from './imageMessage.styles'
 
 const ImageMessage = ({message, isOwn}) => {
-  return <div>
-    <img src={message.imageURL} alt={message.imageURL} />
-    <p>{message.message}</p>
+  return <StyledImageMessage>
+    <img src={message.src} alt={message.src} />
+    <StyledTextMessage>{message.message}</StyledTextMessage>
     <MessageInfo createdAt={message.createdAt} isOwn={isOwn} isRead={message.isRead} />
-  </div>
+  </StyledImageMessage>
 }
 
 ImageMessage.propTypes = {
