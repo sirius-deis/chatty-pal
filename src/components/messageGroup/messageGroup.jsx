@@ -1,6 +1,7 @@
 import Message from "../message/message";
 import React from "react";
 import { StyledMessageGroup } from "./messageGroup.styles";
+import ImageMessage from "../imageMessage/imageMessage";
 
 //TODO: Add different types of messages
 const MessageGroup = ({ messages, userId }) => {
@@ -10,15 +11,26 @@ const MessageGroup = ({ messages, userId }) => {
       className={isOwn ? "own" : ""}
       data-testid="message_group"
     >
-      {messages.map((message, i) => (
-        <Message
-          message={message}
-          key={message.id}
-          isLast={i === messages.length - 1}
-          isOwn={isOwn}
-        >
-        </Message>
-      ))}
+      
+      {messages.map((message, i) => {
+        let Component;
+        switch (message.type) {
+          case "text":
+            Component = Message;
+          case "image":
+            Component = ImageMessage
+          default:
+            Component = Message;
+
+            return <Component
+            message={message}
+            key={message.id}
+            isLast={i === messages.length - 1}
+            isOwn={isOwn}
+          >
+          </Component>
+        }
+      })}
     </StyledMessageGroup>
   );
 };
