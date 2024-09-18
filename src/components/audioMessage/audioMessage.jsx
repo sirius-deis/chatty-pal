@@ -2,6 +2,7 @@ import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa6";
 import Button from "../button/button";
 import {StyledAudioMessage, StyledAudio} from './audioMessage.styles'
+import { useState } from "react";
 
 const AudioMessage = ({message}) => {
   const [listening, setIsListening] = useState(false)
