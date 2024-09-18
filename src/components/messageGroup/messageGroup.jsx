@@ -17,19 +17,20 @@ const MessageGroup = ({ messages, userId }) => {
         switch (message.type) {
           case "text":
             Component = Message;
+            break;
           case "image":
             Component = ImageMessage
+            break;
           default:
             Component = Message;
-
-            return <Component
+        }
+        return <Component
             message={message}
             key={message.id}
             isLast={i === messages.length - 1}
             isOwn={isOwn}
           >
           </Component>
-        }
       })}
     </StyledMessageGroup>
   );
