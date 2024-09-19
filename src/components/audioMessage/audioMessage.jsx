@@ -4,8 +4,9 @@ import { AudioVisualizer } from 'react-audio-visualize';
 import Button from "../button/button";
 import {StyledAudioMessage, StyledAudio} from './audioMessage.styles'
 import { useState } from "react";
+import MessageInfo from "../messageInfo/messageInfo";
 
-const AudioMessage = ({message}) => {
+const AudioMessage = ({message, isOwn}) => {
   const [listening, setIsListening] = useState(false)
   const visualizerRef = useRef(null)
   return <StyledAudioMessage>
@@ -22,6 +23,7 @@ const AudioMessage = ({message}) => {
           gap={0}
           barColor={'#f76565'}
         />}
+        <MessageInfo createdAt={message.createdAt} isRead={message.isRead} isOwn={isOwn}/>
   </StyledAudioMessage>
 }
 
