@@ -8,11 +8,13 @@ import { SocketContext } from "../../store/socketContext";
 import { StyledChatInput, StyledLabel } from "./chatInput.styles";
 import Button from "../button/button";
 import FilePicker from "../filePicker/filePicker";
+import audioRecorder from "../../utils/audioRecorder";
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
   const [mode, setMode] = useState("audio");
   const [message, setMessage] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
   const { socket } = useContext(SocketContext);
 
   const onFormSubmit = (event) => {
@@ -49,6 +51,14 @@ const ChatInput = ({ chatId }) => {
     }
   };
 
+  const touchStart = (e) => {
+    if(mode !== 'audio') {
+      return;
+    }
+    setIsRecording(true);
+    audioRecorder.start();
+  }
+
   return (
     <StyledChatInput onSubmit={onFormSubmit}>
       <FilePicker>
@@ -74,6 +84,8 @@ const ChatInput = ({ chatId }) => {
         type="empty"
         backgroundColor="transparent"
         style={{ padding: "1.2rem" }}
+        touchstart={() => touchStart()}
+        touchend={() => touchEnd()}
       >
         {mode === "text" ? <BsSend /> : <HiOutlineMicrophone />}
       </Button>
