@@ -9,6 +9,7 @@ import { StyledChatInput, StyledLabel } from "./chatInput.styles";
 import Button from "../button/button";
 import FilePicker from "../filePicker/filePicker";
 import audioRecorder from "../../utils/audioRecorder";
+import fetchData from "../../utils/fetchData";
 
 const ChatInput = ({ chatId }) => {
   const [isEmojiPickerOpened, setIsEmojiPickerOpened] = useState(false);
@@ -52,11 +53,21 @@ const ChatInput = ({ chatId }) => {
   };
 
   const touchStart = (e) => {
+    e.preventDefault();
     if(mode !== 'audio') {
       return;
     }
     setIsRecording(true);
     audioRecorder.start();
+  }
+
+  const touchEnd = (e) => {
+    e.preventDefault()
+    audioRecorder.stop();
+    const blobs = audioRecorder.audioBlobs();
+    const formData = new FormData();
+    formData.append('audio_data', blobs);
+    fetchData('messages', {body: formData})
   }
 
   return (
