@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa6";
 import { AudioVisualizer } from 'react-audio-visualize';
@@ -25,6 +26,11 @@ const AudioMessage = ({message, isOwn}) => {
         />}
         <MessageInfo createdAt={message.createdAt} isRead={message.isRead} isOwn={isOwn}/>
   </StyledAudioMessage>
+}
+
+AudioMessage.propTypes = {
+  message: PropTypes.object.isRequired,
+  isOwn: PropTypes.bool,
 }
 
 export default AudioMessage;
