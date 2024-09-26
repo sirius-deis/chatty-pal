@@ -6,6 +6,8 @@ export const StyledVideoMessage = styled.div`
   flex-direction: column;
   gap: 0.1rem;
   justify-content: center;
+  background-color: var(--warning-300);
+  border-radius: 10px;
 `
 
 export const StyledVideo = styled.video`
@@ -14,6 +16,6 @@ export const StyledVideo = styled.video`
 
 export const StyledTextMessage = styled.p`
   font-size: 1.7rem;
-  background-color: var(--warning-300);
-  border-radius: 10px;`
+  
+  `
 ;
