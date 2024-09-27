@@ -13,9 +13,3 @@ export const StyledVideoMessage = styled.div`
 export const StyledVideo = styled.video`
   max-width: 100%;
 `
-
-export const StyledTextMessage = styled.p`
-  font-size: 1.7rem;
-  
-  `
-;

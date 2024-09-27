@@ -25,9 +25,3 @@ export const StyledImageMessage = styled.div`
     max-width: 100%;
   }
 `;
-
-export const StyledTextMessage = styled.p`
-  font-size: 1.7rem;
-  background-color: var(--warning-300);
-  border-radius: 10px;`
-;

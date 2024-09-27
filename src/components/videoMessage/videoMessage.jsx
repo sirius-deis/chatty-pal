@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
-import {StyledVideoMessage, StyledVideo, StyledTextMessage} from './videMessage.styles'
+import TextMessage from "../textMessage/textMessage";
+import {StyledVideoMessage, StyledVideo} from './videMessage.styles'
 
 const VideoMessage = ({message, isOwn}) => {
   return <StyledVideoMessage>
     <StyledVideo src={message.src}></StyledVideo>
-    <StyledTextMessage>{message.message}</StyledTextMessage>
+    <TextMessage>{message.message}</TextMessage>
     <MessageInfo createdAt={message.createdAt} isRead={message.isRead} isOwn={isOwn}/>
   </StyledVideoMessage>
 }
