@@ -6,19 +6,4 @@ export const StyledMessage = styled.div`
   padding: 0.7rem 1.4rem;
   background-color: var(--warning-300);
   border-radius: 10px;
-  &.last::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 10px;
-    height: 10px;
-    background-color: var(--warning-300);
-    z-index: -1;
-  }
-  &.last:not(.own)::before {
-    left: 0;
-  }
-  &.own.last::before {
-    right: 0;
-  }
 `;
