@@ -30,7 +30,7 @@ const Modal = ({ children, clickHandler, withCloseBtn, closeBtnTitle }) => {
               </Button>
             ) : (
               <Button
-                onClick={closeModal}
+                onClick={clickHandler}
                 style={{ padding: "0.5rem" }}
                 backgroundColor="warning"
               >

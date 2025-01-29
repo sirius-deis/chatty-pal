@@ -11,7 +11,7 @@ const List = ({ children, dir = "column" }) => {
 
 List.propTypes = {
   children: PropTypes.node,
-  dir: PropTypes.oneOf("column", "row"),
+  dir: PropTypes.oneOf(["column", "row"]),
 };
 
 export default List;
