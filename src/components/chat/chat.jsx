@@ -71,7 +71,7 @@ const Chat = ({ chatId }) => {
       );
     });
     messagesToRender.push(...messageGroupArr);
-    messagesToRender.push(<StyledDate>{key}</StyledDate>);
+    messagesToRender.push(<StyledDate key={key}>{key}</StyledDate>);
   }
 
   useEffect(() => {

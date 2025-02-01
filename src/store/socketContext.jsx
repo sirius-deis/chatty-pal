@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { online, offline } from './chat/chat.actions';
-import { addMessage, editMessage, deleteMessageFromSocket } from './message/message.actions';
+import { addMessage, editMessage, deleteMessageFromSocket } from './chat/chat.actions';
 import { addChat } from './chat/chat.actions';
 
 const URL = 'http://localhost:3000';
@@ -44,15 +44,15 @@ export const SocketProvider = ({ children }) => {
     }
   };
 
-  const onRateMessage = () => {};
+  const onRateMessage = () => { };
 
-  const onErrorSendMessage = () => {};
+  const onErrorSendMessage = () => { };
 
-  const onErrorEditMessage = () => {};
+  const onErrorEditMessage = () => { };
 
-  const onErrorUnsendMessage = () => {};
+  const onErrorUnsendMessage = () => { };
 
-  const onErrorRateMessage = () => {};
+  const onErrorRateMessage = () => { };
 
   useEffect(() => {
     if (!token) {
