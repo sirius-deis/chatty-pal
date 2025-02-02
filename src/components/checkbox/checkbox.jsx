@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { StyledCheckbox, StyledCheckMark, StyledLabelWithCheckbox } from './checkbox.styles';
 
-const LabelWithCheckbox = ({ label }) => {
+const LabelWithCheckbox = ({ label, isChecked, onChangeHandler }) => {
   return (
     <StyledLabelWithCheckbox>
-      <StyledCheckbox type='checkbox' />
+      <StyledCheckbox type='checkbox' data-testid="checkbox" checked={isChecked} onChange={() => onChangeHandler(!isChecked)} />
       <StyledCheckMark />
       {label}
     </StyledLabelWithCheckbox>
@@ -13,6 +13,8 @@ const LabelWithCheckbox = ({ label }) => {
 
 LabelWithCheckbox.propTypes = {
   label: PropTypes.string,
+  isChecked: PropTypes.bool,
+  onChangeHandler: PropTypes.func,
 };
 
 export default LabelWithCheckbox;
