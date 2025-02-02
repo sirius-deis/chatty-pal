@@ -6,10 +6,11 @@ import Input from "../input/input";
 import Modal from "../modal/modal";
 import Row from "../row/row";
 import Header from "../header/header";
+import Button from "../button/button";
 
 const CreateChat = ({ children, title, clickHandler }) => {
-  const [chatTitle, setChatTitle] = useState();
-  const [file, setFile] = useState(null);
+  const [chatTitle, setChatTitle] = useState("");
+  const [file, setFile] = useState(undefined);
   const onSubmitHandler = async () => {
     const formData = new FormData();
     formData.append("file", file);
@@ -24,7 +25,7 @@ const CreateChat = ({ children, title, clickHandler }) => {
       <form onSubmit={onSubmitHandler}>
         <Row>
           <FilePicker singleFile onChange={onFileUpload} value={file}>
-            <FaPlus />
+            <FaPlus data-testid="file_picker" />
           </FilePicker>
           <Header>Create a {title}</Header>
         </Row>
