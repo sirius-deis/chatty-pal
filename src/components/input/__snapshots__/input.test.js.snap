@@ -6,6 +6,7 @@ exports[`Input component should match snapshot 1`] = `
     class="sc-aXZVg fPdPqO"
     placeholder="Enter text"
     type="text"
+    value=""
   />
 </div>
 `;

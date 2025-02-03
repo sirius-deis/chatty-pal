@@ -21,6 +21,7 @@ const Input = ({
       value={value}
       placeholder={placeholder}
       type={type}
+      onChange={(e) => onChange(e.target.value, e.target.name)}
       {...rest}
     />
   );
