@@ -34,8 +34,6 @@ describe('CreateChat Component', () => {
     expect(input.value).toBe('My New Chat');
   });
 
-  
-
   it('calls clickHandler when cancel button is clicked', () => {
     render(<CreateChat {...defaultProps} />);
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
