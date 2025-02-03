@@ -6,6 +6,10 @@ const Input = ({
   border,
   borderRounded = true,
   shadow = true,
+  value,
+  placeholder,
+  type = "text",
+  onChange,
   ...rest
 }) => {
   return (
@@ -14,6 +18,9 @@ const Input = ({
       border={border}
       borderRounded={borderRounded}
       shadow={shadow}
+      value={value}
+      placeholder={placeholder}
+      type={type}
       {...rest}
     />
   );
@@ -24,6 +31,9 @@ Input.propTypes = {
   border: PropTypes.bool,
   borderRounded: PropTypes.bool,
   shadow: PropTypes.bool,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
   onChange: PropTypes.func,
 };
 
