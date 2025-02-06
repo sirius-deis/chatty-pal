@@ -12,6 +12,7 @@ import AnimateWrapper from "../animateWrapper/animateWrapper";
 import Panel from "../panel/panel";
 
 const ResetPassword = () => {
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,10 +20,9 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    const { email } = event.target.elements;
 
     setIsSent(true);
-    dispatch(resetPassword(email.value));
+    dispatch(resetPassword(email));
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const ResetPassword = () => {
           <Header>
             <h2>Reset password</h2>
           </Header>
-          <Input type="email" name="email" placeholder="Email *" />
+          <Input type="email" name="email" placeholder="Email *" value={email} onChange={(val) => setEmail(val)} />
           <Button>Submit</Button>
           <div>Take a different action.</div>
           <div>
