@@ -7,6 +7,7 @@ exports[`VideoMessage component should match snapshot 1`] = `
   >
     <video
       class="sc-eqUAAy kGDrMu"
+      data-testid="video"
       src="video.mp4"
     />
     <p

@@ -5,7 +5,7 @@ import MessageInfo from "../messageInfo/messageInfo";
 
 const VideoMessage = ({ message, isOwn = false }) => {
   return <StyledVideoMessage>
-    <StyledVideo src={message.src}></StyledVideo>
+    <StyledVideo src={message.src} data-testid={"video"}></StyledVideo>
     <TextMessage>{message.message}</TextMessage>
     <MessageInfo createdAt={message.createdAt} isRead={message.isRead} isOwn={isOwn} />
   </StyledVideoMessage>

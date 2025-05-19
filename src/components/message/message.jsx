@@ -1,21 +1,40 @@
 import PropTypes from "prop-types";
 import MessageInfo from "../messageInfo/messageInfo";
 import TextMessage from "../textMessage/textMessage";
+import AudioMessage from "../audioMessage/audioMessage";
+import VideoMessage from "../videoMessage/videoMessage";
+import ImageMessage from "../imageMessage/imageMessage";
 import { StyledMessage } from "./message.styles";
 
-const Message = ({ message, isLast, isOwn, clickHandler = () => {} }) => {
+const chooseMessageType = (type) => {
+  switch (type) {
+    case "audio":
+      return AudioMessage;
+    case "video":
+      return VideoMessage;
+    case "image":
+      return ImageMessage;
+    default:
+      return null;
+  }
+}
+
+const Message = ({ message, isLast, isOwn, clickHandler = () => { } }) => {
 
   const onMessageClickHandler = () => {
     clickHandler(message.id);
   };
+
+  const ContentToRender = chooseMessageType(message.type)
 
   return (
     <StyledMessage
       className={`${isLast ? "last" : ""} ${isOwn ? "own" : ""}`}
       onDoubleClick={onMessageClickHandler}
     >
-      <TextMessage>{message.message}</TextMessage>
-      <MessageInfo createdAt={message.createdAt} isOwn={isOwn} isRead={message.isRead}/>
+      <ContentToRender message={message} />
+      {message.message && <TextMessage>{message.message}</TextMessage>}
+      <MessageInfo createdAt={message.createdAt} isOwn={isOwn} isRead={message.isRead} />
     </StyledMessage>
   );
 };

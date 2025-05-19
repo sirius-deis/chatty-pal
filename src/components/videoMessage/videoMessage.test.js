@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import VideoMessage from "./videoMessage";
 
 const message = {
@@ -12,5 +12,16 @@ describe("VideoMessage component", () => {
   it("should match snapshot", () => {
     const {container} = render(<VideoMessage message={message} />)
     expect(container).toMatchSnapshot();
+  })
+  it("should render video message with corresponding src", () => {
+    render(<VideoMessage message={message} />);
+    const videoElement = screen.getByTestId("video")
+    expect(videoElement).toBeInTheDocument();
+    expect(videoElement).toHaveAttribute("src", message.src)
+  })
+  it("should render videoMessage with corresponding text", () => {
+    render(<VideoMessage message={message} />);
+    const textElement = screen.getByText(message.message);
+    expect(textElement).toBeInTheDocument()
   })
 })

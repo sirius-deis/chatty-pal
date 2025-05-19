@@ -2,7 +2,6 @@ import { BsCheck2All, BsCheck } from "react-icons/bs";
 import { StyledMessageInfo } from './messageInfo.styles'
 
 const MessageInfo = ({ isOwn, isRead, createdAt }) => {
-  console.log("!!!!!!!!!!!!!!!!!!!!!TEST!!!!!!!!!!!!!!!!!", createdAt)
   const time = createdAt.match(/T(\d{1,2}:\d{1,2}:\d{1,2})./)[1];
   <StyledMessageInfo>
     {time}
