@@ -1,13 +1,29 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Message from "./message";
 
-const time = new Date("2024-07-17T21:08:30.").toISOString();
-
 const message = {
   id: 1,
   message: "Test Message",
-  createdAt: time,
+  createdAt: "2023-10-01T12:00:00Z",
 };
+
+jest.mock("../textMessage/textMessage", () => {
+  return function MockedTextMessage() {
+    return <div>Text message</div>
+  }
+})
+
+jest.mock("../audioMessage/audioMessage", () => {
+  return function MockedAudioMessage() {
+    return <div>Audio message</div>
+  }
+})
+
+jest.mock("../videoMessage/videoMessage", () => {
+  return function MockedVideoMessage() {
+    return <div>Video message</div>
+  }
+})
 
 describe("Message component", () => {
   it("should match snapshot", () => {

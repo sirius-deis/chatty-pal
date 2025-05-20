@@ -6,14 +6,14 @@ import VideoMessage from "../videoMessage/videoMessage";
 import ImageMessage from "../imageMessage/imageMessage";
 import { StyledMessage } from "./message.styles";
 
-const chooseMessageType = (type) => {
+const chooseMessageType = (type, ...rest) => {
   switch (type) {
     case "audio":
-      return AudioMessage;
+      return <AudioMessage {...rest} />;
     case "video":
-      return VideoMessage;
+      return <VideoMessage {...rest} />;
     case "image":
-      return ImageMessage;
+      return <ImageMessage {...rest} />;
     default:
       return null;
   }
@@ -32,7 +32,7 @@ const Message = ({ message, isLast, isOwn, clickHandler = () => { } }) => {
       className={`${isLast ? "last" : ""} ${isOwn ? "own" : ""}`}
       onDoubleClick={onMessageClickHandler}
     >
-      <ContentToRender message={message} />
+      {ContentToRender}
       {message.message && <TextMessage>{message.message}</TextMessage>}
       <MessageInfo createdAt={message.createdAt} isOwn={isOwn} isRead={message.isRead} />
     </StyledMessage>
