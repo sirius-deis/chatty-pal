@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageMessage component should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-aXZVg bJeYAM"
+  >
+    <img
+      alt="image.jpg"
+      src="image.jpg"
+    />
+  </div>
+</div>
+`;
