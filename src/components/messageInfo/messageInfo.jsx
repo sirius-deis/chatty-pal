@@ -3,7 +3,7 @@ import { StyledMessageInfo } from './messageInfo.styles'
 
 const MessageInfo = ({ isOwn, isRead, createdAt }) => {
   const time = createdAt.match(/T(\d{1,2}:\d{1,2}:\d{1,2})./)[1];
-  <StyledMessageInfo>
+  return <StyledMessageInfo>
     {time}
     {isOwn && !isRead && (
       <BsCheck style={{ color: "var(--text)" }} />

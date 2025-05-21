@@ -3,18 +3,26 @@
 exports[`MessageGroup component should match snapshot 1`] = `
 <div>
   <div
-    class="sc-eqUAAy hkHHhd"
+    class="sc-dAlyuH kJqaud"
     data-testid="message_group"
   >
     <div
-      class="sc-gEvEer eJajcW  "
+      class="sc-kpDqfm jUJZSW  "
     >
-      Message 1
+      <p
+        class="sc-gEvEer ePxOia"
+      >
+        Message 1
+      </p>
     </div>
     <div
-      class="sc-gEvEer eJajcW last "
+      class="sc-kpDqfm jUJZSW last "
     >
-      Message 2
+      <p
+        class="sc-gEvEer ePxOia"
+      >
+        Message 2
+      </p>
     </div>
   </div>
 </div>
