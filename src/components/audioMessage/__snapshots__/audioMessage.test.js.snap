@@ -3,7 +3,7 @@
 exports[`AudioMessage component should match snapshot 1`] = `
 <div>
   <div
-    class="sc-dcJsrY ecnrOC"
+    class="sc-dcJsrY kpHFA"
   >
     <audio
       class="sc-iGgWBj enWZaW"
@@ -26,6 +26,10 @@ exports[`AudioMessage component should match snapshot 1`] = `
         />
       </svg>
     </button>
+    <canvas
+      height="75"
+      width="500"
+    />
   </div>
 </div>
 `;

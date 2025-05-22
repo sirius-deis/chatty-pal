@@ -3,28 +3,41 @@ import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa6";
 import { AudioVisualizer } from 'react-audio-visualize';
 import Button from "../button/button";
-import {StyledAudioMessage, StyledAudio} from './audioMessage.styles'
-import { useState } from "react";
-import MessageInfo from "../messageInfo/messageInfo";
+import { StyledAudioMessage, StyledAudio } from './audioMessage.styles'
+import { useEffect, useRef, useState } from "react";
 
-const AudioMessage = ({message, isOwn}) => {
+const AudioMessage = ({ message }) => {
   const [listening, setIsListening] = useState(false)
   const visualizerRef = useRef(null)
+
+  let blob;
+  let response;
+
+  useEffect(() => {
+    const getAudioBlob = async () => {
+      response = await fetch(message.src);
+
+      const arrayBuffer = await response.arrayBuffer()
+
+      blob = new Blob([arrayBuffer], { type: response.headers.get("content-type") })
+    }
+
+    getAudioBlob();
+  })
   return <StyledAudioMessage>
     <StyledAudio src={message.src}></StyledAudio>
     <Button type="empty" onClick={() => setIsListening(!listening)}>
-      {listening? <FaPause /> : <FaPlay />}
+      {listening ? <FaPause /> : <FaPlay />}
     </Button>
     {message.src && <AudioVisualizer
-          ref={visualizerRef}
-          blob={blob}
-          width={500}
-          height={75}
-          barWidth={1}
-          gap={0}
-          barColor={'#f76565'}
-        />}
-        <MessageInfo createdAt={message.createdAt} isRead={message.isRead} isOwn={isOwn}/>
+      ref={visualizerRef}
+      blob={blob}
+      width={500}
+      height={75}
+      barWidth={1}
+      gap={0}
+      barColor={'#f76565'}
+    />}
   </StyledAudioMessage>
 }
 
