@@ -11,4 +11,10 @@ describe("ChatInfo component", () => {
     render(<ChatInfo name="some name" />);
     expect(screen.getByText(/some name/)).toBeInTheDocument();
   });
+  it("should render a profile picture", () => {
+    render(<ChatInfo name="Sam" photoSrc="picture.png" />);
+    const img = screen.getByAltText(/Sam profile photo/);
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", "picture.png");
+  });
 });

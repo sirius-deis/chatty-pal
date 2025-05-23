@@ -6,6 +6,9 @@ exports[`ChatInfo component should match snapshot 1`] = `
     class="sc-aXZVg euuOOg"
   >
     some name
+    <img
+      alt="some name profile photo"
+    />
   </div>
 </div>
 `;
