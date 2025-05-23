@@ -11,11 +11,10 @@ const AudioMessage = ({ message }) => {
   const visualizerRef = useRef(null)
 
   let blob;
-  let response;
 
   useEffect(() => {
     const getAudioBlob = async () => {
-      response = await fetch(message.src);
+      let response = await fetch(message.src);
 
       const arrayBuffer = await response.arrayBuffer()
 

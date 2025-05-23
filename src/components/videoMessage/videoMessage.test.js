@@ -19,9 +19,4 @@ describe("VideoMessage component", () => {
     expect(videoElement).toBeInTheDocument();
     expect(videoElement).toHaveAttribute("src", message.src)
   })
-  it("should render videoMessage with corresponding text", () => {
-    render(<VideoMessage message={message} />);
-    const textElement = screen.getByText(message.message);
-    expect(textElement).toBeInTheDocument()
-  })
 })

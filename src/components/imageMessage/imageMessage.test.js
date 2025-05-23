@@ -14,6 +14,8 @@ describe("ImageMessage component", () => {
 
   it("renders an image", () => {
     render(<ImageMessage message={message} />);
-    expect(screen.getByAltText(/image/i)).toBeInTheDocument();
+    const img = screen.getByAltText(/image/i)
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", message.src);
   });
 })

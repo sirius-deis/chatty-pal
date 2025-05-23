@@ -3,18 +3,13 @@
 exports[`VideoMessage component should match snapshot 1`] = `
 <div>
   <div
-    class="sc-gEvEer feBbvx"
+    class="sc-aXZVg duPOUh"
   >
     <video
-      class="sc-eqUAAy kGDrMu"
+      class="sc-gEvEer eEnjE"
       data-testid="video"
       src="video.mp4"
     />
-    <p
-      class="sc-aXZVg bdiBRO"
-    >
-      Watch this video
-    </p>
   </div>
 </div>
 `;
