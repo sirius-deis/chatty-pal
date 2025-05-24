@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { HiOutlinePaperClip, HiOutlineMicrophone } from "react-icons/hi";
+import { HiOutlinePaperClip, HiOutlineMicrophone, HiMicrophone } from "react-icons/hi2";
 import { BsEmojiSmile, BsSend } from "react-icons/bs";
 import Input from "../input/input";
 import EmojiPickerWrapper from "../emojiPickerWrapper/emojiPickerWrapper";
@@ -54,7 +54,7 @@ const ChatInput = ({ chatId }) => {
 
   const touchStart = (e) => {
     e.preventDefault();
-    if(mode !== 'audio') {
+    if (mode !== 'audio') {
       return;
     }
     setIsRecording(true);
@@ -67,7 +67,7 @@ const ChatInput = ({ chatId }) => {
     const blobs = audioRecorder.audioBlobs();
     const formData = new FormData();
     formData.append('audio_data', blobs);
-    fetchData('messages', {body: formData})
+    fetchData('messages', { body: formData })
   }
 
   return (
@@ -98,7 +98,8 @@ const ChatInput = ({ chatId }) => {
         touchstart={() => touchStart()}
         touchend={() => touchEnd()}
       >
-        {mode === "text" ? <BsSend /> : <HiOutlineMicrophone />}
+        {mode === "text" && <BsSend />}
+        {mode === "audio" && isRecording ? <HiOutlineMicrophone /> : <HiMicrophone />}
       </Button>
     </StyledChatInput>
   );
