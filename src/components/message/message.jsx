@@ -6,7 +6,7 @@ import VideoMessage from "../videoMessage/videoMessage";
 import ImageMessage from "../imageMessage/imageMessage";
 import { StyledMessage } from "./message.styles";
 
-const chooseMessageType = (type, ...rest) => {
+const chooseMessageType = ({ type, ...rest }) => {
   switch (type) {
     case "audio":
       return <AudioMessage {...rest} />;
@@ -25,7 +25,7 @@ const Message = ({ message, isLast, isOwn, clickHandler = () => { } }) => {
     clickHandler(message.id);
   };
 
-  const ContentToRender = chooseMessageType(message.type)
+  const ContentToRender = chooseMessageType(message)
 
   return (
     <StyledMessage
