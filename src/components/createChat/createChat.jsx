@@ -7,15 +7,17 @@ import Modal from "../modal/modal";
 import Row from "../row/row";
 import Header from "../header/header";
 import Button from "../button/button";
+import fetchData from "../../utils/fetchData";
 
 const CreateChat = ({ children, title, clickHandler }) => {
   const [chatTitle, setChatTitle] = useState("");
   const [file, setFile] = useState(undefined);
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
     formData.append("title", chatTitle);
-    await fetchData("chats/", { body: formData });
+    await fetchData("chats", { body: formData });
   };
 
   const onFileUpload = async (files) => setFile(files[0]);
@@ -33,7 +35,7 @@ const CreateChat = ({ children, title, clickHandler }) => {
           type="text"
           placeholder="Enter a chat name"
           value={chatTitle}
-          onChange={(e) => setChatTitle(e.target.value)}
+          onChange={(e) => setChatTitle(e)}
         />
         <div>{children}</div>
         <Button primary>Create</Button>

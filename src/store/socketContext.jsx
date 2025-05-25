@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { online, offline } from './chat/chat.actions';
-import { addMessage, editMessage, deleteMessageFromSocket } from './chat/chat.actions';
+import { addMessage, editMessage, deleteMessage } from './chat/chat.actions';
 import { addChat } from './chat/chat.actions';
 
 const URL = 'http://localhost:3000';
@@ -40,7 +40,7 @@ export const SocketProvider = ({ children }) => {
 
   const onUnsendMessage = (chatId, messageId) => {
     if (message.chosenChatId === chatId) {
-      dispatch(deleteMessageFromSocket(messageId));
+      dispatch(deleteMessage(messageId));
     }
   };
 

@@ -33,16 +33,21 @@ const Sidebar = ({ toggleMenuClickHandler }) => {
 
   const regexp = new RegExp(searchTerm);
 
+  const resetSearchTerm = () => {
+    setSearchTerm("");
+    setIsSearchStarted(false);
+  }
+
   return (
     <StyledSidebar>
       <Row style={{ gap: "2rem", padding: "0 1rem" }}>
-        {isSearchStarted ? (
+        {isSearchStarted && searchTerm ? (
           <Button
             type="empty"
             backgroundColor="transparent"
             style={{ width: "2.5rem" }}
           >
-            <FaArrowLeft onClick={() => setIsSearchStarted(false)} />
+            <FaArrowLeft onClick={resetSearchTerm} />
           </Button>
         ) : (
           <Burger onClick={toggleMenuClickHandler} />

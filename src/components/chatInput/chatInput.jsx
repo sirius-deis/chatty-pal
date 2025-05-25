@@ -38,8 +38,7 @@ const ChatInput = ({ chatId }) => {
     setMessage((prevState) => prevState + emoji);
   };
 
-  const onInputChangeHandler = (e) => {
-    const text = e.target.value;
+  const onInputChangeHandler = (text) => {
     setMessage(text);
     if (text.length < 1) {
       if (mode !== "audio") {
@@ -99,7 +98,7 @@ const ChatInput = ({ chatId }) => {
         touchend={() => touchEnd()}
       >
         {mode === "text" && <BsSend />}
-        {mode === "audio" && isRecording ? <HiOutlineMicrophone /> : <HiMicrophone />}
+        {mode === "audio" && (isRecording ? <HiOutlineMicrophone /> : <HiMicrophone />)}
       </Button>
     </StyledChatInput>
   );

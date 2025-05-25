@@ -21,8 +21,8 @@ const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
 
     dispatch(
       signUp({
@@ -44,7 +44,7 @@ const SignUp = () => {
   }, [error, isLoading, isSent]);
 
   const onChangeHandler = (fn) => (e) => {
-    fn(e.target.value);
+    fn(e);
   };
 
   return (

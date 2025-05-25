@@ -1,5 +1,5 @@
 import EmojiPicker from "emoji-picker-react";
-import StyledEmojiPickerWrapper from "./emojiPickerWrapper.styles";
+import { StyledEmojiPickerWrapper } from "./emojiPickerWrapper.styles";
 
 const EmojiPickerWrapper = ({ onEmojiClickHandler }) => {
   const onEmojiClick = (emojiData) => {

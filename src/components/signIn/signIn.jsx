@@ -22,9 +22,9 @@ const SignIn = () => {
   const [isSent, setIsSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = e.target.elements;
     dispatch(signIn({ email: email.value, password: password.value }));
     setIsSent(true);
   };
@@ -36,7 +36,7 @@ const SignIn = () => {
   }, [error]);
 
   const onChangeHandler = (fn) => (e) => {
-    fn(e.target.value);
+    fn(e);
   };
 
   return (

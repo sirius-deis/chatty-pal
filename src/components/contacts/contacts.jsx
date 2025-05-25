@@ -9,7 +9,7 @@ import { StyledContactContainer, StyledContactInfo, StyledContactPhoto } from '.
 import Button from "../button/button";
 import { useNavigate } from "react-router-dom";
 
-const Contacts = ({ clickHandler }) => {
+const Contacts = ({ clickHandler = () => { } }) => {
   const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
   const navigate = useNavigate()

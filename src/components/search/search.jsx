@@ -2,7 +2,7 @@ import Button from "../button/button";
 import { StyledCross, StyledSearch, StyledWrapper } from "./search.styles";
 import PropTypes from "prop-types";
 
-const Search = ({ onChange, ...rest }) => {
+const Search = ({ onChange, value: searchText = '', ...rest }) => {
   const onChangeHandler = (event) => {
     onChange(event.target.value);
   };
@@ -18,9 +18,10 @@ const Search = ({ onChange, ...rest }) => {
         placeholder="Search..."
         name="search"
         onChange={onChangeHandler}
+        value={searchText}
         {...rest}
       />
-      {rest.value?.length > 0 && (
+      {searchText.length > 0 && (
         <StyledCross onClick={onClearClickHandler}>
           <Button
             type="empty"

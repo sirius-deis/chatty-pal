@@ -40,7 +40,7 @@ const Menu = ({ style }) => {
     [<MdGroups2 />, "New Group", () => setIsGroupCreatorOpen(true)],
     [<BsMegaphoneFill />, "New Channel", () => setIsChannelCreatorOpen(true)],
     [<FaUserAlt />, "Contacts", () => setIsContactsOpen(true)],
-    [<MdCall />, "Calls", () => {}],
+    [<MdCall />, "Calls", () => { }],
     [<FaBookmark />, "Saved Messages", () => navigate(`/chat/${user.id}`)],
     [<MdSettings />, "Settings", () => setIsSettingOpen(true)],
     [<FaMoon />, "Night Mode"],
@@ -108,7 +108,7 @@ const Menu = ({ style }) => {
         >
           <Profile
             clickHandler={() =>
-              setIsSettingOpen((currentState) => !currentState)
+              setIsSettingOpen(false)
             }
           />
         </AnimateWrapper>
@@ -122,7 +122,7 @@ const Menu = ({ style }) => {
         >
           <CreateChat
             clickHandler={() =>
-              setIsGroupCreatorOpen((currentState) => !currentState)
+              setIsGroupCreatorOpen(false)
             }
             title="group chat"
           />
@@ -137,7 +137,7 @@ const Menu = ({ style }) => {
         >
           <CreateChat
             clickHandler={() =>
-              isChannelCreatorOpen((currentState) => !currentState)
+              setIsChannelCreatorOpen(false)
             }
             title="channel"
           />
@@ -150,7 +150,7 @@ const Menu = ({ style }) => {
           unmountedStyle={{ animation: "fadeIn 0.2s linear 1" }}
           delay={200}
         >
-          <Contacts/>
+          <Contacts clickHandler={() => setIsContactsOpen(false)} />
         </AnimateWrapper>
       )}
     </StyledMenu>
